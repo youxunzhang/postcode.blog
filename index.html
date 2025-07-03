@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China Postal Code Lookup - ZIP CODE Search Platform</title>
+    <meta name="description" content="Professional China postal code lookup platform providing accurate ZIP codes for major Chinese cities and districts. Fast ZIP code search with city and district name support.">
+    <meta name="keywords" content="China zip code, China postal code, Chinese zip codes, postal code lookup, city zip codes, district zip codes, Beijing zip code, Shanghai zip code, Guangzhou zip code, Shenzhen zip code">
+    <meta name="author" content="China Postal Code Lookup Platform">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007AFF;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #007AFF;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            border-radius: 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: #0056b3;
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .main-content {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #007AFF, #5856D6);
+            border-radius: 2px;
+        }
+        
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .city-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(0, 122, 255, 0.1);
+        }
+        
+        .city-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 122, 255, 0.2);
+            border-color: #007AFF;
+        }
+        
+        .city-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .zip-code {
+            font-size: 1.1rem;
+            color: #007AFF;
+            font-weight: 500;
+        }
+        
+        .district-info {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 122, 255, 0.1);
+        }
+        
+        .district-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .search-results {
+            display: none;
+            margin-top: 2rem;
+        }
+        
+        .result-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #007AFF;
+        }
+        
+        .footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-radius: 20px;
+            color: white;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #007AFF;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .cities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .search-box {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .search-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">China ZIP Codes</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#search">Search</a></li>
+                <li><a href="#cities">Cities</a></li>
+                <li><a href="global.html">Global ZIP Codes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero" id="home">
+            <h1>China Postal Code Lookup</h1>
+            <p class="subtitle">Fast and accurate ZIP code search for 24 major Chinese cities - Professional postal code lookup service</p>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Enter city name or district name..." id="searchInput">
+                <button class="search-btn" onclick="searchZipCode()">Search</button>
+            </div>
+        </section>
+
+        <section class="main-content">
+            <div class="search-results" id="searchResults"></div>
+            
+            <div id="citiesSection">
+                <h2>Major Chinese Cities Postal Codes</h2>
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <a href="global.html" style="display: inline-block; padding: 0.8rem 1.5rem; background: #28a745; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s; margin-right: 1rem;">🌍 View Global ZIP Codes</a>
+                    <span style="color: #666;">Covering major cities worldwide</span>
+                </div>
+                <div class="cities-grid" id="citiesGrid">
+                    <!-- City data will be loaded dynamically via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="main-content">
+            <h2>Postal Code Lookup Guide</h2>
+            <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 1rem;">Postal codes (ZIP codes) are established by China Post to improve mail processing efficiency. Each postal code represents a specific delivery area.</p>
+                <p style="margin-bottom: 1rem;">Our platform provides accurate postal code information for 24 major Chinese cities, covering tier-1 cities and 20 new tier-1 cities, supporting multiple search methods:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>Search by city name (e.g., Beijing, Shanghai, Suzhou, Changsha)</li>
+                    <li>Search by district name (e.g., Chaoyang District, Pudong New Area, Gusu District)</li>
+                    <li>Reverse lookup by postal code (e.g., 100000, 200000, 215000)</li>
+                    <li>Fuzzy search functionality</li>
+                </ul>
+                <p>Our database is updated in real-time to ensure the most current and accurate postal code information.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#search">ZIP Code Search</a></li>
+                        <li><a href="#cities">City List</a></li>
+                        <li><a href="global.html">Global ZIP Codes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Popular Cities</h3>
+                    <ul>
+                        <li><a href="#beijing">Beijing ZIP Codes</a></li>
+                        <li><a href="#shanghai">Shanghai ZIP Codes</a></li>
+                        <li><a href="#guangzhou">Guangzhou ZIP Codes</a></li>
+                        <li><a href="#shenzhen">Shenzhen ZIP Codes</a></li>
+                        <li><a href="#suzhou">Suzhou ZIP Codes</a></li>
+                        <li><a href="#changsha">Changsha ZIP Codes</a></li>
+                        <li><a href="#shenyang">Shenyang ZIP Codes</a></li>
+                        <li><a href="#qingdao">Qingdao ZIP Codes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Global ZIP Codes</h3>
+                    <ul>
+                        <li><a href="global.html#asia">Asian Cities</a></li>
+                        <li><a href="global.html#europe">European Cities</a></li>
+                        <li><a href="global.html#north-america">North American Cities</a></li>
+                        <li><a href="global.html#south-america">South American Cities</a></li>
+                        <li><a href="global.html#africa">African Cities</a></li>
+                        <li><a href="global.html#oceania">Oceanian Cities</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>&copy; 2024 China Postal Code Lookup Platform. Providing accurate and reliable postal code lookup services for 24 major Chinese cities.</p>
+        </div>
+    </footer>
+
+    <script>
+        // China major cities postal code data
+        const zipCodeData = {
+            "Beijing": {
+                "Main ZIP": "100000",
+                "districts": {
+                    "Dongcheng District": "100010",
+                    "Xicheng District": "100032",
+                    "Chaoyang District": "100020",
+                    "Fengtai District": "100071",
+                    "Shijingshan District": "100043",
+                    "Haidian District": "100080",
+                    "Mentougou District": "102300",
+                    "Fangshan District": "102400",
+                    "Tongzhou District": "101100",
+                    "Shunyi District": "101300",
+                    "Changping District": "102200",
+                    "Daxing District": "102600",
+                    "Huairou District": "101400",
+                    "Pinggu District": "101200",
+                    "Miyun District": "101500",
+                    "Yanqing District": "102100"
+                }
+            },
+            "Shanghai": {
+                "Main ZIP": "200000",
+                "districts": {
+                    "Huangpu District": "200001",
+                    "Xuhui District": "200030",
+                    "Changning District": "200050",
+                    "Jing'an District": "200040",
+                    "Putuo District": "200333",
+                    "Hongkou District": "200080",
+                    "Yangpu District": "200082",
+                    "Minhang District": "201100",
+                    "Baoshan District": "201900",
+                    "Jiading District": "201800",
+                    "Pudong New Area": "200120",
+                    "Jinshan District": "201500",
+                    "Songjiang District": "201600",
+                    "Qingpu District": "201700",
+                    "Fengxian District": "201400",
+                    "Chongming District": "202150"
+                }
+            },
+            "Guangzhou": {
+                "Main ZIP": "510000",
+                "districts": {
+                    "Liwan District": "510145",
+                    "Yuexiu District": "510030",
+                    "Haizhu District": "510220",
+                    "Tianhe District": "510630",
+                    "Baiyun District": "510405",
+                    "Huangpu District": "510700",
+                    "Panyu District": "511400",
+                    "Huadu District": "510800",
+                    "Nansha District": "511458",
+                    "Conghua District": "510900",
+                    "Zengcheng District": "511300"
+                }
+            },
+            "Shenzhen": {
+                "Main ZIP": "518000",
+                "districts": {
+                    "Luohu District": "518001",
+                    "Futian District": "518026",
+                    "Nanshan District": "518052",
+                    "Bao'an District": "518101",
+                    "Longgang District": "518172",
+                    "Yantian District": "518083",
+                    "Longhua District": "518109",
+                    "Pingshan District": "518118",
+                    "Guangming District": "518106",
+                    "Dapeng New District": "518119"
+                }
+            },
+            "Hangzhou": {
+                "Main ZIP": "310000",
+                "districts": {
+                    "Shangcheng District": "310002",
+                    "Xiacheng District": "310006",
+                    "Jianggan District": "310016",
+                    "Gongshu District": "310011",
+                    "Xihu District": "310013",
+                    "Binjiang District": "310051",
+                    "Xiaoshan District": "311200",
+                    "Yuhang District": "311100",
+                    "Fuyang District": "311400",
+                    "Lin'an District": "311300",
+                    "Jiande City": "311600",
+                    "Tonglu County": "311500",
+                    "Chun'an County": "311700"
+                }
+            },
+            "Nanjing": {
+                "Main ZIP": "210000",
+                "districts": {
+                    "Xuanwu District": "210018",
+                    "Qinhuai District": "210001",
+                    "Jianye District": "210019",
+                    "Gulou District": "210009",
+                    "Pukou District": "211800",
+                    "Qixia District": "210046",
+                    "Yuhuatai District": "210012",
+                    "Jiangning District": "211100",
+                    "Liuhe District": "211500",
+                    "Lishui District": "211200",
+                    "Gaochun District": "211300"
+                }
+            },
+            "Chengdu": {
+                "Main ZIP": "610000",
+                "districts": {
+                    "Jinjiang District": "610021",
+                    "Qingyang District": "610031",
+                    "Jinniu District": "610036",
+                    "Wuhou District": "610041",
+                    "Chenghua District": "610051",
+                    "Longquanyi District": "610100",
+                    "Qingbaijiang District": "610300",
+                    "Xindu District": "610500",
+                    "Wenjiang District": "611130",
+                    "Shuangliu District": "610200",
+                    "Pidu District": "611730",
+                    "Dujiangyan City": "611830",
+                    "Pengzhou City": "611930",
+                    "Qionglai City": "611530",
+                    "Chongzhou City": "611230",
+                    "Jintang County": "610400",
+                    "Dayi County": "611330",
+                    "Pujiang County": "611630",
+                    "Xinjin County": "611430",
+                    "Jianyang City": "641400"
+                }
+            },
+            "Chongqing": {
+                "Main ZIP": "400000",
+                "districts": {
+                    "Wanzhou District": "404000",
+                    "Fuling District": "408000",
+                    "Yuzhong District": "400010",
+                    "Dadukou District": "400080",
+                    "Jiangbei District": "400020",
+                    "Shapingba District": "400030",
+                    "Jiulongpo District": "400050",
+                    "Nan'an District": "400060",
+                    "Beibei District": "400700",
+                    "Qijiang District": "401420",
+                    "Dazu District": "402360",
+                    "Yubei District": "401120",
+                    "Banan District": "401320",
+                    "Qianjiang District": "409000",
+                    "Changshou District": "401220",
+                    "Jiangjin District": "402260",
+                    "Hechuan District": "401520",
+                    "Yongchuan District": "402160",
+                    "Nanchuan District": "408400",
+                    "Bishan District": "402760",
+                    "Tongliang District": "402560",
+                    "Tongnan District": "402660",
+                    "Rongchang District": "402460"
+                }
+            },
+            "Wuhan": {
+                "Main ZIP": "430000",
+                "districts": {
+                    "Jiang'an District": "430014",
+                    "Jianghan District": "430023",
+                    "Qiaokou District": "430033",
+                    "Hanyang District": "430050",
+                    "Wuchang District": "430061",
+                    "Qingshan District": "430080",
+                    "Hongshan District": "430070",
+                    "Dongxihu District": "430040",
+                    "Hannan District": "430090",
+                    "Caidian District": "430100",
+                    "Jiangxia District": "430200",
+                    "Huangpi District": "430300",
+                    "Xinzhou District": "431400"
+                }
+            },
+            "Xi'an": {
+                "Main ZIP": "710000",
+                "districts": {
+                    "Xincheng District": "710004",
+                    "Beilin District": "710001",
+                    "Lianhu District": "710003",
+                    "Baqiao District": "710038",
+                    "Weiyang District": "710016",
+                    "Yanta District": "710061",
+                    "Yanliang District": "710089",
+                    "Lintong District": "710600",
+                    "Chang'an District": "710100",
+                    "Gaoling District": "710200",
+                    "Huyi District": "710300",
+                    "Lantian County": "710500",
+                    "Zhouzhi County": "710400"
+                }
+            },
+            "Tianjin": {
+                "Main ZIP": "300000",
+                "districts": {
+                    "Heping District": "300041",
+                    "Hedong District": "300171",
+                    "Hexi District": "300202",
+                    "Nankai District": "300100",
+                    "Hebei District": "300143",
+                    "Hongqiao District": "300131",
+                    "Dongli District": "300300",
+                    "Xiqing District": "300380",
+                    "Jinnan District": "300350",
+                    "Beichen District": "300400",
+                    "Wuqing District": "301700",
+                    "Baodi District": "301800",
+                    "Binhai New Area": "300450",
+                    "Ninghe District": "301500",
+                    "Jinghai District": "301600",
+                    "Jizhou District": "301900"
+                }
+            },
+            "Suzhou": {
+                "Main ZIP": "215000",
+                "districts": {
+                    "Gusu District": "215002",
+                    "Huqiu District": "215009",
+                    "Wuzhong District": "215128",
+                    "Xiangcheng District": "215131",
+                    "Wujiang District": "215200",
+                    "Changshu City": "215500",
+                    "Zhangjiagang City": "215600",
+                    "Kunshan City": "215300",
+                    "Taicang City": "215400",
+                    "Industrial Park": "215021",
+                    "High-tech Zone": "215011"
+                }
+            },
+            "Changsha": {
+                "Main ZIP": "410000",
+                "districts": {
+                    "Furong District": "410011",
+                    "Tianxin District": "410004",
+                    "Yuelu District": "410013",
+                    "Kaifu District": "410008",
+                    "Yuhua District": "410011",
+                    "Wangcheng District": "410200",
+                    "Changsha County": "410100",
+                    "Ningxiang City": "410600",
+                    "Liuyang City": "410300"
+                }
+            },
+            "Shenyang": {
+                "Main ZIP": "110000",
+                "districts": {
+                    "Heping District": "110001",
+                    "Shenhe District": "110011",
+                    "Dadong District": "110041",
+                    "Huanggu District": "110031",
+                    "Tiexi District": "110021",
+                    "Sujiatun District": "110101",
+                    "Hunnan District": "110179",
+                    "Shenbei New District": "110121",
+                    "Yuhong District": "110141",
+                    "Liaozhong District": "110200",
+                    "Kangping County": "110500",
+                    "Faku County": "110400",
+                    "Xinmin City": "110300"
+                }
+            },
+            "Qingdao": {
+                "Main ZIP": "266000",
+                "districts": {
+                    "Shinan District": "266001",
+                    "Shibei District": "266011",
+                    "Huangdao District": "266555",
+                    "Laoshan District": "266061",
+                    "Licang District": "266041",
+                    "Chengyang District": "266109",
+                    "Jimo District": "266200",
+                    "Jiaozhou City": "266300",
+                    "Pingdu City": "266700",
+                    "Laixi City": "266600"
+                }
+            },
+            "Zhengzhou": {
+                "Main ZIP": "450000",
+                "districts": {
+                    "Zhongyuan District": "450007",
+                    "Erqi District": "450052",
+                    "Guancheng Hui District": "450004",
+                    "Jinshui District": "450003",
+                    "Shangjie District": "450041",
+                    "Huiji District": "450044",
+                    "Zhongmou County": "451450",
+                    "Gongyi City": "451200",
+                    "Xingyang City": "450100",
+                    "Xinmi City": "452370",
+                    "Xinzheng City": "451150",
+                    "Dengfeng City": "452470",
+                    "Economic Development Zone": "450016",
+                    "High-tech Zone": "450001",
+                    "Airport Economic Zone": "451162"
+                }
+            },
+            "Dalian": {
+                "Main ZIP": "116000",
+                "districts": {
+                    "Zhongshan District": "116001",
+                    "Xigang District": "116011",
+                    "Shahekou District": "116023",
+                    "Ganjingzi District": "116033",
+                    "Lvshunkou District": "116041",
+                    "Jinzhou District": "116100",
+                    "Pulandian District": "116200",
+                    "Wafangdian City": "116300",
+                    "Zhuanghe City": "116400",
+                    "Changhai County": "116500",
+                    "High-tech Park": "116025"
+                }
+            },
+            "Dongguan": {
+                "Main ZIP": "523000",
+                "districts": {
+                    "Guancheng Subdistrict": "523001",
+                    "Nancheng Subdistrict": "523617",
+                    "Dongcheng Subdistrict": "523119",
+                    "Wanjiang Subdistrict": "523039",
+                    "Shijie Town": "523290",
+                    "Shilong Town": "523326",
+                    "Chashan Town": "523380",
+                    "Shipai Town": "523330",
+                    "Qishi Town": "523507",
+                    "Hengli Town": "523450",
+                    "Qiaotou Town": "523520",
+                    "Xiegang Town": "523590",
+                    "Dongkeng Town": "523449",
+                    "Changping Town": "523560",
+                    "Liaobu Town": "523411",
+                    "Zhangmutou Town": "523619",
+                    "Dalang Town": "523770",
+                    "Huangjiang Town": "523750",
+                    "Qingxi Town": "523660",
+                    "Tangxia Town": "523710",
+                    "Fenggang Town": "523690",
+                    "Dalingshan Town": "523835",
+                    "Chang'an Town": "523841",
+                    "Humen Town": "523900",
+                    "Houjie Town": "523945",
+                    "Shatian Town": "523988",
+                    "Daojiao Town": "523056",
+                    "Hongmei Town": "523160",
+                    "Machong Town": "523143",
+                    "Wangniudun Town": "523203",
+                    "Zhongtang Town": "523235",
+                    "Gaobu Town": "523269"
+                }
+            },
+            "Ningbo": {
+                "Main ZIP": "315000",
+                "districts": {
+                    "Haishu District": "315000",
+                    "Jiangbei District": "315020",
+                    "Beilun District": "315800",
+                    "Zhenhai District": "315200",
+                    "Yinzhou District": "315100",
+                    "Fenghua District": "315500",
+                    "Xiangshan County": "315700",
+                    "Ninghai County": "315600",
+                    "Yuyao City": "315400",
+                    "Cixi City": "315300",
+                    "High-tech Zone": "315040"
+                }
+            },
+            "Wuxi": {
+                "Main ZIP": "214000",
+                "districts": {
+                    "Liangxi District": "214001",
+                    "Xishan District": "214101",
+                    "Huishan District": "214174",
+                    "Binhu District": "214123",
+                    "Xinwu District": "214028",
+                    "Jiangyin City": "214400",
+                    "Yixing City": "214200"
+                }
+            },
+            "Foshan": {
+                "Main ZIP": "528000",
+                "districts": {
+                    "Chancheng District": "528000",
+                    "Nanhai District": "528200",
+                    "Shunde District": "528300",
+                    "Gaoming District": "528500",
+                    "Sanshui District": "528100"
+                }
+            },
+            "Jinan": {
+                "Main ZIP": "250000",
+                "districts": {
+                    "Lixia District": "250014",
+                    "Shizhong District": "250001",
+                    "Huaiyin District": "250023",
+                    "Tianqiao District": "250031",
+                    "Licheng District": "250100",
+                    "Changqing District": "250300",
+                    "Zhangqiu District": "250200",
+                    "Jiyang District": "251400",
+                    "Laiwu District": "271100",
+                    "Gangcheng District": "271104",
+                    "Pingyin County": "250400",
+                    "Shanghe County": "251600",
+                    "High-tech Zone": "250101"
+                }
+            },
+            "Hefei": {
+                "Main ZIP": "230000",
+                "districts": {
+                    "Yaohai District": "230011",
+                    "Luyang District": "230001",
+                    "Shushan District": "230031",
+                    "Baohe District": "230041",
+                    "Changfeng County": "231100",
+                    "Feidong County": "231600",
+                    "Feixi County": "231200",
+                    "Lujiang County": "231500",
+                    "Chaohu City": "238000",
+                    "High-tech Zone": "230088",
+                    "Economic Development Zone": "230601",
+                    "Xinzhan District": "230000"
+                }
+            },
+            "Fuzhou": {
+                "Main ZIP": "350000",
+                "districts": {
+                    "Gulou District": "350001",
+                    "Taijiang District": "350004",
+                    "Cangshan District": "350007",
+                    "Mawei District": "350015",
+                    "Jin'an District": "350011",
+                    "Changle District": "350200",
+                    "Minhou County": "350100",
+                    "Lianjiang County": "350500",
+                    "Luoyuan County": "350600",
+                    "Minqing County": "350800",
+                    "Yongtai County": "350700",
+                    "Pingtan County": "350400",
+                    "Fuqing City": "350300"
+                }
+            }
+        };
+
+        // Initialize page
+        function init() {
+            displayCities();
+            setupSearchEvents();
+        }
+
+        // Display city list
+        function displayCities() {
+            const grid = document.getElementById('citiesGrid');
+            grid.innerHTML = '';
+            
+            Object.keys(zipCodeData).forEach(city => {
+                const cityData = zipCodeData[city];
+                const cityCard = document.createElement('div');
+                cityCard.className = 'city-card';
+                cityCard.onclick = () => showCityDetails(city);
+                
+                const districtsHtml = Object.entries(cityData.districts)
+                    .slice(0, 5)
+                    .map(([district, code]) => 
+                        `<div class="district-item">
+                            <span>${district}</span>
+                            <span class="zip-code">${code}</span>
+                        </div>`
+                    ).join('');
+                
+                cityCard.innerHTML = `
+                    <div class="city-name">${city}</div>
+                    <div class="zip-code">Main ZIP Code: ${cityData["Main ZIP"]}</div>
+                    <div class="district-info">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem; color: #666;">Sample District ZIP Codes:</div>
+                        ${districtsHtml}
+                        ${Object.keys(cityData.districts).length > 5 ? '<div style="color: #007AFF; font-size: 0.8rem; margin-top: 0.5rem;">Click to view more...</div>' : ''}
+                    </div>
+                `;
+                
+                grid.appendChild(cityCard);
+            });
+        }
+
+        // Show city details
+        function showCityDetails(city) {
+            const cityData = zipCodeData[city];
+            const resultsDiv = document.getElementById('searchResults');
+            const citiesSection = document.getElementById('citiesSection');
+            
+            let html = `<h2>${city} Postal Code Details</h2>`;
+            html += `<div class="result-item">
+                <strong>Main ZIP Code:</strong> ${cityData["Main ZIP"]}
+            </div>`;
+            
+            Object.entries(cityData.districts).forEach(([district, code]) => {
+                html += `<div class="result-item">
+                    <strong>${district}:</strong> ${code}
+                </div>`;
+            });
+            
+            html += `<button onclick="backToList()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007AFF; color: white; border: none; border-radius: 8px; cursor: pointer;">Back to City List</button>`;
+            
+            resultsDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+            citiesSection.style.display = 'none';
+        }
+
+        // Back to city list
+        function backToList() {
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('citiesSection').style.display = 'block';
+        }
+
+        // Search function
+        function searchZipCode() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) return;
+            
+            const results = [];
+            
+            // Search cities and districts
+            Object.entries(zipCodeData).forEach(([city, data]) => {
+                if (city.toLowerCase().includes(query.toLowerCase())) {
+                    results.push({
+                        type: 'city',
+                        name: city,
+                        code: data["Main ZIP"],
+                        description: 'Main ZIP Code'
+                    });
+                }
+                
+                Object.entries(data.districts).forEach(([district, code]) => {
+                    if (district.toLowerCase().includes(query.toLowerCase()) || code.includes(query)) {
+                        results.push({
+                            type: 'district',
+                            name: `${district}, ${city}`,
+                            code: code,
+                            description: 'District ZIP Code'
+                        });
+                    }
+                });
+            });
+            
+            displaySearchResults(results, query);
+        }
+
+        // Display search results
+        function displaySearchResults(results, query) {
+            const resultsDiv = document.getElementById('searchResults');
+            const citiesSection = document.getElementById('citiesSection');
+            
+            if (results.length === 0) {
+                resultsDiv.innerHTML = `
+                    <h2>Search Results</h2>
+                    <div class="result-item">
+                        <p>No postal code information found containing "${query}".</p>
+                        <p>Please try searching with different keywords, such as city names or district names.</p>
+                    </div>
+                    <button onclick="backToList()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007AFF; color: white; border: none; border-radius: 8px; cursor: pointer;">Back to City List</button>
+                `;
+            } else {
+                let html = `<h2>Search Results (${results.length} found)</h2>`;
+                results.forEach(result => {
+                    html += `<div class="result-item">
+                        <strong>${result.name}</strong><br>
+                        <span style="color: #007AFF; font-size: 1.2rem;">${result.code}</span>
+                        <span style="color: #666; margin-left: 1rem;">${result.description}</span>
+                    </div>`;
+                });
+                html += `<button onclick="backToList()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007AFF; color: white; border: none; border-radius: 8px; cursor: pointer;">Back to City List</button>`;
+                resultsDiv.innerHTML = html;
+            }
+            
+            resultsDiv.style.display = 'block';
+            citiesSection.style.display = 'none';
+        }
+
+        // Setup search events
+        function setupSearchEvents() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchZipCode();
+                }
+            });
+            
+            // Real-time search suggestions
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+                if (query.length >= 2) {
+                    // Add real-time search suggestions functionality here
+                }
+            });
+        }
+
+        // Initialize page after DOM loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html> 
