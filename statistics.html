@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Statistics & Analysis - Word Count Tool</title>
+    <meta name="description" content="Professional text statistics tool providing word count, character count, reading time, speaking time, and keyword density analysis.">
+    <meta name="keywords" content="word count, text statistics, character count, reading time, speaking time, keyword density, text analysis">
+    <meta name="author" content="Text Statistics Platform">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007AFF;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #007AFF;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            border-radius: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .main-content {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #007AFF, #5856D6);
+            border-radius: 2px;
+        }
+        
+        .text-input-container {
+            margin-bottom: 2rem;
+        }
+        
+        .text-input {
+            width: 100%;
+            min-height: 200px;
+            padding: 1.5rem;
+            font-size: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 15px;
+            resize: vertical;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background: #007AFF;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #1e7e34;
+            transform: translateY(-2px);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(0, 122, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 122, 255, 0.2);
+            border-color: #007AFF;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #007AFF;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .keyword-density {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .keyword-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .keyword-table th,
+        .keyword-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .keyword-table th {
+            background: #007AFF;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .keyword-table tr:nth-child(even) {
+            background: rgba(0, 122, 255, 0.05);
+        }
+        
+        .footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-radius: 20px;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .text-input {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Text Statistics</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="global.html">Global ZIP Codes</a></li>
+                <li><a href="statistics.html">Text Statistics</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Text Statistics & Analysis</h1>
+            <p class="subtitle">Professional text analysis tool with comprehensive statistics and keyword density analysis</p>
+        </section>
+
+        <section class="main-content">
+            <h2>Text Analysis Tool</h2>
+            
+            <div class="text-input-container">
+                <textarea 
+                    class="text-input" 
+                    id="textInput" 
+                    placeholder="Enter or paste your text here to analyze...&#10;&#10;Example:&#10;The quick brown fox jumps over the lazy dog. This sentence contains all the letters of the English alphabet. It's commonly used for testing fonts and keyboards."
+                ></textarea>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-primary" onclick="analyzeText()">Analyze Text</button>
+                <button class="btn btn-secondary" onclick="clearText()">Clear Text</button>
+                <button class="btn btn-success" onclick="loadSampleText()">Load Sample</button>
+            </div>
+            
+            <div class="stats-grid" id="statsGrid" style="display: none;">
+                <div class="stat-card">
+                    <div class="stat-value" id="wordCount">0</div>
+                    <div class="stat-label">Words</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="charCount">0</div>
+                    <div class="stat-label">Characters</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="charNoSpace">0</div>
+                    <div class="stat-label">Characters (no spaces)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="syllableCount">0</div>
+                    <div class="stat-label">Syllables</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="sentenceCount">0</div>
+                    <div class="stat-label">Sentences</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="paragraphCount">0</div>
+                    <div class="stat-label">Paragraphs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="readingTime">0 min</div>
+                    <div class="stat-label">Reading Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="speakingTime">0 min</div>
+                    <div class="stat-label">Speaking Time</div>
+                </div>
+            </div>
+            
+            <div class="keyword-density" id="keywordDensity" style="display: none;">
+                <h3 style="margin-bottom: 1rem; color: #333;">Keyword Density Analysis</h3>
+                <table class="keyword-table" id="keywordTable">
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Count</th>
+                            <th>Density (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="keywordTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Text Statistics Platform. Professional text analysis and statistics tool.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            setupTextInput();
+        });
+
+        // Setup text input with real-time analysis
+        function setupTextInput() {
+            const textInput = document.getElementById('textInput');
+            textInput.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    analyzeText();
+                } else {
+                    hideResults();
+                }
+            });
+        }
+
+        // Analyze text and display statistics
+        function analyzeText() {
+            const text = document.getElementById('textInput').value;
+            if (!text.trim()) {
+                hideResults();
+                return;
+            }
+
+            const stats = calculateStatistics(text);
+            displayStatistics(stats);
+            displayKeywordDensity(text);
+        }
+
+        // Calculate all text statistics
+        function calculateStatistics(text) {
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            const characters = text.length;
+            const charactersNoSpace = text.replace(/\s/g, '').length;
+            const syllables = countSyllables(text);
+            const sentences = countSentences(text);
+            const paragraphs = countParagraphs(text);
+            const readingTime = calculateReadingTime(words.length);
+            const speakingTime = calculateSpeakingTime(words.length);
+
+            return {
+                words: words.length,
+                characters: characters,
+                charactersNoSpace: charactersNoSpace,
+                syllables: syllables,
+                sentences: sentences,
+                paragraphs: paragraphs,
+                readingTime: readingTime,
+                speakingTime: speakingTime
+            };
+        }
+
+        // Count syllables (approximate)
+        function countSyllables(text) {
+            const words = text.toLowerCase().match(/\b[a-z]+\b/g) || [];
+            let syllableCount = 0;
+            
+            words.forEach(word => {
+                syllableCount += countWordSyllables(word);
+            });
+            
+            return syllableCount;
+        }
+
+        // Count syllables in a single word
+        function countWordSyllables(word) {
+            word = word.toLowerCase();
+            if (word.length <= 3) return 1;
+            
+            word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+            word = word.replace(/^y/, '');
+            
+            const matches = word.match(/[aeiouy]{1,2}/g);
+            return matches ? matches.length : 1;
+        }
+
+        // Count sentences
+        function countSentences(text) {
+            const sentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0);
+            return sentences.length;
+        }
+
+        // Count paragraphs
+        function countParagraphs(text) {
+            const paragraphs = text.split(/\n\s*\n/).filter(para => para.trim().length > 0);
+            return paragraphs.length || 1;
+        }
+
+        // Calculate reading time (average 200 words per minute)
+        function calculateReadingTime(wordCount) {
+            const minutes = Math.ceil(wordCount / 200);
+            return minutes === 1 ? '1 min' : `${minutes} mins`;
+        }
+
+        // Calculate speaking time (average 150 words per minute)
+        function calculateSpeakingTime(wordCount) {
+            const minutes = Math.ceil(wordCount / 150);
+            return minutes === 1 ? '1 min' : `${minutes} mins`;
+        }
+
+        // Display statistics
+        function displayStatistics(stats) {
+            document.getElementById('wordCount').textContent = stats.words;
+            document.getElementById('charCount').textContent = stats.characters;
+            document.getElementById('charNoSpace').textContent = stats.charactersNoSpace;
+            document.getElementById('syllableCount').textContent = stats.syllables;
+            document.getElementById('sentenceCount').textContent = stats.sentences;
+            document.getElementById('paragraphCount').textContent = stats.paragraphs;
+            document.getElementById('readingTime').textContent = stats.readingTime;
+            document.getElementById('speakingTime').textContent = stats.speakingTime;
+            
+            document.getElementById('statsGrid').style.display = 'grid';
+        }
+
+        // Calculate and display keyword density
+        function displayKeywordDensity(text) {
+            const words = text.toLowerCase()
+                .match(/\b[a-z]{3,}\b/g) || [];
+            
+            const wordCount = {};
+            words.forEach(word => {
+                wordCount[word] = (wordCount[word] || 0) + 1;
+            });
+
+            // Sort by frequency and get top 20
+            const sortedWords = Object.entries(wordCount)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 20);
+
+            const tableBody = document.getElementById('keywordTableBody');
+            tableBody.innerHTML = '';
+
+            sortedWords.forEach(([word, count]) => {
+                const density = ((count / words.length) * 100).toFixed(2);
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td><strong>${word}</strong></td>
+                    <td>${count}</td>
+                    <td>${density}%</td>
+                `;
+            });
+
+            document.getElementById('keywordDensity').style.display = 'block';
+        }
+
+        // Clear text
+        function clearText() {
+            document.getElementById('textInput').value = '';
+            hideResults();
+        }
+
+        // Load sample text
+        function loadSampleText() {
+            const sampleText = `The quick brown fox jumps over the lazy dog. This sentence contains all the letters of the English alphabet and is commonly used for testing fonts and keyboards.
+
+Text analysis is an important tool for writers, editors, and content creators. It helps us understand the structure and composition of our writing. By analyzing word count, character count, and reading time, we can better tailor our content to our audience.
+
+Keyword density analysis is particularly useful for SEO optimization. It shows us which words appear most frequently in our text, helping us identify potential keywords and ensure balanced content distribution.`;
+
+            document.getElementById('textInput').value = sampleText;
+            analyzeText();
+        }
+
+        // Hide results
+        function hideResults() {
+            document.getElementById('statsGrid').style.display = 'none';
+            document.getElementById('keywordDensity').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

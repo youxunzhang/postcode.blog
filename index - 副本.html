@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国邮政编码查询 - 全国ZIP CODE查询平台</title>
+    <meta name="description" content="专业的中国邮政编码查询平台，提供全国24个主要城市、区县的准确邮政编码信息。快速查询ZIP CODE，支持城市名称、区县名称搜索。涵盖北京、上海、广州、深圳等一线城市。">
+    <meta name="keywords" content="zip code, 邮政编码, 中国邮编, 邮编查询, 城市邮编, 区县邮编, 北京邮编, 上海邮编, 广州邮编, 深圳邮编, 苏州邮编, 长沙邮编, 沈阳邮编, 青岛邮编">
+    <meta name="author" content="中国邮政编码查询平台">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007AFF;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #007AFF;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            border-radius: 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: #0056b3;
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .main-content {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #007AFF, #5856D6);
+            border-radius: 2px;
+        }
+        
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .city-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(0, 122, 255, 0.1);
+        }
+        
+        .city-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 122, 255, 0.2);
+            border-color: #007AFF;
+        }
+        
+        .city-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .zip-code {
+            font-size: 1.1rem;
+            color: #007AFF;
+            font-weight: 500;
+        }
+        
+        .district-info {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 122, 255, 0.1);
+        }
+        
+        .district-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .search-results {
+            display: none;
+            margin-top: 2rem;
+        }
+        
+        .result-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #007AFF;
+        }
+        
+        .footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-radius: 20px;
+            color: white;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #007AFF;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .cities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .search-box {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .search-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">中国邮编查询</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#search">查询</a></li>
+                <li><a href="#cities">城市</a></li>
+                <li><a href="global.html">全球邮编</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero" id="home">
+            <h1>中国邮政编码查询平台</h1>
+            <p class="subtitle">快速准确查询全国24个主要城市邮政编码 - 专业的ZIP CODE查询服务</p>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="请输入城市名称或区县名称..." id="searchInput">
+                <button class="search-btn" onclick="searchZipCode()">查询</button>
+            </div>
+        </section>
+
+        <section class="main-content">
+            <div class="search-results" id="searchResults"></div>
+            
+            <div id="citiesSection">
+                <h2>全国主要城市邮政编码</h2>
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <a href="global.html" style="display: inline-block; padding: 0.8rem 1.5rem; background: #28a745; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s; margin-right: 1rem;">🌍 查看全球邮编</a>
+                    <span style="color: #666;">覆盖世界五大洲主要城市</span>
+                </div>
+                <div class="cities-grid" id="citiesGrid">
+                    <!-- 城市数据将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </section>
+
+        <section class="main-content">
+            <h2>邮政编码查询指南</h2>
+            <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 1rem;">邮政编码（ZIP CODE）是中国邮政系统为提高邮件处理效率而建立的编码系统。每个邮政编码代表一个特定的投递区域。</p>
+                <p style="margin-bottom: 1rem;">我们的平台提供全国24个主要城市的准确邮政编码信息，涵盖四大一线城市和20个准一线城市，支持多种查询方式：</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>按城市名称查询（如：北京、上海、苏州、长沙）</li>
+                    <li>按区县名称查询（如：朝阳区、浦东新区、姑苏区）</li>
+                    <li>按邮政编码反查地址（如：100000、200000、215000）</li>
+                    <li>模糊搜索功能</li>
+                </ul>
+                <p>我们的数据库实时更新，确保提供最新最准确的邮政编码信息。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#search">邮编查询</a></li>
+                        <li><a href="#cities">城市列表</a></li>
+                        <li><a href="global.html">全球邮编</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>热门城市</h3>
+                    <ul>
+                        <li><a href="#beijing">北京邮编</a></li>
+                        <li><a href="#shanghai">上海邮编</a></li>
+                        <li><a href="#guangzhou">广州邮编</a></li>
+                        <li><a href="#shenzhen">深圳邮编</a></li>
+                        <li><a href="#suzhou">苏州邮编</a></li>
+                        <li><a href="#changsha">长沙邮编</a></li>
+                        <li><a href="#shenyang">沈阳邮编</a></li>
+                        <li><a href="#qingdao">青岛邮编</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>全球邮编</h3>
+                    <ul>
+                        <li><a href="global.html#asia">亚洲城市</a></li>
+                        <li><a href="global.html#europe">欧洲城市</a></li>
+                        <li><a href="global.html#north-america">北美洲城市</a></li>
+                        <li><a href="global.html#south-america">南美洲城市</a></li>
+                        <li><a href="global.html#africa">非洲城市</a></li>
+                        <li><a href="global.html#oceania">大洋洲城市</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>&copy; 2024 中国邮政编码查询平台. 提供全国24个主要城市准确可靠的邮政编码查询服务.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 中国主要城市邮政编码数据
+        const zipCodeData = {
+            "北京": {
+                "主要邮编": "100000",
+                "districts": {
+                    "东城区": "100010",
+                    "西城区": "100032",
+                    "朝阳区": "100020",
+                    "丰台区": "100071",
+                    "石景山区": "100043",
+                    "海淀区": "100080",
+                    "门头沟区": "102300",
+                    "房山区": "102400",
+                    "通州区": "101100",
+                    "顺义区": "101300",
+                    "昌平区": "102200",
+                    "大兴区": "102600",
+                    "怀柔区": "101400",
+                    "平谷区": "101200",
+                    "密云区": "101500",
+                    "延庆区": "102100"
+                }
+            },
+            "上海": {
+                "主要邮编": "200000",
+                "districts": {
+                    "黄浦区": "200001",
+                    "徐汇区": "200030",
+                    "长宁区": "200050",
+                    "静安区": "200040",
+                    "普陀区": "200333",
+                    "虹口区": "200080",
+                    "杨浦区": "200082",
+                    "闵行区": "201100",
+                    "宝山区": "201900",
+                    "嘉定区": "201800",
+                    "浦东新区": "200120",
+                    "金山区": "201500",
+                    "松江区": "201600",
+                    "青浦区": "201700",
+                    "奉贤区": "201400",
+                    "崇明区": "202150"
+                }
+            },
+            "广州": {
+                "主要邮编": "510000",
+                "districts": {
+                    "荔湾区": "510145",
+                    "越秀区": "510030",
+                    "海珠区": "510220",
+                    "天河区": "510630",
+                    "白云区": "510405",
+                    "黄埔区": "510700",
+                    "番禺区": "511400",
+                    "花都区": "510800",
+                    "南沙区": "511458",
+                    "从化区": "510900",
+                    "增城区": "511300"
+                }
+            },
+            "深圳": {
+                "主要邮编": "518000",
+                "districts": {
+                    "罗湖区": "518001",
+                    "福田区": "518026",
+                    "南山区": "518052",
+                    "宝安区": "518101",
+                    "龙岗区": "518172",
+                    "盐田区": "518083",
+                    "龙华区": "518109",
+                    "坪山区": "518118",
+                    "光明区": "518106",
+                    "大鹏新区": "518119"
+                }
+            },
+            "杭州": {
+                "主要邮编": "310000",
+                "districts": {
+                    "上城区": "310002",
+                    "下城区": "310006",
+                    "江干区": "310016",
+                    "拱墅区": "310011",
+                    "西湖区": "310013",
+                    "滨江区": "310051",
+                    "萧山区": "311200",
+                    "余杭区": "311100",
+                    "富阳区": "311400",
+                    "临安区": "311300",
+                    "建德市": "311600",
+                    "桐庐县": "311500",
+                    "淳安县": "311700"
+                }
+            },
+            "南京": {
+                "主要邮编": "210000",
+                "districts": {
+                    "玄武区": "210018",
+                    "秦淮区": "210001",
+                    "建邺区": "210019",
+                    "鼓楼区": "210009",
+                    "浦口区": "211800",
+                    "栖霞区": "210046",
+                    "雨花台区": "210012",
+                    "江宁区": "211100",
+                    "六合区": "211500",
+                    "溧水区": "211200",
+                    "高淳区": "211300"
+                }
+            },
+            "成都": {
+                "主要邮编": "610000",
+                "districts": {
+                    "锦江区": "610021",
+                    "青羊区": "610031",
+                    "金牛区": "610036",
+                    "武侯区": "610041",
+                    "成华区": "610051",
+                    "龙泉驿区": "610100",
+                    "青白江区": "610300",
+                    "新都区": "610500",
+                    "温江区": "611130",
+                    "双流区": "610200",
+                    "郫都区": "611730",
+                    "都江堰市": "611830",
+                    "彭州市": "611930",
+                    "邛崃市": "611530",
+                    "崇州市": "611230",
+                    "金堂县": "610400",
+                    "大邑县": "611330",
+                    "蒲江县": "611630",
+                    "新津县": "611430",
+                    "简阳市": "641400"
+                }
+            },
+            "重庆": {
+                "主要邮编": "400000",
+                "districts": {
+                    "万州区": "404000",
+                    "涪陵区": "408000",
+                    "渝中区": "400010",
+                    "大渡口区": "400080",
+                    "江北区": "400020",
+                    "沙坪坝区": "400030",
+                    "九龙坡区": "400050",
+                    "南岸区": "400060",
+                    "北碚区": "400700",
+                    "綦江区": "401420",
+                    "大足区": "402360",
+                    "渝北区": "401120",
+                    "巴南区": "401320",
+                    "黔江区": "409000",
+                    "长寿区": "401220",
+                    "江津区": "402260",
+                    "合川区": "401520",
+                    "永川区": "402160",
+                    "南川区": "408400",
+                    "璧山区": "402760",
+                    "铜梁区": "402560",
+                    "潼南区": "402660",
+                    "荣昌区": "402460"
+                }
+            },
+            "武汉": {
+                "主要邮编": "430000",
+                "districts": {
+                    "江岸区": "430014",
+                    "江汉区": "430023",
+                    "硚口区": "430033",
+                    "汉阳区": "430050",
+                    "武昌区": "430061",
+                    "青山区": "430080",
+                    "洪山区": "430070",
+                    "东西湖区": "430040",
+                    "汉南区": "430090",
+                    "蔡甸区": "430100",
+                    "江夏区": "430200",
+                    "黄陂区": "430300",
+                    "新洲区": "431400"
+                }
+            },
+            "西安": {
+                "主要邮编": "710000",
+                "districts": {
+                    "新城区": "710004",
+                    "碑林区": "710001",
+                    "莲湖区": "710003",
+                    "灞桥区": "710038",
+                    "未央区": "710016",
+                    "雁塔区": "710061",
+                    "阎良区": "710089",
+                    "临潼区": "710600",
+                    "长安区": "710100",
+                    "高陵区": "710200",
+                    "鄠邑区": "710300",
+                    "蓝田县": "710500",
+                    "周至县": "710400"
+                }
+            },
+            "天津": {
+                "主要邮编": "300000",
+                "districts": {
+                    "和平区": "300041",
+                    "河东区": "300171",
+                    "河西区": "300202",
+                    "南开区": "300100",
+                    "河北区": "300143",
+                    "红桥区": "300131",
+                    "东丽区": "300300",
+                    "西青区": "300380",
+                    "津南区": "300350",
+                    "北辰区": "300400",
+                    "武清区": "301700",
+                    "宝坻区": "301800",
+                    "滨海新区": "300450",
+                    "宁河区": "301500",
+                    "静海区": "301600",
+                    "蓟州区": "301900"
+                }
+            },
+            "苏州": {
+                "主要邮编": "215000",
+                "districts": {
+                    "姑苏区": "215002",
+                    "虎丘区": "215009",
+                    "吴中区": "215128",
+                    "相城区": "215131",
+                    "吴江区": "215200",
+                    "常熟市": "215500",
+                    "张家港市": "215600",
+                    "昆山市": "215300",
+                    "太仓市": "215400",
+                    "工业园区": "215021",
+                    "高新区": "215011"
+                }
+            },
+            "长沙": {
+                "主要邮编": "410000",
+                "districts": {
+                    "芙蓉区": "410011",
+                    "天心区": "410004",
+                    "岳麓区": "410013",
+                    "开福区": "410008",
+                    "雨花区": "410011",
+                    "望城区": "410200",
+                    "长沙县": "410100",
+                    "宁乡市": "410600",
+                    "浏阳市": "410300"
+                }
+            },
+            "沈阳": {
+                "主要邮编": "110000",
+                "districts": {
+                    "和平区": "110001",
+                    "沈河区": "110011",
+                    "大东区": "110041",
+                    "皇姑区": "110031",
+                    "铁西区": "110021",
+                    "苏家屯区": "110101",
+                    "浑南区": "110179",
+                    "沈北新区": "110121",
+                    "于洪区": "110141",
+                    "辽中区": "110200",
+                    "康平县": "110500",
+                    "法库县": "110400",
+                    "新民市": "110300"
+                }
+            },
+            "青岛": {
+                "主要邮编": "266000",
+                "districts": {
+                    "市南区": "266001",
+                    "市北区": "266011",
+                    "黄岛区": "266555",
+                    "崂山区": "266061",
+                    "李沧区": "266041",
+                    "城阳区": "266109",
+                    "即墨区": "266200",
+                    "胶州市": "266300",
+                    "平度市": "266700",
+                    "莱西市": "266600"
+                }
+            },
+            "郑州": {
+                "主要邮编": "450000",
+                "districts": {
+                    "中原区": "450007",
+                    "二七区": "450052",
+                    "管城回族区": "450004",
+                    "金水区": "450003",
+                    "上街区": "450041",
+                    "惠济区": "450044",
+                    "中牟县": "451450",
+                    "巩义市": "451200",
+                    "荥阳市": "450100",
+                    "新密市": "452370",
+                    "新郑市": "451150",
+                    "登封市": "452470",
+                    "经开区": "450016",
+                    "高新区": "450001",
+                    "航空港区": "451162"
+                }
+            },
+            "大连": {
+                "主要邮编": "116000",
+                "districts": {
+                    "中山区": "116001",
+                    "西岗区": "116011",
+                    "沙河口区": "116023",
+                    "甘井子区": "116033",
+                    "旅顺口区": "116041",
+                    "金州区": "116100",
+                    "普兰店区": "116200",
+                    "瓦房店市": "116300",
+                    "庄河市": "116400",
+                    "长海县": "116500",
+                    "高新园区": "116025"
+                }
+            },
+            "东莞": {
+                "主要邮编": "523000",
+                "districts": {
+                    "莞城街道": "523001",
+                    "南城街道": "523617",
+                    "东城街道": "523119",
+                    "万江街道": "523039",
+                    "石碣镇": "523290",
+                    "石龙镇": "523326",
+                    "茶山镇": "523380",
+                    "石排镇": "523330",
+                    "企石镇": "523507",
+                    "横沥镇": "523450",
+                    "桥头镇": "523520",
+                    "谢岗镇": "523590",
+                    "东坑镇": "523449",
+                    "常平镇": "523560",
+                    "寮步镇": "523411",
+                    "樟木头镇": "523619",
+                    "大朗镇": "523770",
+                    "黄江镇": "523750",
+                    "清溪镇": "523660",
+                    "塘厦镇": "523710",
+                    "凤岗镇": "523690",
+                    "大岭山镇": "523835",
+                    "长安镇": "523841",
+                    "虎门镇": "523900",
+                    "厚街镇": "523945",
+                    "沙田镇": "523988",
+                    "道滘镇": "523056",
+                    "洪梅镇": "523160",
+                    "麻涌镇": "523143",
+                    "望牛墩镇": "523203",
+                    "中堂镇": "523235",
+                    "高埗镇": "523269"
+                }
+            },
+            "宁波": {
+                "主要邮编": "315000",
+                "districts": {
+                    "海曙区": "315000",
+                    "江北区": "315020",
+                    "北仑区": "315800",
+                    "镇海区": "315200",
+                    "鄞州区": "315100",
+                    "奉化区": "315500",
+                    "象山县": "315700",
+                    "宁海县": "315600",
+                    "余姚市": "315400",
+                    "慈溪市": "315300",
+                    "高新区": "315040"
+                }
+            },
+            "无锡": {
+                "主要邮编": "214000",
+                "districts": {
+                    "梁溪区": "214001",
+                    "锡山区": "214101",
+                    "惠山区": "214174",
+                    "滨湖区": "214123",
+                    "新吴区": "214028",
+                    "江阴市": "214400",
+                    "宜兴市": "214200"
+                }
+            },
+            "佛山": {
+                "主要邮编": "528000",
+                "districts": {
+                    "禅城区": "528000",
+                    "南海区": "528200",
+                    "顺德区": "528300",
+                    "高明区": "528500",
+                    "三水区": "528100"
+                }
+            },
+            "济南": {
+                "主要邮编": "250000",
+                "districts": {
+                    "历下区": "250014",
+                    "市中区": "250001",
+                    "槐荫区": "250023",
+                    "天桥区": "250031",
+                    "历城区": "250100",
+                    "长清区": "250300",
+                    "章丘区": "250200",
+                    "济阳区": "251400",
+                    "莱芜区": "271100",
+                    "钢城区": "271104",
+                    "平阴县": "250400",
+                    "商河县": "251600",
+                    "高新区": "250101"
+                }
+            },
+            "合肥": {
+                "主要邮编": "230000",
+                "districts": {
+                    "瑶海区": "230011",
+                    "庐阳区": "230001",
+                    "蜀山区": "230031",
+                    "包河区": "230041",
+                    "长丰县": "231100",
+                    "肥东县": "231600",
+                    "肥西县": "231200",
+                    "庐江县": "231500",
+                    "巢湖市": "238000",
+                    "高新区": "230088",
+                    "经开区": "230601",
+                    "新站区": "230000"
+                }
+            },
+            "福州": {
+                "主要邮编": "350000",
+                "districts": {
+                    "鼓楼区": "350001",
+                    "台江区": "350004",
+                    "仓山区": "350007",
+                    "马尾区": "350015",
+                    "晋安区": "350011",
+                    "长乐区": "350200",
+                    "闽侯县": "350100",
+                    "连江县": "350500",
+                    "罗源县": "350600",
+                    "闽清县": "350800",
+                    "永泰县": "350700",
+                    "平潭县": "350400",
+                    "福清市": "350300"
+                }
+            }
+        };
+
+        // 初始化页面
+        function init() {
+            displayCities();
+            setupSearchEvents();
+        }
+
+        // 显示城市列表
+        function displayCities() {
+            const grid = document.getElementById('citiesGrid');
+            grid.innerHTML = '';
+            
+            Object.keys(zipCodeData).forEach(city => {
+                const cityData = zipCodeData[city];
+                const cityCard = document.createElement('div');
+                cityCard.className = 'city-card';
+                cityCard.onclick = () => showCityDetails(city);
+                
+                const districtsHtml = Object.entries(cityData.districts)
+                    .slice(0, 5)
+                    .map(([district, code]) => 
+                        `<div class="district-item">
+                            <span>${district}</span>
+                            <span class="zip-code">${code}</span>
+                        </div>`
+                    ).join('');
+                
+                cityCard.innerHTML = `
+                    <div class="city-name">${city}</div>
+                    <div class="zip-code">主要邮编: ${cityData.主要邮编}</div>
+                    <div class="district-info">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem; color: #666;">部分区域邮编:</div>
+                        ${districtsHtml}
+                        ${Object.keys(cityData.districts).length > 5 ? '<div style="color: #007AFF; font-size: 0.8rem; margin-top: 0.5rem;">点击查看更多...</div>' : ''}
+                    </div>
+                `;
+                
+                grid.appendChild(cityCard);
+            });
+        }
+
+        // 显示城市详情
+        function showCityDetails(city) {
+            const cityData = zipCodeData[city];
+            const resultsDiv = document.getElementById('searchResults');
+            const citiesSection = document.getElementById('citiesSection');
+            
+            let html = `<h2>${city}市邮政编码详情</h2>`;
+            html += `<div class="result-item">
+                <strong>主要邮编:</strong> ${cityData.主要邮编}
+            </div>`;
+            
+            Object.entries(cityData.districts).forEach(([district, code]) => {
+                html += `<div class="result-item">
+                    <strong>${district}:</strong> ${code}
+                </div>`;
+            });
+            
+            html += `<button onclick="backToList()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007AFF; color: white; border: none; border-radius: 8px; cursor: pointer;">返回城市列表</button>`;
+            
+            resultsDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+            citiesSection.style.display = 'none';
+        }
+
+        // 返回城市列表
+        function backToList() {
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('citiesSection').style.display = 'block';
+        }
+
+        // 搜索功能
+        function searchZipCode() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) return;
+            
+            const results = [];
+            
+            // 搜索城市和区域
+            Object.entries(zipCodeData).forEach(([city, data]) => {
+                if (city.includes(query)) {
+                    results.push({
+                        type: 'city',
+                        name: city,
+                        code: data.主要邮编,
+                        description: '主要邮编'
+                    });
+                }
+                
+                Object.entries(data.districts).forEach(([district, code]) => {
+                    if (district.includes(query) || code.includes(query)) {
+                        results.push({
+                            type: 'district',
+                            name: `${city}市${district}`,
+                            code: code,
+                            description: '区域邮编'
+                        });
+                    }
+                });
+            });
+            
+            displaySearchResults(results, query);
+        }
+
+        // 显示搜索结果
+        function displaySearchResults(results, query) {
+            const resultsDiv = document.getElementById('searchResults');
+            const citiesSection = document.getElementById('citiesSection');
+            
+            if (results.length === 0) {
+                resultsDiv.innerHTML = `
+                    <h2>搜索结果</h2>
+                    <div class="result-item">
+                        <p>未找到包含"${query}"的相关邮政编码信息。</p>
+                        <p>请尝试搜索其他关键词，如城市名称或区县名称。</p>
+                    </div>
+                    <button onclick="backToList()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007AFF; color: white; border: none; border-radius: 8px; cursor: pointer;">返回城市列表</button>`;
+            } else {
+                let html = `<h2>搜索结果 (${results.length}条)</h2>`;
+                results.forEach(result => {
+                    html += `<div class="result-item">
+                        <strong>${result.name}</strong><br>
+                        <span style="color: #007AFF; font-size: 1.2rem;">${result.code}</span>
+                        <span style="color: #666; margin-left: 1rem;">${result.description}</span>
+                    </div>`;
+                });
+                html += `<button onclick="backToList()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007AFF; color: white; border: none; border-radius: 8px; cursor: pointer;">返回城市列表</button>`;
+                resultsDiv.innerHTML = html;
+            }
+            
+            resultsDiv.style.display = 'block';
+            citiesSection.style.display = 'none';
+        }
+
+        // 设置搜索事件
+        function setupSearchEvents() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchZipCode();
+                }
+            });
+            
+            // 实时搜索建议
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+                if (query.length >= 2) {
+                    // 这里可以添加实时搜索建议功能
+                }
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html> 
