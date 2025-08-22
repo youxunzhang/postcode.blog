@@ -3,10 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>China Postal Code Lookup - ZIP CODE Search Platform</title>
-    <meta name="description" content="Professional China postal code lookup platform providing accurate ZIP codes for major Chinese cities and districts. Fast ZIP code search with city and district name support.">
-    <meta name="keywords" content="China zip code, China postal code, Chinese zip codes, postal code lookup, city zip codes, district zip codes, Beijing zip code, Shanghai zip code, Guangzhou zip code, Shenzhen zip code">
-    <meta name="author" content="China Postal Code Lookup Platform">
+    <title>中国邮政编码查询 - 全国城市邮编快速查询平台 | PostCode.Blog</title>
+    <meta name="description" content="专业的中国邮政编码查询平台，提供全国主要城市和地区的准确邮编信息。支持城市名称、区县名称快速查询，覆盖北京、上海、广州、深圳等一线城市邮编。">
+    <meta name="keywords" content="中国邮政编码,邮编查询,城市邮编,区县邮编,北京邮编,上海邮编,广州邮编,深圳邮编,邮政编码查询,zip code china">
+    <meta name="author" content="PostCode.Blog">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://postcode.blog/">
+    <meta property="og:title" content="中国邮政编码查询 - 全国城市邮编快速查询平台">
+    <meta property="og:description" content="专业的中国邮政编码查询平台，提供全国主要城市和地区的准确邮编信息。">
+    <meta property="og:image" content="https://postcode.blog/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://postcode.blog/">
+    <meta property="twitter:title" content="中国邮政编码查询 - 全国城市邮编快速查询平台">
+    <meta property="twitter:description" content="专业的中国邮政编码查询平台，提供全国主要城市和地区的准确邮编信息。">
+    <meta property="twitter:image" content="https://postcode.blog/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://postcode.blog/">
+    
+    <!-- Language and region -->
+    <meta name="language" content="zh-CN">
+    <meta name="geo.region" content="CN">
+    
+    <!-- Additional SEO meta tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
     <style>
         * {
             margin: 0;
@@ -1001,6 +1029,45 @@
 
         // Initialize page after DOM loads
         document.addEventListener('DOMContentLoaded', init);
+    </script>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "中国邮政编码查询平台",
+        "url": "https://postcode.blog/",
+        "description": "专业的中国邮政编码查询平台，提供全国主要城市和地区的准确邮编信息",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://postcode.blog/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "PostCode.Blog",
+            "url": "https://postcode.blog/"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "中国邮政编码查询服务",
+        "description": "提供中国主要城市和地区的邮政编码查询服务",
+        "provider": {
+            "@type": "Organization",
+            "name": "PostCode.Blog"
+        },
+        "serviceType": "邮政编码查询",
+        "areaServed": {
+            "@type": "Country",
+            "name": "中国"
+        }
+    }
     </script>
 </body>
 </html> 

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://postcode.blog/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Disallow any temporary or backup files
+Disallow: /*副本.html
+Disallow: /*.txt
+Disallow: /postcodeblog
