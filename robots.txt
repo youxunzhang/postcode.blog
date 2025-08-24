@@ -9,6 +9,5 @@ Crawl-delay: 1
 
 # Disallow any temporary or backup files
 Disallow: /*副本.html
-Disallow: /*.txt
-Disallow: /postcodeblog
+Disallow: /ads.txt
 
