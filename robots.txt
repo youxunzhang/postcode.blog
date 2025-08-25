@@ -11,3 +11,7 @@ Crawl-delay: 1
 Disallow: /*副本.html
 Disallow: /ads.txt
 
+# Prevent duplicate content issues
+Disallow: /*.html?
+Disallow: /*&
+
