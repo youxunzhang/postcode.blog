@@ -5,7 +5,7 @@ A comprehensive postal code lookup platform providing accurate ZIP codes for maj
 ## 🌟 Key Features
 
 ### Core Services
-- **China Postal Code Lookup**: Complete ZIP codes for 24 major Chinese cities
+- **China Postal Code Lookup**: Complete ZIP codes for over 80 major Chinese cities
 - **Global ZIP Code Search**: International postal codes for major cities worldwide
 - **Text Statistics Tool**: Professional text analysis with word count and keyword density
 
@@ -50,6 +50,57 @@ A comprehensive postal code lookup platform providing accurate ZIP codes for maj
 22. **Jinan** (13 districts)
 23. **Hefei** (12 districts)
 24. **Fuzhou** (13 districts)
+
+### Tier 2 Cities & Important Prefecture-Level Cities
+25. **Kunming** (14 districts)
+26. **Changchun** (10 districts)
+27. **Shijiazhuang** (24 districts)
+28. **Taiyuan** (10 districts)
+29. **Harbin** (17 districts)
+30. **Nanning** (12 districts)
+31. **Guiyang** (10 districts)
+32. **Lanzhou** (8 districts)
+33. **Xining** (8 districts)
+34. **Yinchuan** (6 districts)
+35. **Urumqi** (7 districts)
+36. **Lhasa** (10 districts)
+37. **Hohhot** (10 districts)
+38. **Haikou** (4 districts)
+39. **Nanchang** (9 districts)
+40. **Wenzhou** (11 districts)
+41. **Jinhua** (10 districts)
+42. **Taizhou** (8 districts)
+43. **Shaoxing** (6 districts)
+44. **Jiaxing** (7 districts)
+45. **Huzhou** (5 districts)
+46. **Zhoushan** (4 districts)
+47. **Quzhou** (6 districts)
+48. **Lishui** (9 districts)
+49. **Nantong** (8 districts)
+50. **Yangzhou** (6 districts)
+51. **Zhenjiang** (6 districts)
+52. **Taizhou** (6 districts)
+53. **Suqian** (5 districts)
+54. **Huai'an** (7 districts)
+55. **Yancheng** (9 districts)
+56. **Lianyungang** (6 districts)
+57. **Xuzhou** (11 districts)
+58. **Changzhou** (7 districts)
+59. **Zibo** (8 districts)
+60. **Dongying** (5 districts)
+61. **Yantai** (13 districts)
+62. **Weifang** (12 districts)
+63. **Jining** (11 districts)
+64. **Tai'an** (6 districts)
+65. **Weihai** (4 districts)
+66. **Rizhao** (4 districts)
+67. **Linyi** (12 districts)
+68. **Dezhou** (11 districts)
+69. **Liaocheng** (8 districts)
+70. **Binzhou** (8 districts)
+71. **Heze** (9 districts)
+
+*And many more cities are continuously being added to provide comprehensive coverage across all Chinese provinces and regions.*
 
 ## 🌍 Global Coverage
 
