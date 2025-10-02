@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>China Zip Code Search — Complete Chinese Postcode Directory</title>
+  <meta name="description" content="Browse all China zip/postal codes by province & city. Beijing, Shanghai, Guangdong, Shenzhen, Chengdu, Nanjing… updated & accurate.">
+  <link rel="canonical" href="https://postcode.blog/finder/" />
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="China Zip Code Search — Complete Chinese Postcode Directory">
+  <meta property="og:description" content="Browse all China zip/postal codes by province & city. Beijing, Shanghai, Guangdong, Shenzhen, Chengdu, Nanjing… updated & accurate.">
+  <meta property="og:url" content="https://postcode.blog/search/">
+  <meta property="og:site_name" content="Postcode Blog">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="China Zip Code Search — Complete Chinese Postcode Directory">
+  <meta name="twitter:description" content="Browse all China zip/postal codes by province & city. Beijing, Shanghai, Guangdong, Shenzhen, Chengdu, Nanjing… updated & accurate.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary:#1f4bff; --primary-dark:#1434b8; --bg:#f5f7ff; --text:#0f172a; --muted:#64748b; --border:#e2e8f0; font-size:16px; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    a { color:var(--primary); text-decoration:none; }
+    header { background:rgba(255,255,255,0.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+    .nav { max-width:1140px; margin:0 auto; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+    .logo { font-size:1.25rem; font-weight:700; color:var(--primary); }
+    .nav-links { display:flex; gap:1.25rem; flex-wrap:wrap; font-size:0.95rem; font-weight:500; }
+    main { max-width:1140px; margin:0 auto; padding:3rem 1.5rem 4.5rem; display:grid; gap:2.75rem; }
+    h1 { margin:0; font-size:clamp(2.2rem,3.5vw,3rem); }
+    .lead { margin:0; color:var(--muted); max-width:760px; font-size:1.05rem; }
+    .filters { background:#fff; border-radius:24px; padding:2rem; box-shadow:0 26px 58px -30px rgba(15,23,42,0.28); display:grid; gap:1.5rem; }
+    .filter-grid { display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); }
+    label { font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); display:grid; gap:0.4rem; }
+    select, input { width:100%; padding:0.8rem 0.95rem; border:1px solid var(--border); border-radius:12px; font-size:1rem; }
+    table { width:100%; border-collapse:collapse; background:#fff; border-radius:24px; overflow:hidden; box-shadow:0 30px 60px -32px rgba(15,23,42,0.28); }
+    thead { background:#0f172a; color:#fff; }
+    th, td { padding:1rem 1.2rem; text-align:left; border-bottom:1px solid var(--border); }
+    tbody tr:hover { background:rgba(31,75,255,0.08); }
+    .copy-link { background:rgba(31,75,255,0.1); color:var(--primary); border:none; border-radius:999px; padding:0.35rem 0.9rem; font-weight:600; cursor:pointer; }
+    .empty { padding:2rem; text-align:center; color:var(--muted); }
+    footer { background:#0f172a; color:rgba(255,255,255,0.78); padding:2.5rem 1.5rem; margin-top:3rem; }
+    .footer-inner { max-width:1140px; margin:0 auto; display:flex; flex-direction:column; gap:1.5rem; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:1rem 1.5rem; font-size:0.95rem; }
+    .footer-links a { color:rgba(255,255,255,0.88); }
+    .disclaimer { font-size:0.85rem; color:rgba(255,255,255,0.65); max-width:640px; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/">Postcode Blog</a>
+      <div class="nav-links">
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/faq/">FAQ</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <header style="display:grid;gap:0.75rem;">
+      <h1>China Zip Code Search Directory</h1>
+      <p class="lead">Filter the master table of China postal codes by province, city, or district. Export, copy, and click through to detailed city guides.</p>
+    </header>
+    <section class="filters" aria-label="Directory filters">
+      <div class="filter-grid">
+        <label>Province<select id="filterProvince"><option value="">All provinces</option></select></label>
+        <label>City<select id="filterCity" disabled><option value="">All cities</option></select></label>
+        <label>District<input type="search" id="filterDistrict" placeholder="Search district"></label>
+      </div>
+      <p style="margin:0;color:var(--muted);">Need guided steps? Use the <a href="/finder/">finder</a> or <a href="/lookup/">address lookup</a>.</p>
+    </section>
+    <section aria-label="Postcode results">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Province</th>
+            <th scope="col">City</th>
+            <th scope="col">District / Area</th>
+            <th scope="col">Postal code</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody">
+          <tr><td colspan="6" class="empty">Loading directory…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search</a>
+        <a href="/cities/">Cities A–Z</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/robots.txt">Robots</a>
+      </div>
+      <p class="disclaimer">Postcode Blog curates public China postal (zip) code data for quick reference. Verify critical shipments with China Post or the local courier before sending.</p>
+      <p class="disclaimer">© <span id="year"></span> Postcode Blog. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const dataset = {
+      guangdong: {
+        name: 'Guangdong',
+        cities: {
+          guangzhou: {
+            name: 'Guangzhou',
+            districts: [
+              { name: 'Tianhe District', code: '510620', notes: 'Central business district, Tianhebei Road.' },
+              { name: 'Yuexiu District', code: '510030', notes: 'Includes Beijing Road shopping area.' },
+              { name: 'Haizhu District', code: '510260', notes: 'Canton Fair Complex & Pazhou.' },
+              { name: 'Panyu District', code: '511400', notes: 'Covers Shiqiao, University Town.' }
+            ]
+          },
+          shenzhen: {
+            name: 'Shenzhen',
+            districts: [
+              { name: 'Futian District', code: '518048', notes: 'Civic Center, CBD, Huaqiangbei.' },
+              { name: 'Nanshan District', code: '518054', notes: 'High-tech park & Shenzhen Bay.' },
+              { name: 'Longgang District', code: '518172', notes: 'Includes Longcheng, Buji.' },
+              { name: 'Bao’an District', code: '518101', notes: 'Bao’an International Airport area.' }
+            ]
+          },
+          dongguan: {
+            name: 'Dongguan',
+            districts: [
+              { name: 'Nancheng Subdistrict', code: '523617', notes: 'Downtown business core.' },
+              { name: 'Humen Town', code: '523900', notes: 'Port area, garment manufacturing hub.' },
+              { name: 'Dalang Town', code: '523770', notes: 'Woolen sweater industry cluster.' },
+              { name: 'Houjie Town', code: '523949', notes: 'Furniture & hardware trade area.' }
+            ]
+          }
+        }
+      },
+      beijing: {
+        name: 'Beijing',
+        cities: {
+          beijing: {
+            name: 'Beijing',
+            districts: [
+              { name: 'Chaoyang District', code: '100020', notes: 'CBD, embassy area, Sanlitun.' },
+              { name: 'Haidian District', code: '100080', notes: 'Zhongguancun tech & universities.' },
+              { name: 'Dongcheng District', code: '100010', notes: 'Tiananmen, Wangfujing.' },
+              { name: 'Xicheng District', code: '100032', notes: 'Financial Street, Xidan.' }
+            ]
+          }
+        }
+      },
+      shanghai: {
+        name: 'Shanghai',
+        cities: {
+          shanghai: {
+            name: 'Shanghai',
+            districts: [
+              { name: 'Pudong New Area', code: '200120', notes: 'Lujiazui financial district.' },
+              { name: 'Huangpu District', code: '200001', notes: 'The Bund & People’s Square.' },
+              { name: 'Jing’an District', code: '200040', notes: 'Nanjing West Road offices.' },
+              { name: 'Xuhui District', code: '200030', notes: 'Xujiahui commercial hub.' }
+            ]
+          }
+        }
+      },
+      jiangsu: {
+        name: 'Jiangsu',
+        cities: {
+          nanjing: {
+            name: 'Nanjing',
+            districts: [
+              { name: 'Gulou District', code: '210009', notes: 'Administrative center, Hunan Road.' },
+              { name: 'Xuanwu District', code: '210018', notes: 'Xuanwu Lake, Purple Mountain.' },
+              { name: 'Jianye District', code: '210019', notes: 'Hexi CBD, Olympic Sports Center.' },
+              { name: 'Jiangning District', code: '211100', notes: 'University Town, Lukou Airport.' }
+            ]
+          }
+        }
+      },
+      sichuan: {
+        name: 'Sichuan',
+        cities: {
+          chengdu: {
+            name: 'Chengdu',
+            districts: [
+              { name: 'Jinjiang District', code: '610021', notes: 'Taikoo Li, Chunxi Road.' },
+              { name: 'Wuhou District', code: '610041', notes: 'Hi-tech zone, Sichuan University.' },
+              { name: 'Qingyang District', code: '610015', notes: 'Provincial government area.' },
+              { name: 'Chenghua District', code: '610066', notes: 'SM City, East Railway Station.' }
+            ]
+          }
+        }
+      },
+      shandong: {
+        name: 'Shandong',
+        cities: {
+          qingdao: {
+            name: 'Qingdao',
+            districts: [
+              { name: 'Shinan District', code: '266001', notes: 'May Fourth Square, Badaguan.' },
+              { name: 'Laoshan District', code: '266061', notes: 'Laoshan Scenic Area, Innovation Park.' },
+              { name: 'Huangdao District', code: '266500', notes: 'West Coast New Area.' },
+              { name: 'Licang District', code: '266041', notes: 'North Railway Station, World Expo City.' }
+            ]
+          }
+        }
+      }
+    };
+
+    const filterProvince = document.getElementById('filterProvince');
+    const filterCity = document.getElementById('filterCity');
+    const filterDistrict = document.getElementById('filterDistrict');
+    const resultsBody = document.getElementById('resultsBody');
+
+    const provinces = Object.entries(dataset).map(([slug, province]) => ({ slug, name: province.name }));
+    filterProvince.innerHTML += provinces.map(p => `<option value="${p.slug}">${p.name}</option>`).join('');
+
+    filterProvince.addEventListener('change', () => {
+      const provinceSlug = filterProvince.value;
+      filterCity.innerHTML = '<option value="">All cities</option>';
+      filterCity.disabled = true;
+      if (!provinceSlug) {
+        renderRows();
+        return;
+      }
+      const cities = Object.entries(dataset[provinceSlug].cities).map(([slug, city]) => ({ slug, name: city.name }));
+      filterCity.innerHTML += cities.map(c => `<option value="${c.slug}">${c.name}</option>`).join('');
+      filterCity.disabled = false;
+      renderRows();
+    });
+
+    filterCity.addEventListener('change', () => {
+      renderRows();
+    });
+
+    filterDistrict.addEventListener('input', () => {
+      renderRows();
+    });
+
+    const allRecords = [];
+    for (const [provinceSlug, province] of Object.entries(dataset)) {
+      for (const [citySlug, city] of Object.entries(province.cities)) {
+        for (const district of city.districts) {
+          allRecords.push({ provinceSlug, provinceName: province.name, citySlug, cityName: city.name, district });
+        }
+      }
+    }
+
+    const renderRows = () => {
+      const provinceFilter = filterProvince.value;
+      const cityFilter = filterCity.value;
+      const districtTerm = filterDistrict.value.trim().toLowerCase();
+      const filtered = allRecords.filter(record => {
+        if (provinceFilter && record.provinceSlug !== provinceFilter) return false;
+        if (cityFilter && record.citySlug !== cityFilter) return false;
+        if (districtTerm && !(`${record.district.name} ${record.district.notes}`).toLowerCase().includes(districtTerm)) return false;
+        return true;
+      });
+      if (filtered.length === 0) {
+        resultsBody.innerHTML = '<tr><td colspan="6" class="empty">No postal codes yet. Adjust your filters or try another keyword.</td></tr>';
+        return;
+      }
+      resultsBody.innerHTML = filtered.map(record => {
+        const cityLink = `/city/${record.citySlug}/`;
+        return `<tr>
+          <td>${record.provinceName}</td>
+          <td><a href="${cityLink}">${record.cityName}</a></td>
+          <td>${record.district.name}</td>
+          <td>${record.district.code}</td>
+          <td>${record.district.notes}</td>
+          <td><button class="copy-link" type="button" data-code="${record.district.code}">Copy</button></td>
+        </tr>`;
+      }).join('');
+    };
+
+    resultsBody.addEventListener('click', event => {
+      if (event.target.matches('.copy-link')) {
+        const code = event.target.dataset.code;
+        navigator.clipboard?.writeText(code).then(() => {
+          event.target.textContent = 'Copied!';
+          setTimeout(() => (event.target.textContent = 'Copy'), 1600);
+        });
+      }
+    });
+
+    renderRows();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
