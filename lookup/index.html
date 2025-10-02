@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>China Postal Code Lookup (Zip Code) — Fast 6-Digit Search</title>
+  <meta name="description" content="Type an address and get the exact China postal/zip code. Supports districts & landmarks. Clean results, quick copy, map hints.">
+  <link rel="canonical" href="https://postcode.blog/finder/" />
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="China Postal Code Lookup (Zip Code) — Fast 6-Digit Search">
+  <meta property="og:description" content="Type an address and get the exact China postal/zip code. Supports districts & landmarks. Clean results, quick copy, map hints.">
+  <meta property="og:url" content="https://postcode.blog/lookup/">
+  <meta property="og:site_name" content="Postcode Blog">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="China Postal Code Lookup (Zip Code) — Fast 6-Digit Search">
+  <meta name="twitter:description" content="Type an address and get the exact China postal/zip code. Supports districts & landmarks. Clean results, quick copy, map hints.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary:#1f4bff; --primary-dark:#1434b8; --bg:#f5f7ff; --text:#0f172a; --muted:#64748b; --border:#e2e8f0; font-size:16px; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    a { color:var(--primary); text-decoration:none; }
+    header { background:rgba(255,255,255,0.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+    .nav { max-width:960px; margin:0 auto; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+    .logo { font-size:1.25rem; font-weight:700; color:var(--primary); }
+    .nav-links { display:flex; gap:1.25rem; flex-wrap:wrap; font-size:0.95rem; font-weight:500; }
+    main { max-width:960px; margin:0 auto; padding:3rem 1.5rem 4.5rem; display:grid; gap:2.5rem; }
+    h1 { font-size:clamp(2.1rem,3.5vw,2.8rem); margin:0; }
+    .lead { margin:0; color:var(--muted); font-size:1.05rem; }
+    .lookup-card { background:#fff; border-radius:28px; padding:2.5rem; box-shadow:0 28px 60px -28px rgba(15,23,42,0.3); display:grid; gap:2rem; }
+    .input-wrapper { display:grid; gap:1rem; }
+    label { font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); }
+    input, select { width:100%; padding:0.9rem 1rem; border:1px solid var(--border); border-radius:14px; font-size:1rem; }
+    .suggestions { display:grid; gap:0.65rem; }
+    .suggestion { border:1px solid rgba(31,75,255,0.18); border-radius:14px; padding:0.85rem 1rem; background:rgba(31,75,255,0.06); cursor:pointer; }
+    .primary-btn { background:var(--primary); color:#fff; border:none; border-radius:14px; padding:0.95rem 1.9rem; font-weight:600; cursor:pointer; transition:background 0.2s ease; }
+    .primary-btn:hover { background:var(--primary-dark); }
+    .result { display:none; border:1px solid rgba(31,75,255,0.18); border-radius:18px; padding:1.5rem; background:rgba(31,75,255,0.08); }
+    .result header { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .pill { background:rgba(31,75,255,0.1); color:var(--primary); border-radius:999px; padding:0.2rem 0.75rem; font-size:0.75rem; font-weight:600; }
+    .code { font-size:2rem; font-weight:700; letter-spacing:0.08em; color:var(--primary); }
+    .copy-btn { border:none; background:rgba(255,255,255,0.75); border-radius:999px; padding:0.5rem 1.2rem; font-weight:600; cursor:pointer; }
+    footer { background:#0f172a; color:rgba(255,255,255,0.78); padding:2.5rem 1.5rem; }
+    .footer-inner { max-width:960px; margin:0 auto; display:flex; flex-direction:column; gap:1.5rem; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:1rem 1.5rem; font-size:0.95rem; }
+    .footer-links a { color:rgba(255,255,255,0.88); }
+    .disclaimer { font-size:0.85rem; color:rgba(255,255,255,0.65); max-width:640px; }
+    @media(max-width:720px){ .lookup-card{padding:2rem;} }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/">Postcode Blog</a>
+      <div class="nav-links">
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/faq/">FAQ</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <header style="display:grid;gap:0.75rem;">
+      <h1>China Postal Code Lookup</h1>
+      <p class="lead">Paste an address, landmark, or district keyword to surface the exact 6-digit postal (zip) code. Suggestions update as you type.</p>
+    </header>
+    <section class="lookup-card" aria-label="Postal code lookup">
+      <div class="input-wrapper">
+        <label for="lookupInput">Search keyword</label>
+        <input id="lookupInput" type="search" placeholder="e.g. Sanlitun Beijing or Lujiazui Shanghai" autocomplete="off">
+        <div class="suggestions" id="suggestions" aria-live="polite"></div>
+      </div>
+      <button class="primary-btn" id="lookupBtn" type="button">Show postal code</button>
+      <div class="result" id="lookupResult" aria-live="polite">
+        <header>
+          <div>
+            <div class="pill" id="lookupLocation"></div>
+            <div class="code" id="lookupCode"></div>
+          </div>
+          <button class="copy-btn" id="lookupCopy" type="button">Copy code</button>
+        </header>
+        <p id="lookupNotes"></p>
+      </div>
+      <p style="margin:0;color:var(--muted);">Prefer filters? Use the <a href="/finder/">province → city → district finder</a> or browse the <a href="/search/">full postcode directory</a>.</p>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search</a>
+        <a href="/cities/">Cities A–Z</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/robots.txt">Robots</a>
+      </div>
+      <p class="disclaimer">Postcode Blog curates public China postal (zip) code data for quick reference. Verify critical shipments with China Post or the local courier before sending.</p>
+      <p class="disclaimer">© <span id="year"></span> Postcode Blog. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const dataset = {
+      guangdong: {
+        name: 'Guangdong',
+        cities: {
+          guangzhou: {
+            name: 'Guangzhou',
+            districts: [
+              { name: 'Tianhe District', code: '510620', notes: 'Central business district, Tianhebei Road.' },
+              { name: 'Yuexiu District', code: '510030', notes: 'Includes Beijing Road shopping area.' },
+              { name: 'Haizhu District', code: '510260', notes: 'Canton Fair Complex & Pazhou.' },
+              { name: 'Panyu District', code: '511400', notes: 'Covers Shiqiao, University Town.' }
+            ]
+          },
+          shenzhen: {
+            name: 'Shenzhen',
+            districts: [
+              { name: 'Futian District', code: '518048', notes: 'Civic Center, CBD, Huaqiangbei.' },
+              { name: 'Nanshan District', code: '518054', notes: 'High-tech park & Shenzhen Bay.' },
+              { name: 'Longgang District', code: '518172', notes: 'Includes Longcheng, Buji.' },
+              { name: 'Bao’an District', code: '518101', notes: 'Bao’an International Airport area.' }
+            ]
+          },
+          dongguan: {
+            name: 'Dongguan',
+            districts: [
+              { name: 'Nancheng Subdistrict', code: '523617', notes: 'Downtown business core.' },
+              { name: 'Humen Town', code: '523900', notes: 'Port area, garment manufacturing hub.' },
+              { name: 'Dalang Town', code: '523770', notes: 'Woolen sweater industry cluster.' },
+              { name: 'Houjie Town', code: '523949', notes: 'Furniture & hardware trade area.' }
+            ]
+          }
+        }
+      },
+      beijing: {
+        name: 'Beijing',
+        cities: {
+          beijing: {
+            name: 'Beijing',
+            districts: [
+              { name: 'Chaoyang District', code: '100020', notes: 'CBD, embassy area, Sanlitun.' },
+              { name: 'Haidian District', code: '100080', notes: 'Zhongguancun tech & universities.' },
+              { name: 'Dongcheng District', code: '100010', notes: 'Tiananmen, Wangfujing.' },
+              { name: 'Xicheng District', code: '100032', notes: 'Financial Street, Xidan.' }
+            ]
+          }
+        }
+      },
+      shanghai: {
+        name: 'Shanghai',
+        cities: {
+          shanghai: {
+            name: 'Shanghai',
+            districts: [
+              { name: 'Pudong New Area', code: '200120', notes: 'Lujiazui financial district.' },
+              { name: 'Huangpu District', code: '200001', notes: 'The Bund & People’s Square.' },
+              { name: 'Jing’an District', code: '200040', notes: 'Nanjing West Road offices.' },
+              { name: 'Xuhui District', code: '200030', notes: 'Xujiahui commercial hub.' }
+            ]
+          }
+        }
+      },
+      jiangsu: {
+        name: 'Jiangsu',
+        cities: {
+          nanjing: {
+            name: 'Nanjing',
+            districts: [
+              { name: 'Gulou District', code: '210009', notes: 'Administrative center, Hunan Road.' },
+              { name: 'Xuanwu District', code: '210018', notes: 'Xuanwu Lake, Purple Mountain.' },
+              { name: 'Jianye District', code: '210019', notes: 'Hexi CBD, Olympic Sports Center.' },
+              { name: 'Jiangning District', code: '211100', notes: 'University Town, Lukou Airport.' }
+            ]
+          }
+        }
+      },
+      sichuan: {
+        name: 'Sichuan',
+        cities: {
+          chengdu: {
+            name: 'Chengdu',
+            districts: [
+              { name: 'Jinjiang District', code: '610021', notes: 'Taikoo Li, Chunxi Road.' },
+              { name: 'Wuhou District', code: '610041', notes: 'Hi-tech zone, Sichuan University.' },
+              { name: 'Qingyang District', code: '610015', notes: 'Provincial government area.' },
+              { name: 'Chenghua District', code: '610066', notes: 'SM City, East Railway Station.' }
+            ]
+          }
+        }
+      },
+      shandong: {
+        name: 'Shandong',
+        cities: {
+          qingdao: {
+            name: 'Qingdao',
+            districts: [
+              { name: 'Shinan District', code: '266001', notes: 'May Fourth Square, Badaguan.' },
+              { name: 'Laoshan District', code: '266061', notes: 'Laoshan Scenic Area, Innovation Park.' },
+              { name: 'Huangdao District', code: '266500', notes: 'West Coast New Area.' },
+              { name: 'Licang District', code: '266041', notes: 'North Railway Station, World Expo City.' }
+            ]
+          }
+        }
+      }
+    };
+
+    const lookupInput = document.getElementById('lookupInput');
+    const suggestions = document.getElementById('suggestions');
+    const lookupBtn = document.getElementById('lookupBtn');
+    const lookupResult = document.getElementById('lookupResult');
+    const lookupLocation = document.getElementById('lookupLocation');
+    const lookupCode = document.getElementById('lookupCode');
+    const lookupNotes = document.getElementById('lookupNotes');
+    const lookupCopy = document.getElementById('lookupCopy');
+
+    const records = [];
+    for (const [provinceSlug, province] of Object.entries(dataset)) {
+      for (const [citySlug, city] of Object.entries(province.cities)) {
+        for (const district of city.districts) {
+          records.push({ provinceSlug, citySlug, provinceName: province.name, cityName: city.name, district });
+        }
+      }
+    }
+
+    const renderSuggestions = value => {
+      const term = value.trim().toLowerCase();
+      if (!term) {
+        suggestions.innerHTML = '';
+        return;
+      }
+      const matches = records.filter(record => `${record.provinceName} ${record.cityName} ${record.district.name} ${record.district.notes}`.toLowerCase().includes(term)).slice(0, 6);
+      suggestions.innerHTML = matches.map(match => `<button type="button" class="suggestion" data-province="${match.provinceSlug}" data-city="${match.citySlug}" data-district="${match.district.name}" data-code="${match.district.code}"><strong>${match.district.name}</strong> · ${match.cityName}, ${match.provinceName} — ${match.district.code}</button>`).join('');
+    };
+
+    const showRecord = record => {
+      const location = `${record.district.name} · ${record.cityName}, ${record.provinceName}`;
+      lookupLocation.textContent = location;
+      lookupCode.textContent = record.district.code;
+      lookupNotes.textContent = record.district.notes;
+      lookupCopy.dataset.code = record.district.code;
+      lookupResult.style.display = 'grid';
+    };
+
+    lookupInput.addEventListener('input', event => {
+      renderSuggestions(event.target.value);
+    });
+
+    suggestions.addEventListener('click', event => {
+      if (event.target.closest('.suggestion')) {
+        const button = event.target.closest('.suggestion');
+        const record = records.find(r => r.district.name === button.dataset.district && r.district.code === button.dataset.code);
+        if (record) {
+          lookupInput.value = `${record.district.name} ${record.cityName}`;
+          suggestions.innerHTML = '';
+          showRecord(record);
+        }
+      }
+    });
+
+    lookupBtn.addEventListener('click', () => {
+      const term = lookupInput.value.trim().toLowerCase();
+      if (!term) {
+        lookupResult.style.display = 'none';
+        return;
+      }
+      const match = records.find(record => `${record.provinceName} ${record.cityName} ${record.district.name} ${record.district.notes}`.toLowerCase().includes(term));
+      if (match) {
+        showRecord(match);
+      } else {
+        lookupResult.style.display = 'none';
+        suggestions.innerHTML = '<p style="margin:0;color:var(--muted);">No results yet. Try a city or district name like "Chaoyang".</p>';
+      }
+    });
+
+    lookupCopy.addEventListener('click', () => {
+      const code = lookupCopy.dataset.code;
+      if (!code) return;
+      navigator.clipboard?.writeText(code).then(() => {
+        lookupCopy.textContent = 'Copied!';
+        setTimeout(() => (lookupCopy.textContent = 'Copy code'), 1600);
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
