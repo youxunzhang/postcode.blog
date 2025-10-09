@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中国电信手机卡深度解析｜天翼5G套餐、宽带融合、国际业务 - Postcode Blog</title>
+  <meta name="description" content="全面解析中国电信手机卡：涵盖天翼5G套餐、星卡、宽带融合方案、国际漫游与eSIM服务、营业厅办理流程及政企业务亮点。">
+  <link rel="canonical" href="https://postcode.blog/china-telecom-sim.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f3dff;
+      --primary-dark: #0a2aa6;
+      --bg: #f5f7ff;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(145deg, #f0f4ff 0%, #ffffff 65%, #f5f7ff 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      font-weight: 500;
+      align-items: center;
+    }
+
+    .nav-links > a {
+      color: var(--text);
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text);
+    }
+
+    .nav-caret {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item:hover .nav-caret,
+    .nav-item:focus-within .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .nav-item.active > a {
+      color: var(--primary);
+    }
+
+    .nav-item.active .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 0;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 22px 48px -22px rgba(15, 23, 42, 0.45);
+      padding: 1rem;
+      min-width: 220px;
+      border: 1px solid var(--border);
+      z-index: 10;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dropdown a {
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .dropdown a:hover {
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown {
+      display: flex;
+    }
+
+    .nav-item.active .dropdown {
+      display: flex;
+    }
+
+    .dropdown a[aria-current="page"] {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f3dff 0%, #6a8bff 100%);
+      border-radius: 32px;
+      color: #fff;
+      padding: 3rem;
+      box-shadow: 0 32px 68px -32px rgba(15, 61, 255, 0.55);
+    }
+
+    .hero h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.2rem, 5vw, 3.1rem);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      max-width: 640px;
+      color: rgba(255, 255, 255, 0.92);
+      margin: 0 0 1.8rem;
+      font-size: 1.05rem;
+    }
+
+    .hero .tag-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    .section-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.9rem;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1.6rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 18px 50px -30px rgba(15, 23, 42, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    .card ul li {
+      margin-bottom: 0.55rem;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(15, 61, 255, 0.1), rgba(15, 61, 255, 0.05));
+      border: 1px solid rgba(15, 61, 255, 0.15);
+      border-radius: 24px;
+      padding: 2rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .process {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .process-step {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 16px 40px -28px rgba(15, 23, 42, 0.45);
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .process-step strong {
+      font-size: 1.05rem;
+    }
+
+    .faq {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 14px 38px -28px rgba(15, 23, 42, 0.45);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 2.4rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/">Postcode Blog</a>
+      <div class="nav-links">
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/faq/">FAQ</a>
+        <div class="nav-item active">
+          <a href="/mobile-sim-cards.html" aria-haspopup="true" aria-expanded="true">手机卡 <span class="nav-caret">▾</span></a>
+          <div class="dropdown" role="menu">
+            <a href="/china-telecom-sim.html" role="menuitem" aria-current="page">中国电信手机卡</a>
+            <a href="/china-mobile-sim.html" role="menuitem">中国移动手机卡</a>
+            <a href="/china-unicom-sim.html" role="menuitem">中国联通手机卡</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>中国电信手机卡与天翼5G全景解析</h1>
+      <p>作为中国领先的综合智能信息服务提供商，中国电信依托天翼5G、千兆宽带与云服务形成「云网融合」优势。本指南聚焦手机卡产品线，帮助个人与企业用户精准匹配套餐。</p>
+      <div class="tag-row">
+        <span class="tag">天翼5G全家桶</span>
+        <span class="tag">星卡/畅享套餐</span>
+        <span class="tag">国际漫游与eSIM</span>
+        <span class="tag">云宽带融合</span>
+      </div>
+    </section>
+
+    <section class="section-title">
+      <h2>核心产品矩阵</h2>
+      <p>根据中国电信最新产品发布及官方资费手册，梳理面向不同人群的手机卡方案。</p>
+    </section>
+    <section class="card-grid">
+      <article class="card">
+        <h3>天翼5G套餐</h3>
+        <p>中高端档位覆盖129元至699元，提供5G优享/尊享网络优先级、家庭共享副卡、天翼云盘等权益。</p>
+      </article>
+      <article class="card">
+        <h3>星卡系列</h3>
+        <p>面向年轻用户的线上专属卡，月租19-39元，含定向流量、短视频/音乐权益，可线上自助办理。</p>
+      </article>
+      <article class="card">
+        <h3>融合宽带套餐</h3>
+        <p>「全家福」「乐享家」组合提供手机+固网+IPTV一体化服务，支持千兆宽带与智能组网。</p>
+      </article>
+      <article class="card">
+        <h3>政企业务专属卡</h3>
+        <p>聚焦政务、能源、交通等行业，提供物联网卡、专线+5G专网及安全管理平台。</p>
+      </article>
+    </section>
+
+    <section class="section-title">
+      <h2>实名制办理与线上渠道</h2>
+      <p>在工信部实名制监管体系下，中国电信提供多渠道便捷办理方式，确保个人信息安全。</p>
+    </section>
+    <section class="process">
+      <div class="process-step">
+        <strong>1. 线上预约</strong>
+        <span>通过中国电信 APP、天翼生活小程序或官方商城下单选择号码，完成证件上传与人脸识别。</span>
+      </div>
+      <div class="process-step">
+        <strong>2. 线下核验</strong>
+        <span>快递实名核验或前往营业厅出示身份证件。部分城市支持上门核验服务。</span>
+      </div>
+      <div class="process-step">
+        <strong>3. 套餐激活</strong>
+        <span>插卡后拨打 <strong>10000</strong> 或使用「天翼高清」App完成激活测试，确认语音、数据及副卡共享功能。</span>
+      </div>
+    </section>
+
+    <section class="section-title">
+      <h2>国际漫游与eSIM</h2>
+      <p>针对跨境商务人士，中国电信推出全球卡及eSIM产品，覆盖全球主要经济体。</p>
+    </section>
+    <section class="highlight-box">
+      <strong>关键亮点</strong>
+      <ul>
+        <li>全球漫游覆盖超过 200 个国家和地区，可在 APP 自助购买境外流量包。</li>
+        <li>eSIM 支持部分旗舰机型，国内可实现主副号码切换，适合频繁出差人士。</li>
+        <li>提供「国际港澳一卡双号」方案，在大湾区商务场景下保持通讯连续性。</li>
+      </ul>
+    </section>
+
+    <section class="section-title">
+      <h2>客户服务与增值权益</h2>
+      <p>天翼客服体系覆盖 24/7 热线、智能客服与政企业务经理，为高价值客户提供定制支持。</p>
+    </section>
+    <section class="card-grid">
+      <article class="card">
+        <h3>服务渠道</h3>
+        <ul>
+          <li>10000 热线 + 「天翼客服」APP 实时工单。</li>
+          <li>全国 50,000+ 营业厅、合作便利店提供现场服务。</li>
+          <li>企业客户经理提供现场勘测与专属顾问支持。</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>数字权益</h3>
+        <ul>
+          <li>天翼云盘、天翼看家、天翼云会议等多端云服务。</li>
+          <li>「翼支付」金融服务支持话费立减、积分兑换。</li>
+          <li>智慧家庭设备（路由器、摄像头）优惠购置。</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>典型场景推荐</h3>
+        <ul>
+          <li>远程办公：选择 199 元及以上融合套餐，获得公网专线与云存储。</li>
+          <li>家庭宽带升级：办理「全屋光宽带」配合千兆 Wi-Fi 6 终端。</li>
+          <li>企业移动办公：使用政企云卡，支持 MDM 管理与专线接入。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="faq">
+      <div class="faq-item">
+        <h3>如何在境外提前办理中国电信手机卡？</h3>
+        <p>可登录中国电信国际业务官网或授权旅行社，预先提交证件资料，抵达后在机场柜台完成激活。部分地区支持邮寄 SIM 到国内地址，由亲友代收。</p>
+      </div>
+      <div class="faq-item">
+        <h3>遗失手机卡怎么办？</h3>
+        <p>第一时间拨打 10000 或在 APP 申请临时停机挂失。凭身份证件到营业厅补卡，原号码、套餐及余额保持不变。</p>
+      </div>
+      <div class="faq-item">
+        <h3>如何注销或过户？</h3>
+        <p>持证件到营业厅办理销户或过户手续，清缴欠费后运营商将在 5 日内完成系统释放，确保个人信息安全。</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    © Postcode Blog — 中国电信手机卡信息来源于中国电信官方公告、2023 年财报及工信部统计公报。
+  </footer>
+</body>
+</html>
