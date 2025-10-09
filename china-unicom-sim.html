@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中国联通手机卡详解｜5G套餐、冰激凌、国际漫游与副卡共享 - Postcode Blog</title>
+  <meta name="description" content="系统介绍中国联通手机卡方案，涵盖5G套餐、冰激凌与大众卡产品、国际漫游、港澳台合作、物联网与副卡共享策略，并提供办理流程与常见问题解答。">
+  <link rel="canonical" href="https://postcode.blog/china-unicom-sim.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff4b7d;
+      --primary-dark: #c23059;
+      --bg: #fff5f8;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --text: #141d2f;
+      --muted: #6b7280;
+      --border: #f5d5df;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at 85% 15%, #ffe3ed, #ffffff 55%);
+      color: var(--text);
+      line-height: 1.72;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      font-weight: 500;
+      align-items: center;
+    }
+
+    .nav-links > a {
+      color: var(--text);
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text);
+    }
+
+    .nav-caret {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item:hover .nav-caret,
+    .nav-item:focus-within .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .nav-item.active > a {
+      color: var(--primary);
+    }
+
+    .nav-item.active .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 0;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 22px 46px -24px rgba(20, 29, 47, 0.4);
+      padding: 1rem;
+      min-width: 220px;
+      border: 1px solid var(--border);
+      z-index: 10;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dropdown a {
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .dropdown a:hover {
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown {
+      display: flex;
+    }
+
+    .nav-item.active .dropdown {
+      display: flex;
+    }
+
+    .dropdown a[aria-current="page"] {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ff4b7d 0%, #ff88a9 100%);
+      border-radius: 32px;
+      color: #fff;
+      padding: 3rem;
+      box-shadow: 0 32px 68px -32px rgba(255, 75, 125, 0.55);
+    }
+
+    .hero h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.3rem, 5vw, 3.1rem);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      max-width: 660px;
+      margin: 0 0 1.8rem;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1.05rem;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    .section-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.9rem;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1.6rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 1.8rem;
+      border: 1px solid rgba(255, 75, 125, 0.18);
+      box-shadow: 0 20px 52px -30px rgba(255, 75, 125, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.22rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    .card ul li {
+      margin-bottom: 0.55rem;
+    }
+
+    .insight {
+      background: linear-gradient(135deg, rgba(255, 75, 125, 0.12), rgba(255, 75, 125, 0.05));
+      border-radius: 24px;
+      border: 1px solid rgba(255, 75, 125, 0.2);
+      padding: 2rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .process {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .process-step {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      border: 1px solid rgba(255, 75, 125, 0.18);
+      box-shadow: 0 18px 45px -30px rgba(20, 29, 47, 0.4);
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .process-step strong {
+      font-size: 1.05rem;
+    }
+
+    .faq {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      border: 1px solid rgba(255, 75, 125, 0.16);
+      box-shadow: 0 16px 42px -30px rgba(20, 29, 47, 0.35);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 2.4rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/">Postcode Blog</a>
+      <div class="nav-links">
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/faq/">FAQ</a>
+        <div class="nav-item active">
+          <a href="/mobile-sim-cards.html" aria-haspopup="true" aria-expanded="true">手机卡 <span class="nav-caret">▾</span></a>
+          <div class="dropdown" role="menu">
+            <a href="/china-telecom-sim.html" role="menuitem">中国电信手机卡</a>
+            <a href="/china-mobile-sim.html" role="menuitem">中国移动手机卡</a>
+            <a href="/china-unicom-sim.html" role="menuitem" aria-current="page">中国联通手机卡</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>中国联通手机卡与副卡共享策略深度指南</h1>
+      <p>中国联通凭借 5G 共建共享、冰激凌套餐与副卡共享政策形成差异化竞争力。本指南系统解析产品组合、办理流程与国际合作亮点。</p>
+      <div class="chip-row">
+        <span class="chip">联通5G套餐</span>
+        <span class="chip">冰激凌与大众卡</span>
+        <span class="chip">港澳台数据合作</span>
+        <span class="chip">副卡与物联网</span>
+      </div>
+    </section>
+
+    <section class="section-title">
+      <h2>产品矩阵</h2>
+      <p>依据中国联通官方公告和线上商城信息，梳理面向不同用户群体的手机卡选择。</p>
+    </section>
+    <section class="card-grid">
+      <article class="card">
+        <h3>联通5G套餐</h3>
+        <p>价格覆盖 99-699 元，提供 5G 极速通道、副卡共享及沃云盘等服务，强调家庭/企业融合。</p>
+      </article>
+      <article class="card">
+        <h3>冰激凌系列</h3>
+        <p>以大流量无限速为卖点，支持副卡共享、宽带融合，适合视频重度用户。</p>
+      </article>
+      <article class="card">
+        <h3>线上大众卡</h3>
+        <p>如「腾讯王卡」「阿里宝卡」等互联网合作产品，定向流量+会员权益组合灵活。</p>
+      </article>
+      <article class="card">
+        <h3>物联网/行业卡</h3>
+        <p>面向智慧交通、工业互联网场景，提供低功耗 NB-IoT 与 5G 行业模组。</p>
+      </article>
+    </section>
+
+    <section class="section-title">
+      <h2>网络与国际合作</h2>
+      <p>联通与中国电信共同建设 5G 网络，重点城市覆盖能力稳步提升，同时拓展国际漫游与港澳台合作。</p>
+    </section>
+    <section class="insight">
+      <strong>关键亮点</strong>
+      <ul>
+        <li>5G 共建共享基站数突破 100 万，重点覆盖京津冀、长三角、大湾区。</li>
+        <li>国际漫游覆盖 180+ 国家，推出港澳台、日本、韩国等热门目的地流量包。</li>
+        <li>「联通数科」赋能政企客户，提供云、物联网与安全一体化解决方案。</li>
+      </ul>
+    </section>
+
+    <section class="section-title">
+      <h2>办理流程与副卡策略</h2>
+      <p>联通强调线上线下一体化办理，并提供丰富的副卡管理工具满足家庭与企业需求。</p>
+    </section>
+    <section class="process">
+      <div class="process-step">
+        <strong>1. 线上选号/号卡寄送</strong>
+        <span>通过中国联通 APP、联通营业厅小程序选择号段，支持快递实名核身。</span>
+      </div>
+      <div class="process-step">
+        <strong>2. 线下核验激活</strong>
+        <span>持身份证件至营业厅或快递员上门完成实名，人脸核验通过后即可插卡使用。</span>
+      </div>
+      <div class="process-step">
+        <strong>3. 副卡与共享管理</strong>
+        <span>在「中国联通」APP 中开通副卡，设定流量/语音上限，支持家庭成员/员工共享套餐资源。</span>
+      </div>
+    </section>
+
+    <section class="section-title">
+      <h2>精选权益与增值服务</h2>
+      <p>面向家庭与企业用户提供内容、金融与安全等多元权益，提升用户黏性。</p>
+    </section>
+    <section class="card-grid">
+      <article class="card">
+        <h3>内容合作</h3>
+        <ul>
+          <li>与腾讯、阿里、哔哩哔哩等平台联名推出定向流量。</li>
+          <li>沃视频、沃阅读等自有内容服务提供会员礼包。</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>金融与福利</h3>
+        <ul>
+          <li>沃钱包支持话费分期、积分兑换、联名信用卡优惠。</li>
+          <li>提供境外上网保障、航旅合作及机场贵宾厅权益。</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>企业解决方案</h3>
+        <ul>
+          <li>结合 5G MEC 与云主机，为制造、教育、医疗行业构建专网。</li>
+          <li>提供终端管控、MDM、统一计费等企业级服务。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="faq">
+      <div class="faq-item">
+        <h3>副卡最多可以开通几张？</h3>
+        <p>根据不同套餐可开通 1-4 张副卡，主卡可在 APP 中设定副卡额度并实时查询使用情况。</p>
+      </div>
+      <div class="faq-item">
+        <h3>港澳台漫游如何办理？</h3>
+        <p>可提前在 APP 购买港澳台流量包，抵达后自动生效；若需实体 SIM，可在口岸营业厅办理联通大湾区卡。</p>
+      </div>
+      <div class="faq-item">
+        <h3>号码注销与保号</h3>
+        <p>长时间出国可申请「长期停机保号」，月费 5 元；需销户时请携证件至营业厅完成信息核验并清理欠费。</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    © Postcode Blog — 中国联通手机卡信息来源于中国联通官方公告、财务报告及工信部通信业统计公报。
+  </footer>
+</body>
+</html>

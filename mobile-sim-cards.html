@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中国手机卡全指南｜覆盖、套餐、实名制与购买建议 - Postcode Blog</title>
+  <meta name="description" content="专业梳理中国手机卡办理攻略，涵盖中国电信、中国移动、中国联通网络覆盖、套餐资费、实名制要求、境外访客建议等核心信息，助您快速选择合适的SIM卡。">
+  <link rel="canonical" href="https://postcode.blog/mobile-sim-cards.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2451ff;
+      --primary-dark: #1235c7;
+      --bg: #f5f7ff;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at top right, #e4e9ff, #f6f8ff 60%);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      font-weight: 500;
+      align-items: center;
+    }
+
+    .nav-links > a {
+      color: var(--text);
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text);
+    }
+
+    .nav-caret {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item:hover .nav-caret,
+    .nav-item:focus-within .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .nav-item.active > a {
+      color: var(--primary);
+    }
+
+    .nav-item.active .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 0;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 24px 48px -20px rgba(15, 23, 42, 0.4);
+      padding: 1rem;
+      min-width: 220px;
+      border: 1px solid var(--border);
+      z-index: 10;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dropdown a {
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .dropdown a:hover {
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown {
+      display: flex;
+    }
+
+    .nav-item.active .dropdown {
+      display: flex;
+    }
+
+    .dropdown a[aria-current="page"] {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #244dff 0%, #6888ff 100%);
+      border-radius: 32px;
+      color: #fff;
+      padding: 3rem;
+      box-shadow: 0 32px 60px -30px rgba(36, 77, 255, 0.6);
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0 0 2rem;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1.1rem;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+
+    section.card-grid {
+      display: grid;
+      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 16px 45px -24px rgba(15, 23, 42, 0.45);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    .card ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px -28px rgba(15, 23, 42, 0.5);
+    }
+
+    .comparison-table thead {
+      background: #eff3ff;
+      color: var(--primary-dark);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1.2rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .comparison-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      gap: 0.35rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--card-bg);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 16px 40px -28px rgba(15, 23, 42, 0.4);
+    }
+
+    .timeline-item strong {
+      font-size: 1.05rem;
+    }
+
+    .faq {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 32px -26px rgba(15, 23, 42, 0.4);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 2.4rem 2rem;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/">Postcode Blog</a>
+      <div class="nav-links">
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/faq/">FAQ</a>
+        <div class="nav-item active">
+          <a href="/mobile-sim-cards.html" aria-haspopup="true" aria-expanded="true">手机卡 <span class="nav-caret">▾</span></a>
+          <div class="dropdown" role="menu">
+            <a href="/china-telecom-sim.html" role="menuitem">中国电信手机卡</a>
+            <a href="/china-mobile-sim.html" role="menuitem">中国移动手机卡</a>
+            <a href="/china-unicom-sim.html" role="menuitem">中国联通手机卡</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>中国手机卡权威全指南</h1>
+      <p>从网络覆盖、资费体系到实名制政策与境外访客办理路径，全面梳理中国电信、中国移动、中国联通三大运营商的手机卡解决方案，为政企客户、长期居住者及短期旅客提供可落地的选择建议。</p>
+      <div class="badge-row">
+        <span class="badge">5G/4G网络覆盖分析</span>
+        <span class="badge">实名制与证件要求</span>
+        <span class="badge">境外访客专属方案</span>
+        <span class="badge">套餐组合建议</span>
+      </div>
+    </section>
+
+    <section class="section-title">
+      <h2>三大运营商核心对比</h2>
+      <p>依据工业和信息化部公开数据、运营商年报以及市场调研资料，总结中国电信、中国移动、中国联通在网络资源、用户规模、国际漫游与客服支持方面的差异，为您提供决策参考。</p>
+    </section>
+    <section>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>中国电信</th>
+            <th>中国移动</th>
+            <th>中国联通</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>5G基站及覆盖</td>
+            <td>深耕中高端5G，城市室内覆盖出色，提供千兆光宽融合服务。</td>
+            <td>基站数量领先，县域覆盖广，语音通话稳定性强。</td>
+            <td>5G共建共享策略推动重点城市覆盖，注重行业应用。</td>
+          </tr>
+          <tr>
+            <td>套餐体系</td>
+            <td>天翼5G、畅享套餐组合灵活，强调云存储与权益。</td>
+            <td>全球通、移动花卡等类型多样，新媒体权益丰富。</td>
+            <td>联通5G、冰激凌套餐突出流量大额与副卡能力。</td>
+          </tr>
+          <tr>
+            <td>国际服务</td>
+            <td>面向商务人士推出全球卡与eSIM，国际通话资费优惠。</td>
+            <td>国际漫游覆盖180+国家，流量包选择多。</td>
+            <td>跨境数据合作突出港澳台、日本、东南亚市场。</td>
+          </tr>
+          <tr>
+            <td>适合人群</td>
+            <td>注重家庭融合、宽带+云服务的用户。</td>
+            <td>需要全国广覆盖与语音可靠性的个人与企业。</td>
+            <td>追求高性价比与灵活副卡管理的年轻用户。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section-title">
+      <h2>办理手机卡前的关键核查清单</h2>
+      <p>结合三大运营商统一的实名制监管要求，总结办理流程的关键节点，确保您能够快速完成开户并符合监管要求。</p>
+    </section>
+    <section class="timeline">
+      <div class="timeline-item">
+        <strong>1. 证件准备</strong>
+        <span>中国大陆居民提供居民身份证；港澳台居民提供《港澳居民居住证》或《台湾居民居住证》；外籍人士需持护照及入境签证/居留许可。</span>
+      </div>
+      <div class="timeline-item">
+        <strong>2. 预选套餐</strong>
+        <span>根据使用时长与流量需求确定月租档位。若为短期访客，可关注「随用随充」或「预付费」套餐，避免押金压力。</span>
+      </div>
+      <div class="timeline-item">
+        <strong>3. 实名登记与人脸核验</strong>
+        <span>营业厅现场拍照、刷证或通过官方App远程实名，完成公安联网校验后方可开通。</span>
+      </div>
+      <div class="timeline-item">
+        <strong>4. 激活与测试</strong>
+        <span>装卡后开机激活，拨打客服热线（10000/10086/10010）验证语音通话，同时测试数据网络、漫游及5G信号。</span>
+      </div>
+    </section>
+
+    <section class="section-title">
+      <h2>境外访客办理建议</h2>
+      <p>短期访华人员可选择机场/火车站营业点或认证旅行社。多数城市提供英文服务窗口，亦支持护照+入境章办理。</p>
+    </section>
+    <section class="card-grid">
+      <article class="card">
+        <h3>快速办理渠道</h3>
+        <ul>
+          <li>中国移动、联通在主要国际机场设有「旅客服务柜台」。</li>
+          <li>部分省市支持线上预约，抵达后凭预约码快速领取。</li>
+          <li>若停留不足30天，可购买运营商推出的短期旅游卡。</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>支付与充值</h3>
+        <ul>
+          <li>支持现金、银联卡及主流移动支付（支付宝、微信支付）。</li>
+          <li>可在便利店、官网或移动App完成充值，境外用户亦可使用国际信用卡。</li>
+          <li>建议开启短信账单提醒，关注余额与有效期。</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>数据安全与合规</h3>
+        <ul>
+          <li>实名信息仅用于电信监管备案，运营商遵循国家数据安全法。</li>
+          <li>如需注销号码，可通过官方App或营业厅办理，确保个人信息及时清除。</li>
+          <li>长时间停用请办理保号或销户，避免欠费影响个人信用。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section-title">
+      <h2>更多阅读</h2>
+      <p>深入了解各运营商手机卡方案，获取针对性套餐与服务建议：</p>
+    </section>
+    <section class="card-grid">
+      <article class="card">
+        <h3><a href="/china-telecom-sim.html">中国电信手机卡</a></h3>
+        <p>聚焦政企与家庭融合场景，了解天翼5G、星卡、融合套餐亮点。</p>
+      </article>
+      <article class="card">
+        <h3><a href="/china-mobile-sim.html">中国移动手机卡</a></h3>
+        <p>探索全球通、5G智享、移动花卡等大众化方案与权益。</p>
+      </article>
+      <article class="card">
+        <h3><a href="/china-unicom-sim.html">中国联通手机卡</a></h3>
+        <p>掌握联通5G、冰激凌、副卡共享等高性价比组合。</p>
+      </article>
+    </section>
+  </main>
+  <footer>
+    © Postcode Blog 提供的中国通信服务指南，数据参考工信部《通信业统计公报》及运营商官方公告。
+  </footer>
+</body>
+</html>
