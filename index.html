@@ -175,123 +175,177 @@
       gap: 4rem;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #2338ff 0%, #6b8bff 100%);
-      color: #fff;
-      padding: 3rem;
-      border-radius: 32px;
-      position: relative;
-      overflow: hidden;
-    }
 
-    .hero h1 {
-      margin: 0 0 1rem;
-      font-size: clamp(2.4rem, 4vw, 3.2rem);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-
-    .hero p {
-      max-width: 560px;
-      margin: 0 0 2rem;
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.92);
-    }
-
-    .finder-card {
-      background: #fff;
-      border-radius: 24px;
-      padding: 2rem;
-      box-shadow: 0 24px 56px -24px rgba(15, 23, 42, 0.3);
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .finder-inputs {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    }
-
-    .finder-inputs label {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      color: var(--muted);
-    }
-
-    .finder-inputs select,
-    .finder-inputs input {
-      margin-top: 0.4rem;
-      width: 100%;
-      padding: 0.75rem 0.85rem;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-size: 1rem;
-    }
-
-    .finder-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .primary-btn {
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      padding: 0.85rem 1.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .primary-btn:hover {
-      background: var(--primary-dark);
-    }
-
-    .result-card {
-      background: rgba(35, 56, 255, 0.08);
-      border: 1px solid rgba(35, 56, 255, 0.18);
-      border-radius: 18px;
-      padding: 1.5rem;
-      display: none;
-      gap: 0.5rem;
-    }
-
-    .result-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .result-code {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
-      letter-spacing: 0.08em;
-    }
-
-    .copy-btn {
-      border: none;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 999px;
-      padding: 0.5rem 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
+    .search-block,
+    .search-form,
+    .search-input-wrap,
+    .major-cities-block,
+    .city-info-list,
     .quick-cities,
     .province-grid,
     .faq-preview,
     .tools-grid {
       display: grid;
       gap: 1.5rem;
+    }
+
+    .search-block {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 2.5rem;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 24px 48px -32px rgba(15, 23, 42, 0.25);
+    }
+
+    .search-block h2 {
+      margin: 0;
+      font-size: 1.85rem;
+    }
+
+    .search-block p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .search-form {
+      align-items: end;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .search-input-wrap {
+      align-items: center;
+      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 0.4rem;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.02);
+      box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.06);
+      gap: 0.4rem;
+    }
+
+    .search-input {
+      font: inherit;
+      padding: 0.75rem 1rem;
+      border: none;
+      background: transparent;
+      outline: none;
+    }
+
+    .search-submit {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 1.65rem;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .search-submit:hover,
+    .search-submit:focus-visible {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px -22px rgba(15, 23, 42, 0.4);
+    }
+
+    .search-help {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .major-cities-block {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 2.5rem;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 24px 48px -32px rgba(15, 23, 42, 0.25);
+    }
+
+    .major-cities-block > div:first-child p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .city-info-list {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .city-info {
+      background: linear-gradient(160deg, rgba(31, 75, 255, 0.08), rgba(31, 75, 255, 0));
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px solid rgba(31, 75, 255, 0.12);
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .city-info header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .city-info h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .city-info .local-name {
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+    }
+
+    .city-info .postcode {
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .city-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .city-meta {
+      margin: 0;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .city-meta div {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .city-meta dt {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .city-meta dd {
+      margin: 0.15rem 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
     .quick-cities {
@@ -382,14 +436,13 @@
     }
 
     @media (max-width: 680px) {
-      .hero {
-        padding: 2.25rem;
+      .search-block {
+        padding: 2rem;
       }
-      .finder-actions {
-        flex-direction: column;
-        align-items: stretch;
+      .search-input-wrap {
+        grid-template-columns: minmax(0, 1fr);
       }
-      .copy-btn {
+      .search-submit {
         width: 100%;
       }
     }
@@ -417,41 +470,183 @@
     </nav>
   </header>
   <main>
-    <section class="hero">
-      <h1>China Postal &amp; Zip Codes — Fast 6‑Digit Finder</h1>
-      <p>Search verified China postal (zip) codes by province, city, district or address. Start typing or drill down the list to copy the exact 6-digit code instantly.</p>
-      <div class="finder-card" aria-label="China postal code finder">
-        <div class="finder-inputs">
-          <label>
-            Province / Municipality
-            <select id="provinceSelect" aria-label="Select province"></select>
-          </label>
-          <label>
-            City
-            <select id="citySelect" aria-label="Select city" disabled></select>
-          </label>
-          <label>
-            District / County
-            <select id="districtSelect" aria-label="Select district" disabled></select>
-          </label>
-          <label>
-            Address keyword (optional)
-            <input type="text" id="addressInput" placeholder="e.g. Chaoyang Park or Nanshan" aria-label="Search by address keyword">
-          </label>
+    <section class="search-block" aria-labelledby="postal-search">
+      <div class="section-header">
+        <div>
+          <h2 id="postal-search">Search China postal codes</h2>
+          <p>Enter a city, district, or six-digit code to jump straight to the results page.</p>
         </div>
-        <div class="finder-actions">
-          <button class="primary-btn" id="lookupButton" type="button">Get postal code</button>
-          <span id="resultSummary" aria-live="polite"></span>
+      </div>
+      <form class="search-form" role="search" action="/search/" method="get">
+        <label class="sr-only" for="postal-search-input">Postal code search</label>
+        <div class="search-input-wrap">
+          <input class="search-input" id="postal-search-input" name="q" type="search" placeholder="e.g. Beijing 100000, Futian district, 200120" autocomplete="postal-code">
+          <button class="search-submit" type="submit">Search</button>
         </div>
-        <div class="result-card" id="resultCard" aria-live="polite">
-          <div class="result-header">
-            <div>
-              <div class="pill" id="resultLocation"></div>
-              <div class="result-code" id="resultCode"></div>
-            </div>
-            <button class="copy-btn" id="copyButton" type="button">Copy code</button>
-          </div>
-          <p id="resultNotes"></p>
+        <p class="search-help">Supports Chinese and English keywords like “上海 邮政编码” or “Guangzhou 510000”.</p>
+      </form>
+    </section>
+
+    <section aria-labelledby="major-city-codes">
+      <div class="major-cities-block">
+        <div>
+          <h2 id="major-city-codes">China major city postal codes</h2>
+          <p>Spot the headline postcode used for the city core, then follow the linked guides for district-specific six-digit codes.</p>
+        </div>
+        <div class="city-info-list">
+          <article class="city-info">
+            <header>
+              <h3>Beijing <span class="local-name">北京</span></h3>
+              <p class="postcode">100000</p>
+            </header>
+            <p>Central postcode for Dongcheng, Xicheng, and embassy areas.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Chaoyang · Haidian · Tongzhou · Fengtai</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/city/beijing/">Beijing postal codes by district</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="city-info">
+            <header>
+              <h3>Shanghai <span class="local-name">上海</span></h3>
+              <p class="postcode">200000</p>
+            </header>
+            <p>Main code for Huangpu waterfront, the Bund, and People’s Square.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Pudong · Jing’an · Xuhui · Minhang</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/city/shanghai/">Shanghai postcode directory</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="city-info">
+            <header>
+              <h3>Guangzhou <span class="local-name">广州</span></h3>
+              <p class="postcode">510000</p>
+            </header>
+            <p>Use for Yuexiu CBD mailings and government correspondence.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Tianhe · Liwan · Haizhu · Panyu</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/city/guangzhou/">Guangzhou postal code list</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="city-info">
+            <header>
+              <h3>Shenzhen <span class="local-name">深圳</span></h3>
+              <p class="postcode">518000</p>
+            </header>
+            <p>Covers Futian Civic Center, Huaqiangbei, and central Nanshan.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Futian · Nanshan · Bao’an · Longgang</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/city/shenzhen/">Shenzhen postcode breakdown</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="city-info">
+            <header>
+              <h3>Chengdu <span class="local-name">成都</span></h3>
+              <p class="postcode">610000</p>
+            </header>
+            <p>Applies to the Tianfu Square core and Jinjiang business strips.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Qingyang · Jinjiang · Wuhou · Chenghua</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/city/chengdu/">Chengdu postal code map</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="city-info">
+            <header>
+              <h3>Hangzhou <span class="local-name">杭州</span></h3>
+              <p class="postcode">310000</p>
+            </header>
+            <p>West Lake scenic area, Wulin Square, and government offices.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Xihu · Shangcheng · Xiacheng · Binjiang</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/search/?q=杭州 邮政编码">Hangzhou postcode reference</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="city-info">
+            <header>
+              <h3>Wuhan <span class="local-name">武汉</span></h3>
+              <p class="postcode">430000</p>
+            </header>
+            <p>Serves Hankou Riverfront, Jiang’an, and central Zhongnan Road.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Jianghan · Wuchang · Hongshan · Hanyang</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/search/?q=武汉 邮政编码">Wuhan postal codes</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="city-info">
+            <header>
+              <h3>Xi’an <span class="local-name">西安</span></h3>
+              <p class="postcode">710000</p>
+            </header>
+            <p>Historic center including Bell Tower, Beilin, and City Wall areas.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Xincheng · Beilin · Yanta · Weiyang</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/search/?q=西安 邮政编码">Xi’an postcode list</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="city-info">
+            <header>
+              <h3>Chongqing <span class="local-name">重庆</span></h3>
+              <p class="postcode">400000</p>
+            </header>
+            <p>Yuzhong peninsula, Jiefangbei, and Lianglukou transit hub.</p>
+            <dl class="city-meta">
+              <div>
+                <dt>Key districts</dt>
+                <dd>Yuzhong · Jiangbei · Nan’an · Shapingba</dd>
+              </div>
+              <div>
+                <dt>Full guide</dt>
+                <dd><a href="/search/?q=重庆 邮政编码">Chongqing postal guide</a></dd>
+              </div>
+            </dl>
+          </article>
         </div>
       </div>
     </section>
@@ -459,45 +654,62 @@
     <section aria-labelledby="popular-cities">
       <div class="section-header">
         <div>
-          <h2 id="popular-cities">Popular city postal codes</h2>
-          <p>Jump straight to high-demand cities and copy district-level postcodes.</p>
+          <h2 id="popular-cities">Popular China zip code pages</h2>
+          <p>Open district-by-district postcode guides for the busiest Chinese cities.</p>
         </div>
         <a href="/cities/">Browse A–Z city index →</a>
       </div>
       <div class="quick-cities">
         <a class="city-card" href="/city/beijing/">
           <h3>Beijing <span class="pill">100000+</span></h3>
-          <p>Chaoyang, Haidian, Dongcheng, Xicheng.</p>
+          <p>District-by-district Beijing postcode directory.</p>
         </a>
         <a class="city-card" href="/city/shanghai/">
           <h3>Shanghai <span class="pill">200000+</span></h3>
-          <p>Pudong, Huangpu, Xuhui, Jing’an.</p>
+          <p>Pudong, Huangpu, Xuhui and more Shanghai postcodes.</p>
         </a>
         <a class="city-card" href="/city/guangzhou/">
           <h3>Guangzhou <span class="pill">510000+</span></h3>
-          <p>Yuexiu, Tianhe, Haizhu, Panyu.</p>
+          <p>Complete list of Guangzhou postal codes by district.</p>
         </a>
         <a class="city-card" href="/city/shenzhen/">
           <h3>Shenzhen <span class="pill">518000+</span></h3>
-          <p>Futian, Nanshan, Longgang, Bao’an.</p>
+          <p>Nanshan, Futian, Bao’an and other Shenzhen zones.</p>
         </a>
         <a class="city-card" href="/city/nanjing/">
           <h3>Nanjing <span class="pill">210000+</span></h3>
-          <p>Gulou, Xuanwu, Jianye, Jiangning.</p>
+          <p>Postal codes for every district across Nanjing.</p>
         </a>
         <a class="city-card" href="/city/chengdu/">
           <h3>Chengdu <span class="pill">610000+</span></h3>
-          <p>Jinjiang, Wuhou, Qingyang, Chenghua.</p>
+          <p>Detailed postcode map for Chengdu’s core districts.</p>
         </a>
         <a class="city-card" href="/city/qingdao/">
           <h3>Qingdao <span class="pill">266000+</span></h3>
-          <p>Shinan, Laoshan, Huangdao, Licang.</p>
+          <p>Shinan, Laoshan, Huangdao, Licang and more.</p>
         </a>
         <a class="city-card" href="/city/dongguan/">
           <h3>Dongguan <span class="pill">523000+</span></h3>
-          <p>Nancheng, Houjie, Humen, Dalang.</p>
+          <p>Industrial towns and subdistricts with quick codes.</p>
         </a>
       </div>
+    </section>
+
+    <section class="search-block" aria-labelledby="postal-search">
+      <div class="section-header">
+        <div>
+          <h2 id="postal-search">Search China postal codes</h2>
+          <p>Enter a city, district, or six-digit code to jump straight to the results page.</p>
+        </div>
+      </div>
+      <form class="search-form" role="search" action="/search/" method="get">
+        <label class="sr-only" for="postal-search-input">Postal code search</label>
+        <div class="search-input-wrap">
+          <input class="search-input" id="postal-search-input" name="q" type="search" placeholder="e.g. Beijing 100000, Futian district, 200120" autocomplete="postal-code">
+          <button class="search-submit" type="submit">Search</button>
+        </div>
+        <p class="search-help">Supports Chinese and English keywords like “上海 邮政编码” or “Guangzhou 510000”.</p>
+      </form>
     </section>
 
     <section aria-labelledby="tools">
@@ -592,230 +804,6 @@
     </div>
   </footer>
   <script>
-    const data = {
-      guangdong: {
-        name: 'Guangdong',
-        cities: {
-          guangzhou: {
-            name: 'Guangzhou',
-            districts: [
-              { name: 'Tianhe District', code: '510620', notes: 'Central business district, Tianhebei Road.' },
-              { name: 'Yuexiu District', code: '510030', notes: 'Includes Beijing Road shopping area.' },
-              { name: 'Haizhu District', code: '510260', notes: 'Canton Fair Complex & Pazhou.' },
-              { name: 'Panyu District', code: '511400', notes: 'Covers Shiqiao, University Town.' }
-            ]
-          },
-          shenzhen: {
-            name: 'Shenzhen',
-            districts: [
-              { name: 'Futian District', code: '518048', notes: 'Civic Center, CBD, Huaqiangbei.' },
-              { name: 'Nanshan District', code: '518054', notes: 'High-tech park & Shenzhen Bay.' },
-              { name: 'Longgang District', code: '518172', notes: 'Includes Longcheng, Buji.' },
-              { name: 'Bao’an District', code: '518101', notes: 'Bao’an International Airport area.' }
-            ]
-          },
-          dongguan: {
-            name: 'Dongguan',
-            districts: [
-              { name: 'Nancheng Subdistrict', code: '523617', notes: 'Downtown business core.' },
-              { name: 'Humen Town', code: '523900', notes: 'Port area, garment manufacturing hub.' },
-              { name: 'Dalang Town', code: '523770', notes: 'Woolen sweater industry cluster.' },
-              { name: 'Houjie Town', code: '523949', notes: 'Furniture & hardware trade area.' }
-            ]
-          }
-        }
-      },
-      beijing: {
-        name: 'Beijing',
-        cities: {
-          beijing: {
-            name: 'Beijing',
-            districts: [
-              { name: 'Chaoyang District', code: '100020', notes: 'CBD, embassy area, Sanlitun.' },
-              { name: 'Haidian District', code: '100080', notes: 'Zhongguancun tech & universities.' },
-              { name: 'Dongcheng District', code: '100010', notes: 'Tiananmen, Wangfujing.' },
-              { name: 'Xicheng District', code: '100032', notes: 'Financial Street, Xidan.' }
-            ]
-          }
-        }
-      },
-      shanghai: {
-        name: 'Shanghai',
-        cities: {
-          shanghai: {
-            name: 'Shanghai',
-            districts: [
-              { name: 'Pudong New Area', code: '200120', notes: 'Lujiazui financial district.' },
-              { name: 'Huangpu District', code: '200001', notes: 'The Bund & People’s Square.' },
-              { name: 'Jing’an District', code: '200040', notes: 'Nanjing West Road offices.' },
-              { name: 'Xuhui District', code: '200030', notes: 'Xujiahui commercial hub.' }
-            ]
-          }
-        }
-      },
-      jiangsu: {
-        name: 'Jiangsu',
-        cities: {
-          nanjing: {
-            name: 'Nanjing',
-            districts: [
-              { name: 'Gulou District', code: '210009', notes: 'Administrative center, Hunan Road.' },
-              { name: 'Xuanwu District', code: '210018', notes: 'Xuanwu Lake, Purple Mountain.' },
-              { name: 'Jianye District', code: '210019', notes: 'Hexi CBD, Olympic Sports Center.' },
-              { name: 'Jiangning District', code: '211100', notes: 'University Town, Lukou Airport.' }
-            ]
-          }
-        }
-      },
-      sichuan: {
-        name: 'Sichuan',
-        cities: {
-          chengdu: {
-            name: 'Chengdu',
-            districts: [
-              { name: 'Jinjiang District', code: '610021', notes: 'Taikoo Li, Chunxi Road.' },
-              { name: 'Wuhou District', code: '610041', notes: 'Hi-tech zone, Sichuan University.' },
-              { name: 'Qingyang District', code: '610015', notes: 'Provincial government area.' },
-              { name: 'Chenghua District', code: '610066', notes: 'SM City, East Railway Station.' }
-            ]
-          }
-        }
-      },
-      shandong: {
-        name: 'Shandong',
-        cities: {
-          qingdao: {
-            name: 'Qingdao',
-            districts: [
-              { name: 'Shinan District', code: '266001', notes: 'May Fourth Square, Badaguan.' },
-              { name: 'Laoshan District', code: '266061', notes: 'Laoshan Scenic Area, Innovation Park.' },
-              { name: 'Huangdao District', code: '266500', notes: 'West Coast New Area.' },
-              { name: 'Licang District', code: '266041', notes: 'North Railway Station, World Expo City.' }
-            ]
-          }
-        }
-      }
-    };
-
-    window.finderData = data;
-
-    const provinceSelect = document.getElementById('provinceSelect');
-    const citySelect = document.getElementById('citySelect');
-    const districtSelect = document.getElementById('districtSelect');
-    const addressInput = document.getElementById('addressInput');
-    const lookupButton = document.getElementById('lookupButton');
-    const resultCard = document.getElementById('resultCard');
-    const resultLocation = document.getElementById('resultLocation');
-    const resultCode = document.getElementById('resultCode');
-    const resultNotes = document.getElementById('resultNotes');
-    const resultSummary = document.getElementById('resultSummary');
-    const copyButton = document.getElementById('copyButton');
-
-    const provinceOptions = Object.entries(data).map(([slug, value]) => ({ slug, name: value.name }));
-    provinceSelect.innerHTML = '<option value="">Select province</option>' + provinceOptions.map(({ slug, name }) => `<option value="${slug}">${name}</option>`).join('');
-
-    provinceSelect.addEventListener('change', () => {
-      const provinceSlug = provinceSelect.value;
-      citySelect.innerHTML = '<option value="">Select city</option>';
-      districtSelect.innerHTML = '<option value="">Select district</option>';
-      citySelect.disabled = true;
-      districtSelect.disabled = true;
-      resultCard.style.display = 'none';
-      resultSummary.textContent = '';
-      if (!provinceSlug || !data[provinceSlug]) return;
-      const cityOptions = Object.entries(data[provinceSlug].cities).map(([slug, city]) => ({ slug, name: city.name }));
-      citySelect.innerHTML += cityOptions.map(({ slug, name }) => `<option value="${slug}">${name}</option>`).join('');
-      citySelect.disabled = false;
-    });
-
-    citySelect.addEventListener('change', () => {
-      const provinceSlug = provinceSelect.value;
-      const citySlug = citySelect.value;
-      districtSelect.innerHTML = '<option value="">Select district</option>';
-      districtSelect.disabled = true;
-      resultCard.style.display = 'none';
-      resultSummary.textContent = '';
-      if (!provinceSlug || !citySlug) return;
-      const districts = data[provinceSlug].cities[citySlug]?.districts ?? [];
-      districtSelect.innerHTML += districts.map(d => `<option value="${d.code}" data-notes="${d.notes}">${d.name}</option>`).join('');
-      districtSelect.disabled = districts.length === 0;
-    });
-
-    const findMatchByKeyword = keyword => {
-      if (!keyword) return null;
-      const term = keyword.trim().toLowerCase();
-      if (!term) return null;
-      for (const [provinceSlug, province] of Object.entries(data)) {
-        for (const [citySlug, city] of Object.entries(province.cities)) {
-          for (const district of city.districts) {
-            const haystack = `${province.name} ${city.name} ${district.name} ${district.notes}`.toLowerCase();
-            if (haystack.includes(term)) {
-              return { provinceSlug, citySlug, district };
-            }
-          }
-        }
-      }
-      return null;
-    };
-
-    const renderResult = ({ provinceSlug, citySlug, district }) => {
-      const province = data[provinceSlug];
-      const city = province.cities[citySlug];
-      const locationLabel = `${city.name}, ${province.name}`;
-      resultLocation.textContent = `${district.name} · ${locationLabel}`;
-      resultCode.textContent = district.code;
-      resultNotes.textContent = district.notes;
-      resultCard.style.display = 'grid';
-      resultSummary.textContent = `Found ${district.code} for ${district.name} (${locationLabel}).`;
-      copyButton.dataset.code = district.code;
-    };
-
-    lookupButton.addEventListener('click', () => {
-      const provinceSlug = provinceSelect.value;
-      const citySlug = citySelect.value;
-      const selectedDistrictOption = districtSelect.selectedOptions[0];
-      const keyword = addressInput.value;
-      if (selectedDistrictOption && provinceSlug && citySlug) {
-        const district = {
-          name: selectedDistrictOption.textContent,
-          code: selectedDistrictOption.value,
-          notes: selectedDistrictOption.dataset.notes || ''
-        };
-        renderResult({ provinceSlug, citySlug, district });
-        return;
-      }
-      const match = findMatchByKeyword(keyword);
-      if (match) {
-        provinceSelect.value = match.provinceSlug;
-        provinceSelect.dispatchEvent(new Event('change'));
-        setTimeout(() => {
-          citySelect.value = match.citySlug;
-          citySelect.dispatchEvent(new Event('change'));
-          setTimeout(() => {
-            for (const option of districtSelect.options) {
-              if (option.textContent === match.district.name) {
-                option.selected = true;
-                break;
-              }
-            }
-            renderResult({ provinceSlug: match.provinceSlug, citySlug: match.citySlug, district: match.district });
-          }, 0);
-        }, 0);
-        return;
-      }
-      resultSummary.textContent = 'No match yet. Choose a province, city, and district or search another keyword.';
-      resultCard.style.display = 'none';
-    });
-
-    copyButton.addEventListener('click', () => {
-      const code = copyButton.dataset.code;
-      if (!code) return;
-      navigator.clipboard?.writeText(code).then(() => {
-        copyButton.textContent = 'Copied!';
-        setTimeout(() => (copyButton.textContent = 'Copy code'), 1600);
-      });
-    });
-
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
