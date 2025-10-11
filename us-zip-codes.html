@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>United States ZIP Codes by State & Major City Directory | Postcode Blog</title>
+  <meta name="description" content="Browse verified ZIP code prefix ranges for every U.S. state and quickly reference primary ZIP codes for America\'s major cities. Organized guide with English and Chinese state names.">
+  <link rel="canonical" href="https://postcode.blog/us-zip-codes.html">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Postcode Blog">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1f4bff;
+      --primary-dark: #1434b8;
+      --bg: #f5f7ff;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      font-weight: 500;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--primary);
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text);
+    }
+
+    .nav-caret {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item:hover .nav-caret,
+    .nav-item:focus-within .nav-caret,
+    .nav-item.active .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 0;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px -24px rgba(15, 23, 42, 0.4);
+      padding: 1rem;
+      min-width: 200px;
+      border: 1px solid var(--border);
+      z-index: 10;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dropdown a {
+      color: var(--text);
+    }
+
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown,
+    .nav-item.active .dropdown {
+      display: flex;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 4rem;
+      display: grid;
+      gap: 3rem;
+    }
+
+    .hero {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .breadcrumb {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .breadcrumb a {
+      color: inherit;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 2.6rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      box-shadow: 0 24px 48px -32px rgba(15, 23, 42, 0.18);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.9rem;
+      letter-spacing: -0.01em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.98rem;
+    }
+
+    thead {
+      background: #0f172a;
+      color: #fff;
+    }
+
+    th,
+    td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tbody tr:hover {
+      background: rgba(31, 75, 255, 0.05);
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    footer {
+      background: #0f172a;
+      color: rgba(255, 255, 255, 0.78);
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .disclaimer {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 640px;
+    }
+
+    @media (max-width: 720px) {
+      .hero h1 {
+        font-size: 2.15rem;
+      }
+
+      table {
+        font-size: 0.92rem;
+      }
+
+      th,
+      td {
+        padding-inline: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/">Postcode Blog</a>
+      <div class="nav-links">
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/us-zip-codes.html">US ZIP Codes</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/faq/">FAQ</a>
+        <div class="nav-item">
+          <a href="/mobile-sim-cards.html" aria-haspopup="true" aria-expanded="false">Mobile SIM Cards <span class="nav-caret">▾</span></a>
+          <div class="dropdown" role="menu">
+            <a href="/china-telecom-sim.html" role="menuitem">China Telecom SIM Cards</a>
+            <a href="/china-mobile-sim.html" role="menuitem">China Mobile SIM Cards</a>
+            <a href="/china-unicom-sim.html" role="menuitem">China Unicom SIM Cards</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="breadcrumb"><a href="/">Home</a> › United States ZIP Codes</p>
+      <h1>United States ZIP codes directory</h1>
+      <p>Reference the official USPS ZIP code prefix ranges for every U.S. state (with English and Chinese names) and get fast access to the headline ZIP codes used by America&apos;s most populous cities.</p>
+    </section>
+
+    <section class="card" aria-labelledby="state-zip-prefixes">
+      <header>
+        <h2 id="state-zip-prefixes">ZIP code ranges by state</h2>
+        <p class="note">Entries show the primary three-digit prefixes assigned by the United States Postal Service along with any notable special allocations. Most states cover a continuous block; Alaska, Texas, and a few others include additional dedicated prefixes.</p>
+      </header>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col">Abbrev.</th>
+              <th scope="col">ZIP code prefixes</th>
+              <th scope="col">Chinese name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Alabama</td><td>AL</td><td>350–369</td><td>阿拉巴马州</td></tr>
+            <tr><td>Alaska</td><td>AK</td><td>995–999</td><td>阿拉斯加州</td></tr>
+            <tr><td>Arizona</td><td>AZ</td><td>850–865</td><td>亚利桑那州</td></tr>
+            <tr><td>Arkansas</td><td>AR</td><td>716–729, 755</td><td>阿肯色州</td></tr>
+            <tr><td>California</td><td>CA</td><td>900–961</td><td>加利福尼亚州</td></tr>
+            <tr><td>Colorado</td><td>CO</td><td>800–816</td><td>科罗拉多州</td></tr>
+            <tr><td>Connecticut</td><td>CT</td><td>060–069</td><td>康涅狄格州</td></tr>
+            <tr><td>Delaware</td><td>DE</td><td>197–199</td><td>特拉华州</td></tr>
+            <tr><td>District of Columbia</td><td>DC</td><td>200–205</td><td>哥伦比亚特区</td></tr>
+            <tr><td>Florida</td><td>FL</td><td>320–349</td><td>佛罗里达州</td></tr>
+            <tr><td>Georgia</td><td>GA</td><td>300–319, 398</td><td>佐治亚州</td></tr>
+            <tr><td>Hawaii</td><td>HI</td><td>967–968</td><td>夏威夷州</td></tr>
+            <tr><td>Idaho</td><td>ID</td><td>832–838</td><td>爱达荷州</td></tr>
+            <tr><td>Illinois</td><td>IL</td><td>600–629</td><td>伊利诺伊州</td></tr>
+            <tr><td>Indiana</td><td>IN</td><td>460–479</td><td>印第安纳州</td></tr>
+            <tr><td>Iowa</td><td>IA</td><td>500–528</td><td>爱荷华州</td></tr>
+            <tr><td>Kansas</td><td>KS</td><td>660–679</td><td>堪萨斯州</td></tr>
+            <tr><td>Kentucky</td><td>KY</td><td>400–427</td><td>肯塔基州</td></tr>
+            <tr><td>Louisiana</td><td>LA</td><td>700–715</td><td>路易斯安那州</td></tr>
+            <tr><td>Maine</td><td>ME</td><td>039–049</td><td>缅因州</td></tr>
+            <tr><td>Maryland</td><td>MD</td><td>206–219</td><td>马里兰州</td></tr>
+            <tr><td>Massachusetts</td><td>MA</td><td>010–027</td><td>马萨诸塞州</td></tr>
+            <tr><td>Michigan</td><td>MI</td><td>480–499</td><td>密歇根州</td></tr>
+            <tr><td>Minnesota</td><td>MN</td><td>550–567</td><td>明尼苏达州</td></tr>
+            <tr><td>Mississippi</td><td>MS</td><td>386–397</td><td>密西西比州</td></tr>
+            <tr><td>Missouri</td><td>MO</td><td>630–658</td><td>密苏里州</td></tr>
+            <tr><td>Montana</td><td>MT</td><td>590–599</td><td>蒙大拿州</td></tr>
+            <tr><td>Nebraska</td><td>NE</td><td>680–693</td><td>内布拉斯加州</td></tr>
+            <tr><td>Nevada</td><td>NV</td><td>889–898</td><td>内华达州</td></tr>
+            <tr><td>New Hampshire</td><td>NH</td><td>030–038</td><td>新罕布什尔州</td></tr>
+            <tr><td>New Jersey</td><td>NJ</td><td>070–089</td><td>新泽西州</td></tr>
+            <tr><td>New Mexico</td><td>NM</td><td>870–884</td><td>新墨西哥州</td></tr>
+            <tr><td>New York</td><td>NY</td><td>005, 06390, 100–149</td><td>纽约州</td></tr>
+            <tr><td>North Carolina</td><td>NC</td><td>270–289</td><td>北卡罗来纳州</td></tr>
+            <tr><td>North Dakota</td><td>ND</td><td>580–588</td><td>北达科他州</td></tr>
+            <tr><td>Ohio</td><td>OH</td><td>430–459</td><td>俄亥俄州</td></tr>
+            <tr><td>Oklahoma</td><td>OK</td><td>730–749</td><td>俄克拉荷马州</td></tr>
+            <tr><td>Oregon</td><td>OR</td><td>970–979</td><td>俄勒冈州</td></tr>
+            <tr><td>Pennsylvania</td><td>PA</td><td>150–196</td><td>宾夕法尼亚州</td></tr>
+            <tr><td>Rhode Island</td><td>RI</td><td>028–029</td><td>罗得岛州</td></tr>
+            <tr><td>South Carolina</td><td>SC</td><td>290–299</td><td>南卡罗来纳州</td></tr>
+            <tr><td>South Dakota</td><td>SD</td><td>570–577</td><td>南达科他州</td></tr>
+            <tr><td>Tennessee</td><td>TN</td><td>370–385</td><td>田纳西州</td></tr>
+            <tr><td>Texas</td><td>TX</td><td>733, 750–799, 885</td><td>德克萨斯州</td></tr>
+            <tr><td>Utah</td><td>UT</td><td>840–847</td><td>犹他州</td></tr>
+            <tr><td>Vermont</td><td>VT</td><td>050–059</td><td>佛蒙特州</td></tr>
+            <tr><td>Virginia</td><td>VA</td><td>201, 220–246</td><td>弗吉尼亚州</td></tr>
+            <tr><td>Washington</td><td>WA</td><td>980–994</td><td>华盛顿州</td></tr>
+            <tr><td>West Virginia</td><td>WV</td><td>247–268</td><td>西弗吉尼亚州</td></tr>
+            <tr><td>Wisconsin</td><td>WI</td><td>530–549</td><td>威斯康星州</td></tr>
+            <tr><td>Wyoming</td><td>WY</td><td>820–831</td><td>怀俄明州</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="major-city-zips">
+      <header>
+        <h2 id="major-city-zips">Flagship ZIP codes for major U.S. cities</h2>
+        <p class="note">Codes below point to the downtown or civic center delivery zones most visitors and businesses reference. Use them as starting points before drilling into neighborhood-level ZIP+4 details.</p>
+      </header>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">City</th>
+              <th scope="col">State</th>
+              <th scope="col">Primary ZIP code</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Washington, D.C. (华盛顿)</td><td>District of Columbia</td><td>20001</td><td>Central city grid covering Capitol Hill and Shaw.</td></tr>
+            <tr><td>Houston (休斯顿)</td><td>Texas</td><td>77002</td><td>Downtown Houston &amp; Theater District.</td></tr>
+            <tr><td>New York City (纽约)</td><td>New York</td><td>10001</td><td>Midtown Manhattan &amp; Chelsea commercial core.</td></tr>
+            <tr><td>Chicago (芝加哥)</td><td>Illinois</td><td>60601</td><td>Loop and Lakeshore East business district.</td></tr>
+            <tr><td>Philadelphia (费城)</td><td>Pennsylvania</td><td>19102</td><td>Center City corridor near City Hall.</td></tr>
+            <tr><td>Pittsburgh (匹兹堡)</td><td>Pennsylvania</td><td>15222</td><td>Golden Triangle and Cultural District.</td></tr>
+            <tr><td>Los Angeles (洛杉矶)</td><td>California</td><td>90012</td><td>Civic Center anchored by City Hall and Union Station.</td></tr>
+            <tr><td>Detroit (底特律)</td><td>Michigan</td><td>48226</td><td>Downtown Detroit riverfront offices.</td></tr>
+            <tr><td>San Francisco (旧金山)</td><td>California</td><td>94102</td><td>Civic Center, Hayes Valley, and City Hall.</td></tr>
+            <tr><td>Boston (波士顿)</td><td>Massachusetts</td><td>02108</td><td>Beacon Hill and Massachusetts State House area.</td></tr>
+            <tr><td>Atlanta (亚特兰大)</td><td>Georgia</td><td>30303</td><td>Downtown Atlanta government &amp; convention campus.</td></tr>
+            <tr><td>El Paso (埃尔帕索)</td><td>Texas</td><td>79901</td><td>Historic downtown adjoining the border.</td></tr>
+            <tr><td>Dallas (达拉斯)</td><td>Texas</td><td>75201</td><td>Dallas Arts District and Main Street core.</td></tr>
+            <tr><td>Indianapolis (印第安纳波利斯)</td><td>Indiana</td><td>46204</td><td>Mile Square central business district.</td></tr>
+            <tr><td>Sacramento (萨克拉门托)</td><td>California</td><td>95814</td><td>Downtown Sacramento and Capitol Mall.</td></tr>
+            <tr><td>Miami (迈阿密)</td><td>Florida</td><td>33130</td><td>Brickell financial district and Miami River.</td></tr>
+            <tr><td>Richmond (里士满)</td><td>Virginia</td><td>23219</td><td>State Capitol campus and riverfront towers.</td></tr>
+            <tr><td>Kansas City (堪萨斯城)</td><td>Missouri</td><td>64106</td><td>Downtown government &amp; Power and Light area.</td></tr>
+            <tr><td>Austin (奥斯汀)</td><td>Texas</td><td>78701</td><td>Texas Capitol complex and downtown tech corridor.</td></tr>
+            <tr><td>San Antonio (圣安东尼奥)</td><td>Texas</td><td>78205</td><td>River Walk, Alamo Plaza, and convention center.</td></tr>
+            <tr><td>Columbus (哥伦布市)</td><td>Ohio</td><td>43215</td><td>Downtown Columbus including Capitol Square.</td></tr>
+            <tr><td>Charlotte (夏洛特)</td><td>North Carolina</td><td>28202</td><td>Uptown Charlotte banking and arena district.</td></tr>
+            <tr><td>San Diego (圣迭戈)</td><td>California</td><td>92101</td><td>Gaslamp Quarter, Little Italy, and waterfront.</td></tr>
+            <tr><td>Denver (丹佛)</td><td>Colorado</td><td>80202</td><td>Central Business District and Union Station.</td></tr>
+            <tr><td>Portland (波特兰)</td><td>Oregon</td><td>97204</td><td>Downtown Portland transit mall area.</td></tr>
+            <tr><td>Phoenix (菲尼克斯)</td><td>Arizona</td><td>85004</td><td>Downtown Phoenix convention and arena hub.</td></tr>
+            <tr><td>Oklahoma City (俄克拉荷马城)</td><td>Oklahoma</td><td>73102</td><td>Bricktown, Civic Center, and business loop.</td></tr>
+            <tr><td>Birmingham (伯明翰)</td><td>Alabama</td><td>35203</td><td>Central Birmingham financial district.</td></tr>
+            <tr><td>Las Vegas (拉斯维加斯)</td><td>Nevada</td><td>89101</td><td>Fremont Street downtown casino corridor.</td></tr>
+            <tr><td>Louisville (路易维尔)</td><td>Kentucky</td><td>40202</td><td>Central business district along the Ohio River.</td></tr>
+            <tr><td>Cincinnati (辛辛那提)</td><td>Ohio</td><td>45202</td><td>Downtown Cincinnati and riverfront stadiums.</td></tr>
+            <tr><td>Memphis (孟菲斯)</td><td>Tennessee</td><td>38103</td><td>Downtown riverfront, Beale Street, and Peabody.</td></tr>
+            <tr><td>Lexington (莱克星顿)</td><td>Kentucky</td><td>40507</td><td>Central Lexington business and university gateway.</td></tr>
+            <tr><td>Arlington (阿灵顿)</td><td>Virginia</td><td>22201</td><td>Clarendon–Courthouse urban village near D.C.</td></tr>
+            <tr><td>Charleston (查尔斯顿)</td><td>South Carolina</td><td>29401</td><td>Historic peninsula and waterfront civic sites.</td></tr>
+            <tr><td>Springfield (斯普林菲尔德)</td><td>Illinois</td><td>62701</td><td>Illinois State Capitol complex downtown.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="/">China ZIP Codes</a>
+        <a href="/finder/">Finder</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/us-zip-codes.html">US ZIP Codes</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/faq/">FAQ</a>
+      </div>
+      <p class="disclaimer">Data verified against USPS ZIP code prefix assignments and public civic center delivery routes (2024 edition). Always confirm ZIP+4 details with the official USPS lookup for precise addresses.</p>
+      <p>© 2024 Postcode Blog. Global postal code intelligence platform.</p>
+    </div>
+  </footer>
+</body>
+</html>
