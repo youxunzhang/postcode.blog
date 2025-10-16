@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Postal Code Map Explorer — Interactive Zip Code Lookup</title>
+  <meta name="description" content="Explore postal codes on an interactive map. Click anywhere to reveal the postcode, or search a code to learn the matching country, city, and street details.">
+  <link rel="canonical" href="https://postcode.blog/map/" />
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Postal Code Map Explorer — Interactive Zip Code Lookup">
+  <meta property="og:description" content="Pinpoint postal codes from the map or search by postcode to see the matching place name, country, province, and street details.">
+  <meta property="og:url" content="https://postcode.blog/map/">
+  <meta property="og:site_name" content="Postcode Blog">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Postal Code Map Explorer — Interactive Zip Code Lookup">
+  <meta name="twitter:description" content="Click the map to discover postal codes or look up a postcode to uncover its matching location details worldwide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+4J8VB+ChXQGZvFMN1sN4Sliw12fE5p3p3ZpShypQ="
+    crossorigin=""
+  />
+  <style>
+    :root {
+      --primary: #1f4bff;
+      --primary-dark: #1434b8;
+      --bg: #f5f7ff;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      font-size: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      font-weight: 500;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text);
+    }
+
+    .nav-caret {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item:hover .nav-caret,
+    .nav-item:focus-within .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 0;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px -24px rgba(15, 23, 42, 0.4);
+      padding: 1rem;
+      min-width: 200px;
+      border: 1px solid var(--border);
+      z-index: 10;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dropdown a {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown {
+      display: flex;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4.5rem;
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      margin: 0;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .map-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .map-card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      box-shadow: 0 28px 60px -28px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      border: 1px solid rgba(31, 75, 255, 0.08);
+    }
+
+    #postal-map {
+      width: 100%;
+      height: 520px;
+    }
+
+    .map-meta {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .map-meta strong {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .panel-card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 24px 50px -28px rgba(15, 23, 42, 0.25);
+      border: 1px solid rgba(31, 75, 255, 0.08);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .panel-card h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    input[type="search"],
+    input[type="text"] {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-size: 1rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 14px;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.85rem 1.6rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      justify-self: start;
+      transition: background 0.2s ease;
+    }
+
+    button:hover,
+    button:focus {
+      background: var(--primary-dark);
+    }
+
+    .helper-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .results {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .result-item {
+      border: 1px solid rgba(31, 75, 255, 0.18);
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      background: rgba(31, 75, 255, 0.06);
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .result-item header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .result-code {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.05em;
+    }
+
+    .result-place {
+      font-weight: 600;
+    }
+
+    .result-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: rgba(31, 75, 255, 0.12);
+      color: var(--primary);
+      padding: 0.2rem 0.75rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .status {
+      border-radius: 14px;
+      padding: 0.85rem 1rem;
+      background: rgba(15, 23, 42, 0.06);
+      font-size: 0.95rem;
+    }
+
+    .status[hidden] {
+      display: none;
+    }
+
+    .callout {
+      background: rgba(31, 75, 255, 0.1);
+      border: 1px solid rgba(31, 75, 255, 0.25);
+      border-radius: 18px;
+      padding: 1.5rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    footer {
+      background: #0f172a;
+      color: rgba(255, 255, 255, 0.78);
+      padding: 2.5rem 1.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .disclaimer {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 640px;
+    }
+
+    @media (max-width: 960px) {
+      .map-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      #postal-map {
+        height: 420px;
+      }
+
+      button {
+        width: 100%;
+        justify-self: stretch;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 2.5rem 1.2rem 3.5rem;
+      }
+
+      .panel-card,
+      .map-card {
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/">Postcode Blog</a>
+      <div class="nav-links">
+        <a href="/finder/">Finder</a>
+        <a href="/map/">Map Explorer</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/us-zip-codes.html">US ZIP Codes</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/faq/">FAQ</a>
+        <div class="nav-item">
+          <a href="/mobile-sim-cards.html" aria-haspopup="true" aria-expanded="false">Mobile SIM Cards <span class="nav-caret">▾</span></a>
+          <div class="dropdown" role="menu">
+            <a href="/china-telecom-sim.html" role="menuitem">China Telecom SIM Cards</a>
+            <a href="/china-mobile-sim.html" role="menuitem">China Mobile SIM Cards</a>
+            <a href="/china-unicom-sim.html" role="menuitem">China Unicom SIM Cards</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <header style="display:grid;gap:0.75rem;">
+      <p class="pill">New</p>
+      <h1>Postal Code Map Explorer</h1>
+      <p class="lead">Find postcodes visually by clicking the map, or enter a postal code to reveal the matching country, city, and street level details.</p>
+    </header>
+    <section class="map-layout" aria-label="Interactive postal code explorer">
+      <article class="map-card">
+        <div id="postal-map" role="region" aria-label="Postal code map"></div>
+        <div class="map-meta" aria-live="polite">
+          <div>
+            <strong>Last lookup</strong>
+            <span id="mapSummary">Tap anywhere on the map to fetch the postcode and place information.</span>
+          </div>
+          <div>
+            <strong>Tip</strong>
+            <span>Drag while holding shift to draw a rectangle and zoom into dense city districts.</span>
+          </div>
+        </div>
+      </article>
+      <aside class="panel-card">
+        <div>
+          <h2>Search from the map</h2>
+          <p class="helper-text">Type a city, landmark, or neighbourhood. Results include the detected postal code and can be previewed on the map.</p>
+        </div>
+        <form id="mapSearchForm" class="form-group" role="search">
+          <label for="mapSearch">Location keyword</label>
+          <input id="mapSearch" type="search" placeholder="e.g. Pudong Shanghai, Chaoyang Beijing" autocomplete="off" required>
+          <button type="submit">Show matches</button>
+        </form>
+        <div id="mapSearchStatus" class="status" hidden aria-live="polite"></div>
+        <div id="mapSearchResults" class="results" aria-live="polite"></div>
+        <hr style="border:none;height:1px;background:var(--border);">
+        <div>
+          <h2>Lookup by postal code</h2>
+          <p class="helper-text">Paste a code to uncover the corresponding place details. Works globally thanks to OpenStreetMap.</p>
+        </div>
+        <form id="codeLookupForm" class="form-group">
+          <label for="codeLookup">Postal / ZIP code</label>
+          <input id="codeLookup" type="text" inputmode="numeric" placeholder="e.g. 100000 or 94105" required>
+          <button type="submit">Find location</button>
+        </form>
+        <div id="codeLookupStatus" class="status" hidden aria-live="polite"></div>
+        <div id="codeLookupResults" class="results" aria-live="polite"></div>
+      </aside>
+    </section>
+    <section class="callout" aria-labelledby="osm-disclaimer">
+      <h2 id="osm-disclaimer" style="margin:0;font-size:1.25rem;">Powered by community maps</h2>
+      <p style="margin:0;">Postal Code Map Explorer uses <a href="https://www.openstreetmap.org/" rel="noopener" target="_blank">OpenStreetMap</a> data via the official Nominatim geocoder. Query volume is throttled to stay within fair-use limits; if a request fails, wait a few seconds and try again.</p>
+      <p style="margin:0;">Map tiles © OpenStreetMap contributors. Postal data coverage varies by country—verify critical shipments with your local postal authority.</p>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/finder/">Finder</a>
+        <a href="/map/">Map Explorer</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search</a>
+        <a href="/cities/">Cities A–Z</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/robots.txt">Robots</a>
+      </div>
+      <p class="disclaimer">Postcode Blog curates public postal (zip) code data for quick reference. Verify critical shipments with the local courier before sending.</p>
+      <p class="disclaimer">© <span id="year"></span> Postcode Blog. All rights reserved.</p>
+    </div>
+  </footer>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-VzM8b2LNkGpCB56YVfMAaVZCDKx0HAGdS+M1uU9wPvM="
+    crossorigin=""
+  ></script>
+  <script>
+    const NOMINATIM_BASE = 'https://nominatim.openstreetmap.org';
+    const emailParam = '&email=hello@postcode.blog';
+    const mapSummary = document.getElementById('mapSummary');
+    const map = L.map('postal-map', { scrollWheelZoom: true });
+    map.setView([35.8617, 104.1954], 4);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    let activeMarker = null;
+
+    function formatAddress(address) {
+      if (!address) return 'Address information unavailable';
+      const parts = [
+        address.road || address.pedestrian || address.path,
+        address.suburb || address.neighbourhood || address.residential,
+        address.city || address.town || address.village || address.county,
+        address.state || address.region,
+        address.country
+      ].filter(Boolean);
+      return parts.join(', ');
+    }
+
+    function describeResult(result) {
+      const address = result.address || {};
+      return {
+        code: address.postcode || result.postcode || 'Unknown',
+        place: result.display_name?.split(',')[0] || address.city || address.town || address.village || 'Unnamed place',
+        country: address.country || 'Unknown country',
+        province: address.state || address.region || address.county || '',
+        city: address.city || address.town || address.village || address.county || '',
+        street: address.road || address.pedestrian || address.path || address.suburb || '',
+        lat: parseFloat(result.lat),
+        lon: parseFloat(result.lon),
+        full: formatAddress(address)
+      };
+    }
+
+    function renderResult(container, result, { showFlyTo = false } = {}) {
+      const info = describeResult(result);
+      const item = document.createElement('article');
+      item.className = 'result-item';
+      item.innerHTML = `
+        <header>
+          <span class="result-place">${info.place}</span>
+          <span class="result-code">${info.code}</span>
+        </header>
+        <div class="result-meta">
+          ${info.country ? `<span class="pill">${info.country}</span>` : ''}
+          ${info.province ? `<span>${info.province}</span>` : ''}
+          ${info.city && info.city !== info.place ? `<span>${info.city}</span>` : ''}
+          ${info.street ? `<span>${info.street}</span>` : ''}
+        </div>
+        <p style="margin:0;font-size:0.95rem;color:var(--muted);">${info.full}</p>
+        ${showFlyTo ? '<button type="button" data-action="fly">Show on map</button>' : ''}
+      `;
+
+      if (showFlyTo) {
+        const flyBtn = item.querySelector('button[data-action="fly"]');
+        flyBtn.addEventListener('click', () => {
+          focusOnMap(info.lat, info.lon, info.code, info.place);
+        });
+      }
+
+      container.appendChild(item);
+      return info;
+    }
+
+    function focusOnMap(lat, lon, code, place) {
+      map.flyTo([lat, lon], 15, { duration: 0.8 });
+      if (activeMarker) {
+        activeMarker.remove();
+      }
+      activeMarker = L.marker([lat, lon]).addTo(map);
+      const details = [
+        `<strong>${place}</strong>`,
+        code ? `Postal code: ${code}` : null
+      ].filter(Boolean).join('<br>');
+      activeMarker.bindPopup(details).openPopup();
+      mapSummary.textContent = `${place} — Postal code ${code || 'unknown'} (lat ${lat.toFixed(4)}, lon ${lon.toFixed(4)})`;
+    }
+
+    async function fetchJSON(url) {
+      const response = await fetch(url, {
+        headers: {
+          'Accept': 'application/json',
+          'Accept-Language': 'en'
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Lookup failed, please try again shortly.');
+      }
+      return response.json();
+    }
+
+    map.on('click', async (event) => {
+      const { lat, lng } = event.latlng;
+      mapSummary.textContent = 'Looking up postcode…';
+      try {
+        const url = `${NOMINATIM_BASE}/reverse?format=json&addressdetails=1&zoom=18&lat=${lat}&lon=${lng}${emailParam}`;
+        const data = await fetchJSON(url);
+        if (!data || !data.address) {
+          mapSummary.textContent = 'No postal code found for this point. Try a nearby street.';
+          return;
+        }
+        const info = describeResult(data);
+        focusOnMap(info.lat, info.lon, info.code, info.place);
+      } catch (error) {
+        mapSummary.textContent = error.message;
+      }
+    });
+
+    const mapSearchForm = document.getElementById('mapSearchForm');
+    const mapSearchInput = document.getElementById('mapSearch');
+    const mapSearchResults = document.getElementById('mapSearchResults');
+    const mapSearchStatus = document.getElementById('mapSearchStatus');
+
+    mapSearchForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const query = mapSearchInput.value.trim();
+      if (!query) {
+        return;
+      }
+      mapSearchResults.innerHTML = '';
+      mapSearchStatus.hidden = false;
+      mapSearchStatus.textContent = 'Searching…';
+      try {
+        const url = `${NOMINATIM_BASE}/search?format=json&addressdetails=1&limit=6&q=${encodeURIComponent(query)}${emailParam}`;
+        const results = await fetchJSON(url);
+        if (!results.length) {
+          mapSearchStatus.textContent = 'No results found. Try a more specific keyword or include the city name.';
+          return;
+        }
+        mapSearchStatus.textContent = `Showing ${results.length} match${results.length > 1 ? 'es' : ''}.`;
+        results.forEach((result) => {
+          renderResult(mapSearchResults, result, { showFlyTo: true });
+        });
+      } catch (error) {
+        mapSearchStatus.textContent = error.message;
+      }
+    });
+
+    const codeLookupForm = document.getElementById('codeLookupForm');
+    const codeLookupInput = document.getElementById('codeLookup');
+    const codeLookupStatus = document.getElementById('codeLookupStatus');
+    const codeLookupResults = document.getElementById('codeLookupResults');
+
+    codeLookupForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const code = codeLookupInput.value.trim();
+      if (!code) {
+        return;
+      }
+      codeLookupResults.innerHTML = '';
+      codeLookupStatus.hidden = false;
+      codeLookupStatus.textContent = 'Looking up postal code…';
+      try {
+        const url = `${NOMINATIM_BASE}/search?format=json&addressdetails=1&limit=5&postalcode=${encodeURIComponent(code)}${emailParam}`;
+        const results = await fetchJSON(url);
+        if (!results.length) {
+          codeLookupStatus.textContent = 'No matching place found. Double-check the code or include the country name.';
+          return;
+        }
+        codeLookupStatus.textContent = `Found ${results.length} possible location${results.length > 1 ? 's' : ''}.`;
+        const first = renderResult(codeLookupResults, results[0]);
+        focusOnMap(first.lat, first.lon, first.code, first.place);
+        results.slice(1).forEach((result) => renderResult(codeLookupResults, result));
+      } catch (error) {
+        codeLookupStatus.textContent = error.message;
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
