@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global Hotel Directory – Flagship City Hotels by Region</title>
+  <meta name="description" content="Explore flagship hotels across the world's leading cities. Browse curated listings by region to plan premium stays in North America, Europe, Asia-Pacific, the Middle East & Africa, and Latin America.">
+  <link rel="canonical" href="https://postcode.blog/hotel-directory.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1f4bff;
+      --primary-dark: #1434b8;
+      --bg: #f5f7ff;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      font-size: 16px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      font-weight: 500;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text);
+    }
+
+    .nav-caret {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item:hover .nav-caret,
+    .nav-item:focus-within .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .nav-item.active > a {
+      color: var(--primary);
+    }
+
+    .nav-item.active .nav-caret {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 0;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px -24px rgba(15, 23, 42, 0.4);
+      padding: 1rem;
+      min-width: 200px;
+      border: 1px solid var(--border);
+      z-index: 10;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dropdown a {
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.92rem;
+      transition: color 0.2s ease;
+    }
+
+    .dropdown a:hover,
+    .dropdown a:focus {
+      color: var(--primary);
+    }
+
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown {
+      display: flex;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+
+    .hero {
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 24px;
+      box-shadow: 0 24px 60px -32px rgba(15, 23, 42, 0.3);
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .region-section {
+      margin-bottom: 3.5rem;
+    }
+
+    .region-section h2 {
+      font-size: 1.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .region-intro {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 760px;
+    }
+
+    .city-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .city-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px -32px rgba(15, 23, 42, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .city-card h3 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .city-summary {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .hotel-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .hotel-list li strong {
+      display: block;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .hotel-list li {
+      color: var(--muted);
+    }
+
+    .planning-note {
+      background: rgba(31, 75, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.5rem;
+      border: 1px solid rgba(31, 75, 255, 0.15);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 2.25rem;
+      }
+
+      .hero h1 {
+        font-size: 2.05rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/">Postcode Blog</a>
+      <div class="nav-links">
+        <a href="/finder/">Finder</a>
+        <a href="/map/">Map Explorer</a>
+        <a href="/lookup/">Lookup</a>
+        <a href="/search/">Search Directory</a>
+        <a href="/us-zip-codes.html">US ZIP Codes</a>
+        <a href="/cities/">A–Z Cities</a>
+        <a href="/hotel-directory.html" aria-current="page">Hotel Directory</a>
+        <a href="/faq/">FAQ</a>
+        <div class="nav-item">
+          <a href="/mobile-sim-cards.html" aria-haspopup="true" aria-expanded="false">Mobile SIM Cards <span class="nav-caret">▾</span></a>
+          <div class="dropdown" role="menu">
+            <a href="/china-telecom-sim.html" role="menuitem">China Telecom SIM Cards</a>
+            <a href="/china-mobile-sim.html" role="menuitem">China Mobile SIM Cards</a>
+            <a href="/china-unicom-sim.html" role="menuitem">China Unicom SIM Cards</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Global flagship hotel directory</h1>
+      <p>Plan business or leisure stays in the world&rsquo;s headline cities with curated five-star and design-forward hotels. Browse our shortlists by region to find iconic addresses, emerging lifestyle brands, and trusted luxury chains with instant recognition.</p>
+    </section>
+
+    <section class="region-section" aria-labelledby="north-america">
+      <h2 id="north-america">North America</h2>
+      <p class="region-intro">From Midtown Manhattan to the Las Vegas Strip, these hotels provide statement-making stays with award-winning service, Michelin-level dining, and fast access to major conference districts.</p>
+      <div class="city-grid">
+        <article class="city-card">
+          <h3>New York City, USA</h3>
+          <p class="city-summary">A mix of contemporary skyscraper suites and heritage landmarks in Midtown and Downtown.</p>
+          <ul class="hotel-list">
+            <li><strong>The St. Regis New York</strong> Fifth Avenue classic with butler service and a Beaux-Arts lobby lounge.</li>
+            <li><strong>Four Seasons Hotel New York Downtown</strong> Sleek Tribeca retreat near Wall Street and the World Trade Center.</li>
+            <li><strong>The Langham, New York, Fifth Avenue</strong> Spacious suites with floor-to-ceiling views near Bryant Park.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Los Angeles, USA</h3>
+          <p class="city-summary">Resort-style luxury with rooftop pools, wellness suites, and access to studio backlots.</p>
+          <ul class="hotel-list">
+            <li><strong>Waldorf Astoria Beverly Hills</strong> Art Deco-inspired sanctuary with panoramic rooftop dining.</li>
+            <li><strong>The Beverly Hills Hotel</strong> Iconic “Pink Palace” with private bungalows and celebrity history.</li>
+            <li><strong>The West Hollywood EDITION</strong> Design-forward stay steps from the Sunset Strip nightlife.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Toronto, Canada</h3>
+          <p class="city-summary">Business-friendly hotels near Bay Street and entertainment venues around King Street West.</p>
+          <ul class="hotel-list">
+            <li><strong>Fairmont Royal York</strong> Heritage rail hotel with modernized suites and easy Union Station access.</li>
+            <li><strong>Shangri-La Toronto</strong> Asian-inspired sanctuary with acclaimed spa and opera district views.</li>
+            <li><strong>Ritz-Carlton Toronto</strong> Club-level experiences overlooking Lake Ontario.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Chicago, USA</h3>
+          <p class="city-summary">Lakefront luxury with riverfront skyline vistas and celebrated culinary programs.</p>
+          <ul class="hotel-list">
+            <li><strong>Peninsula Chicago</strong> Asian hospitality with rooftop terrace and award-winning afternoon tea.</li>
+            <li><strong>Four Seasons Hotel Chicago</strong> Magnificent Mile address with art deco styling.</li>
+            <li><strong>Langham Chicago</strong> Mies van der Rohe landmark featuring Chuan Spa and Club lounge.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="region-section" aria-labelledby="europe">
+      <h2 id="europe">Europe</h2>
+      <p class="region-intro">Historic palaces, boutique townhouse retreats, and avant-garde design hotels within walking distance of cultural icons, Michelin-starred dining, and luxury shopping corridors.</p>
+      <div class="city-grid">
+        <article class="city-card">
+          <h3>London, United Kingdom</h3>
+          <p class="city-summary">Central London stays near Mayfair, Knightsbridge, and the City of London.</p>
+          <ul class="hotel-list">
+            <li><strong>The Savoy</strong> Thames-side heritage hotel with private butlers and storied theater connections.</li>
+            <li><strong>Claridge&rsquo;s</strong> Art Deco masterpiece known for refined afternoon tea and bespoke suites.</li>
+            <li><strong>The Connaught</strong> Michelin-starred dining and Aman Spa in the heart of Mayfair.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Paris, France</h3>
+          <p class="city-summary">Haussmann-era grandeur steps from the Champs-Élysées, Avenue Montaigne, and the Louvre.</p>
+          <ul class="hotel-list">
+            <li><strong>Hôtel Plaza Athénée</strong> Couture address with Dior Spa and Eiffel Tower panoramas.</li>
+            <li><strong>Le Bristol Paris</strong> Palace hotel featuring a three-Michelin-starred restaurant and leafy courtyard.</li>
+            <li><strong>The Peninsula Paris</strong> Rooftop dining and state-of-the-art suites near Arc de Triomphe.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Rome, Italy</h3>
+          <p class="city-summary">Boutique palazzi blending Roman heritage with contemporary luxury amenities.</p>
+          <ul class="hotel-list">
+            <li><strong>Hotel de Russie</strong> Villa Borghese hideaway with terraced gardens and city skyline views.</li>
+            <li><strong>JK Place Roma</strong> Tailored townhouse experience minutes from the Spanish Steps.</li>
+            <li><strong>Bulgari Hotel Roma</strong> Marble-clad suites and signature spa on Piazza Augusto Imperatore.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Berlin, Germany</h3>
+          <p class="city-summary">Modern luxury near the Brandenburg Gate with bold architecture and creative dining.</p>
+          <ul class="hotel-list">
+            <li><strong>Hotel Adlon Kempinski</strong> Iconic address overlooking Pariser Platz and the Gate.</li>
+            <li><strong>The Ritz-Carlton Berlin</strong> Potsdamer Platz hotel featuring Fragrances cocktail bar.</li>
+            <li><strong>Soho House Berlin</strong> Members-club style rooms with rooftop pool in Mitte.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="region-section" aria-labelledby="asia-pacific">
+      <h2 id="asia-pacific">Asia-Pacific</h2>
+      <p class="region-intro">Skyline suites, urban resorts, and waterfront getaways in Asia-Pacific hubs known for innovation, finance, and next-level hospitality.</p>
+      <div class="city-grid">
+        <article class="city-card">
+          <h3>Tokyo, Japan</h3>
+          <p class="city-summary">Skyscraper sanctuaries with cutting-edge technology and serene wellness programs.</p>
+          <ul class="hotel-list">
+            <li><strong>Aman Tokyo</strong> Minimalist urban retreat with ryokan-inspired design and skyline pool.</li>
+            <li><strong>Park Hyatt Tokyo</strong> Shinjuku tower made famous by cinematic city views.</li>
+            <li><strong>The Peninsula Tokyo</strong> Imperial Palace panoramas and Rolls-Royce house cars.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Hong Kong SAR, China</h3>
+          <p class="city-summary">Victoria Harbour spectacles with world-class dining and club lounges.</p>
+          <ul class="hotel-list">
+            <li><strong>The Upper House</strong> Contemporary calm above Pacific Place with Café Gray Deluxe.</li>
+            <li><strong>Rosewood Hong Kong</strong> Art-filled harborfront icon with Asaya wellness concept.</li>
+            <li><strong>Four Seasons Hotel Hong Kong</strong> Multi-Michelin-starred dining and harbor-edge infinity pools.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Sydney, Australia</h3>
+          <p class="city-summary">Harbour-view hideaways balancing cosmopolitan energy with coastal relaxation.</p>
+          <ul class="hotel-list">
+            <li><strong>Park Hyatt Sydney</strong> Opera House views from harborside balconies in The Rocks.</li>
+            <li><strong>Crown Towers Sydney</strong> Resort-style amenities within Barangaroo&rsquo;s waterfront precinct.</li>
+            <li><strong>QT Sydney</strong> Art Deco boutique hotel with playful interiors near Pitt Street Mall.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Singapore</h3>
+          <p class="city-summary">Strategic business hub with integrated resorts and lush city gardens.</p>
+          <ul class="hotel-list">
+            <li><strong>Marina Bay Sands</strong> Signature infinity pool and observation deck above Marina Bay.</li>
+            <li><strong>Raffles Singapore</strong> Colonial-style suites with personal butler service and famed Long Bar.</li>
+            <li><strong>Capella Singapore</strong> Sentosa Island resort with villas set amid rainforest grounds.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="region-section" aria-labelledby="middle-east">
+      <h2 id="middle-east">Middle East &amp; Africa</h2>
+      <p class="region-intro">Desert city skylines, Red Sea resorts, and urban art scenes supported by premium hospitality brands.</p>
+      <div class="city-grid">
+        <article class="city-card">
+          <h3>Dubai, United Arab Emirates</h3>
+          <p class="city-summary">Statement towers and beachfront retreats with Michelin-starred experiences.</p>
+          <ul class="hotel-list">
+            <li><strong>Burj Al Arab Jumeirah</strong> Sail-shaped icon with duplex suites and private beach access.</li>
+            <li><strong>Atlantis The Royal</strong> Ultra-luxury resort on Palm Jumeirah with celebrity chef dining.</li>
+            <li><strong>Address Sky View</strong> Twin-tower downtown hotel with rooftop infinity pool facing Burj Khalifa.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Doha, Qatar</h3>
+          <p class="city-summary">Modern waterfront developments blending Arab heritage and global events infrastructure.</p>
+          <ul class="hotel-list">
+            <li><strong>Mandarin Oriental Doha</strong> Souq-inspired retreat with desert-hued interiors in Msheireb Downtown.</li>
+            <li><strong>W Doha</strong> Vibrant design hotel with award-winning restaurants on West Bay.</li>
+            <li><strong>Ritz-Carlton Doha</strong> Private island resort featuring marina access and luxury villas.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Cape Town, South Africa</h3>
+          <p class="city-summary">Table Mountain backdrops paired with coastal vineyards and design-led stays.</p>
+          <ul class="hotel-list">
+            <li><strong>One&amp;Only Cape Town</strong> Waterfront resort with private island spa and panoramas.</li>
+            <li><strong>Silo Hotel</strong> Contemporary art hotel rising above the Zeitz MOCAA museum.</li>
+            <li><strong>Ellerman House</strong> Boutique clifftop mansion with private art collection in Bantry Bay.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Johannesburg, South Africa</h3>
+          <p class="city-summary">Business-centric hotels in Sandton and Rosebank with elevated security and service.</p>
+          <ul class="hotel-list">
+            <li><strong>Saxon Hotel, Villas &amp; Spa</strong> Secluded estate with award-winning spa in Sandhurst.</li>
+            <li><strong>Four Seasons Hotel The Westcliff</strong> Hillside retreat overlooking the Johannesburg Zoo.</li>
+            <li><strong>The Leonardo</strong> Premium residences and hotel floors within Africa&rsquo;s tallest tower.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="region-section" aria-labelledby="latin-america">
+      <h2 id="latin-america">Latin America</h2>
+      <p class="region-intro">Vibrant cultural capitals delivering boutique sophistication, rooftop nightlife, and coastal escapes.</p>
+      <div class="city-grid">
+        <article class="city-card">
+          <h3>Mexico City, Mexico</h3>
+          <p class="city-summary">Polanco and Reforma properties blending historic mansions with modern high-rises.</p>
+          <ul class="hotel-list">
+            <li><strong>Four Seasons Hotel Mexico City</strong> Garden courtyard sanctuary on Paseo de la Reforma.</li>
+            <li><strong>Las Alcobas, a Luxury Collection Hotel</strong> Intimate Polanco boutique with handwoven details.</li>
+            <li><strong>St. Regis Mexico City</strong> Skyline views and Remède Spa services in Reforma corridor.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>São Paulo, Brazil</h3>
+          <p class="city-summary">Financial hub hotels with high-rise art collections and rooftop pools.</p>
+          <ul class="hotel-list">
+            <li><strong>Hotel Unique</strong> Iconic architecture with Skye rooftop bar overlooking Ibirapuera Park.</li>
+            <li><strong>Palácio Tangará</strong> Urban resort surrounded by Burle Marx Park with Michelin-starred dining.</li>
+            <li><strong>Rosewood São Paulo</strong> Vertical garden towers within Cidade Matarazzo complex.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Buenos Aires, Argentina</h3>
+          <p class="city-summary">Belle Époque mansions and contemporary towers near Recoleta and Puerto Madero.</p>
+          <ul class="hotel-list">
+            <li><strong>Alvear Palace Hotel</strong> Classic luxury with Louis XV décor and rooftop views.</li>
+            <li><strong>Faena Hotel Buenos Aires</strong> Philippe Starck design with tango performances in Puerto Madero.</li>
+            <li><strong>Palacio Duhau – Park Hyatt Buenos Aires</strong> Mansion and modern wing connected by landscaped gardens.</li>
+          </ul>
+        </article>
+        <article class="city-card">
+          <h3>Lima, Peru</h3>
+          <p class="city-summary">Clifftop Miraflores escapes with award-winning culinary programs.</p>
+          <ul class="hotel-list">
+            <li><strong>Belmond Miraflores Park</strong> Oceanfront suites with rooftop pool and Observatory Lounge breakfast.</li>
+            <li><strong>JW Marriott Hotel Lima</strong> Glass-clad tower with panoramic Pacific views.</li>
+            <li><strong>Hotel B</strong> Artsy Barranco boutique with curated Peruvian art collection.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="planning-note" aria-label="Trip planning tips">
+      Consider pairing this directory with our postcode and SIM card guides to coordinate airport transfers, roaming data, and courier deliveries before arrival.
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Postcode Blog. Curated global hotel intelligence for discerning travelers.
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
