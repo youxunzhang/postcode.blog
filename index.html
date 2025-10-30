@@ -362,6 +362,79 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
+    .city-matrix-container {
+      background: var(--card-bg);
+      border-radius: 24px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 20px 44px -28px rgba(15, 23, 42, 0.24);
+      padding: 2rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .city-matrix-container h3 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .city-matrix-container p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 70ch;
+    }
+
+    .city-matrix {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .matrix-group {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .matrix-group h4 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .matrix-group ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .matrix-group li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.02);
+      font-size: 0.9rem;
+    }
+
+    .matrix-group .city-name {
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .matrix-group .postal-code {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
     .city-card,
     .tool-card,
     .province-card {
@@ -663,7 +736,6 @@
           </article>
         </div>
       </div>
-    </section>
 
     <section aria-labelledby="popular-cities">
       <div class="section-header">
@@ -707,8 +779,489 @@
           <p>Industrial towns and subdistricts with quick codes.</p>
         </a>
       </div>
+      <div class="city-matrix-container">
+        <div>
+          <h3>300+ additional China city postal codes</h3>
+          <p>Browse every prefecture-level city and autonomous prefecture with its primary six-digit postcode. Use the finder for district-level lookups.</p>
+        </div>
+        <div class="city-matrix" role="list">
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with A">
+            <h4>A</h4>
+            <ul>
+              <li><span class="city-name">Aba Tibetan and Qiang Autonomous Prefecture</span><span class="postal-code">624000</span></li>
+              <li><span class="city-name">Aksu</span><span class="postal-code">843000</span></li>
+              <li><span class="city-name">Altay Prefecture</span><span class="postal-code">836500</span></li>
+              <li><span class="city-name">Alxa League</span><span class="postal-code">750306</span></li>
+              <li><span class="city-name">Ankang</span><span class="postal-code">725000</span></li>
+              <li><span class="city-name">Anqing</span><span class="postal-code">246000</span></li>
+              <li><span class="city-name">Anshan</span><span class="postal-code">114000</span></li>
+              <li><span class="city-name">Anshun</span><span class="postal-code">561000</span></li>
+              <li><span class="city-name">Anyang</span><span class="postal-code">455000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with B">
+            <h4>B</h4>
+            <ul>
+              <li><span class="city-name">Baicheng</span><span class="postal-code">137000</span></li>
+              <li><span class="city-name">Baise</span><span class="postal-code">533000</span></li>
+              <li><span class="city-name">Baishan</span><span class="postal-code">134300</span></li>
+              <li><span class="city-name">Baiyin</span><span class="postal-code">730900</span></li>
+              <li><span class="city-name">Baoding</span><span class="postal-code">071000</span></li>
+              <li><span class="city-name">Baoji</span><span class="postal-code">721000</span></li>
+              <li><span class="city-name">Baoshan</span><span class="postal-code">678000</span></li>
+              <li><span class="city-name">Baotou</span><span class="postal-code">014000</span></li>
+              <li><span class="city-name">Bayannur</span><span class="postal-code">015000</span></li>
+              <li><span class="city-name">Bayingolin Mongol Autonomous Prefecture</span><span class="postal-code">841000</span></li>
+              <li><span class="city-name">Bazhong</span><span class="postal-code">636000</span></li>
+              <li><span class="city-name">Beihai</span><span class="postal-code">536000</span></li>
+              <li><span class="city-name">Beijing</span><span class="postal-code">100000</span></li>
+              <li><span class="city-name">Bengbu</span><span class="postal-code">233000</span></li>
+              <li><span class="city-name">Benxi</span><span class="postal-code">117000</span></li>
+              <li><span class="city-name">Bijie</span><span class="postal-code">551700</span></li>
+              <li><span class="city-name">Binzhou</span><span class="postal-code">256600</span></li>
+              <li><span class="city-name">Bortala Mongol Autonomous Prefecture</span><span class="postal-code">833400</span></li>
+              <li><span class="city-name">Bozhou</span><span class="postal-code">236800</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with C">
+            <h4>C</h4>
+            <ul>
+              <li><span class="city-name">Cangzhou</span><span class="postal-code">061000</span></li>
+              <li><span class="city-name">Chamdo</span><span class="postal-code">854000</span></li>
+              <li><span class="city-name">Changchun</span><span class="postal-code">130000</span></li>
+              <li><span class="city-name">Changde</span><span class="postal-code">415000</span></li>
+              <li><span class="city-name">Changji Hui Autonomous Prefecture</span><span class="postal-code">831100</span></li>
+              <li><span class="city-name">Changsha</span><span class="postal-code">410000</span></li>
+              <li><span class="city-name">Changzhi</span><span class="postal-code">046000</span></li>
+              <li><span class="city-name">Changzhou</span><span class="postal-code">213000</span></li>
+              <li><span class="city-name">Chaoyang</span><span class="postal-code">122000</span></li>
+              <li><span class="city-name">Chaozhou</span><span class="postal-code">521000</span></li>
+              <li><span class="city-name">Chengde</span><span class="postal-code">067000</span></li>
+              <li><span class="city-name">Chengdu</span><span class="postal-code">610000</span></li>
+              <li><span class="city-name">Chengmai County</span><span class="postal-code">571900</span></li>
+              <li><span class="city-name">Chenzhou</span><span class="postal-code">423000</span></li>
+              <li><span class="city-name">Chifeng</span><span class="postal-code">024000</span></li>
+              <li><span class="city-name">Chizhou</span><span class="postal-code">247100</span></li>
+              <li><span class="city-name">Chongqing</span><span class="postal-code">400000</span></li>
+              <li><span class="city-name">Chongzuo</span><span class="postal-code">532200</span></li>
+              <li><span class="city-name">Chuxiong Yi Autonomous Prefecture</span><span class="postal-code">675000</span></li>
+              <li><span class="city-name">Chuzhou</span><span class="postal-code">239000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with D">
+            <h4>D</h4>
+            <ul>
+              <li><span class="city-name">Dali Bai Autonomous Prefecture</span><span class="postal-code">671000</span></li>
+              <li><span class="city-name">Dalian</span><span class="postal-code">116000</span></li>
+              <li><span class="city-name">Dandong</span><span class="postal-code">118000</span></li>
+              <li><span class="city-name">Danzhou</span><span class="postal-code">571700</span></li>
+              <li><span class="city-name">Daqing</span><span class="postal-code">163000</span></li>
+              <li><span class="city-name">Datong</span><span class="postal-code">037000</span></li>
+              <li><span class="city-name">Daxing’anling Prefecture</span><span class="postal-code">165000</span></li>
+              <li><span class="city-name">Dazhou</span><span class="postal-code">635000</span></li>
+              <li><span class="city-name">Dehong Dai and Jingpo Autonomous Prefecture</span><span class="postal-code">678400</span></li>
+              <li><span class="city-name">Deyang</span><span class="postal-code">618000</span></li>
+              <li><span class="city-name">Dezhou</span><span class="postal-code">253000</span></li>
+              <li><span class="city-name">Dingxi</span><span class="postal-code">743000</span></li>
+              <li><span class="city-name">Diqing Tibetan Autonomous Prefecture</span><span class="postal-code">674400</span></li>
+              <li><span class="city-name">Dongfang</span><span class="postal-code">572600</span></li>
+              <li><span class="city-name">Dongguan</span><span class="postal-code">523000</span></li>
+              <li><span class="city-name">Dongying</span><span class="postal-code">257000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with E">
+            <h4>E</h4>
+            <ul>
+              <li><span class="city-name">Enshi Tujia and Miao Autonomous Prefecture</span><span class="postal-code">445000</span></li>
+              <li><span class="city-name">Ezhou</span><span class="postal-code">436000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with F">
+            <h4>F</h4>
+            <ul>
+              <li><span class="city-name">Fangchenggang</span><span class="postal-code">538000</span></li>
+              <li><span class="city-name">Foshan</span><span class="postal-code">528000</span></li>
+              <li><span class="city-name">Fushun</span><span class="postal-code">113000</span></li>
+              <li><span class="city-name">Fuxin</span><span class="postal-code">123000</span></li>
+              <li><span class="city-name">Fuyang</span><span class="postal-code">236000</span></li>
+              <li><span class="city-name">Fuzhou</span><span class="postal-code">350000</span></li>
+              <li><span class="city-name">Fuzhou (Jiangxi)</span><span class="postal-code">344000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with G">
+            <h4>G</h4>
+            <ul>
+              <li><span class="city-name">Gannan Tibetan Autonomous Prefecture</span><span class="postal-code">747000</span></li>
+              <li><span class="city-name">Ganzhou</span><span class="postal-code">341000</span></li>
+              <li><span class="city-name">Garze Tibetan Autonomous Prefecture</span><span class="postal-code">626000</span></li>
+              <li><span class="city-name">Guangyuan</span><span class="postal-code">628000</span></li>
+              <li><span class="city-name">Guangzhou</span><span class="postal-code">510000</span></li>
+              <li><span class="city-name">Guang’an</span><span class="postal-code">638000</span></li>
+              <li><span class="city-name">Guigang</span><span class="postal-code">537100</span></li>
+              <li><span class="city-name">Guilin</span><span class="postal-code">541000</span></li>
+              <li><span class="city-name">Guiyang</span><span class="postal-code">550000</span></li>
+              <li><span class="city-name">Guoluo Tibetan Autonomous Prefecture</span><span class="postal-code">814000</span></li>
+              <li><span class="city-name">Guyuan</span><span class="postal-code">756000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with H">
+            <h4>H</h4>
+            <ul>
+              <li><span class="city-name">Haibei Tibetan Autonomous Prefecture</span><span class="postal-code">812200</span></li>
+              <li><span class="city-name">Haidong</span><span class="postal-code">810600</span></li>
+              <li><span class="city-name">Haikou</span><span class="postal-code">570000</span></li>
+              <li><span class="city-name">Hainan Tibetan Autonomous Prefecture</span><span class="postal-code">813000</span></li>
+              <li><span class="city-name">Haixi Mongol and Tibetan Autonomous Prefecture</span><span class="postal-code">817000</span></li>
+              <li><span class="city-name">Hami</span><span class="postal-code">839000</span></li>
+              <li><span class="city-name">Handan</span><span class="postal-code">056000</span></li>
+              <li><span class="city-name">Hangzhou</span><span class="postal-code">310000</span></li>
+              <li><span class="city-name">Hanzhong</span><span class="postal-code">723000</span></li>
+              <li><span class="city-name">Harbin</span><span class="postal-code">150000</span></li>
+              <li><span class="city-name">Hebi</span><span class="postal-code">458000</span></li>
+              <li><span class="city-name">Hechi</span><span class="postal-code">547000</span></li>
+              <li><span class="city-name">Hefei</span><span class="postal-code">230000</span></li>
+              <li><span class="city-name">Hegang</span><span class="postal-code">154100</span></li>
+              <li><span class="city-name">Heihe</span><span class="postal-code">164000</span></li>
+              <li><span class="city-name">Hengshui</span><span class="postal-code">053000</span></li>
+              <li><span class="city-name">Hengyang</span><span class="postal-code">421000</span></li>
+              <li><span class="city-name">Heyuan</span><span class="postal-code">517000</span></li>
+              <li><span class="city-name">Heze</span><span class="postal-code">274000</span></li>
+              <li><span class="city-name">Hezhou</span><span class="postal-code">542800</span></li>
+              <li><span class="city-name">Hohhot</span><span class="postal-code">010000</span></li>
+              <li><span class="city-name">Honghe Hani and Yi Autonomous Prefecture</span><span class="postal-code">661400</span></li>
+              <li><span class="city-name">Hotan</span><span class="postal-code">848000</span></li>
+              <li><span class="city-name">Huaian</span><span class="postal-code">223200</span></li>
+              <li><span class="city-name">Huaibei</span><span class="postal-code">235000</span></li>
+              <li><span class="city-name">Huaihua</span><span class="postal-code">418000</span></li>
+              <li><span class="city-name">Huainan</span><span class="postal-code">232000</span></li>
+              <li><span class="city-name">Huanggang</span><span class="postal-code">438000</span></li>
+              <li><span class="city-name">Huangnan Tibetan Autonomous Prefecture</span><span class="postal-code">811300</span></li>
+              <li><span class="city-name">Huangshan</span><span class="postal-code">245000</span></li>
+              <li><span class="city-name">Huangshi</span><span class="postal-code">435000</span></li>
+              <li><span class="city-name">Huizhou</span><span class="postal-code">516000</span></li>
+              <li><span class="city-name">Huludao</span><span class="postal-code">125000</span></li>
+              <li><span class="city-name">Hulunbuir</span><span class="postal-code">021000</span></li>
+              <li><span class="city-name">Huzhou</span><span class="postal-code">313000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with I">
+            <h4>I</h4>
+            <ul>
+              <li><span class="city-name">Ili Kazakh Autonomous Prefecture</span><span class="postal-code">835000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with J">
+            <h4>J</h4>
+            <ul>
+              <li><span class="city-name">Jiamusi</span><span class="postal-code">154000</span></li>
+              <li><span class="city-name">Jiangmen</span><span class="postal-code">529000</span></li>
+              <li><span class="city-name">Jiaozuo</span><span class="postal-code">454000</span></li>
+              <li><span class="city-name">Jiaxing</span><span class="postal-code">314000</span></li>
+              <li><span class="city-name">Jiayuguan</span><span class="postal-code">735100</span></li>
+              <li><span class="city-name">Jieyang</span><span class="postal-code">522000</span></li>
+              <li><span class="city-name">Jilin City</span><span class="postal-code">132000</span></li>
+              <li><span class="city-name">Jinan</span><span class="postal-code">250000</span></li>
+              <li><span class="city-name">Jinchang</span><span class="postal-code">737100</span></li>
+              <li><span class="city-name">Jincheng</span><span class="postal-code">048000</span></li>
+              <li><span class="city-name">Jingdezhen</span><span class="postal-code">333000</span></li>
+              <li><span class="city-name">Jingmen</span><span class="postal-code">448000</span></li>
+              <li><span class="city-name">Jingzhou</span><span class="postal-code">434000</span></li>
+              <li><span class="city-name">Jinhua</span><span class="postal-code">321000</span></li>
+              <li><span class="city-name">Jining</span><span class="postal-code">272000</span></li>
+              <li><span class="city-name">Jinzhong</span><span class="postal-code">030600</span></li>
+              <li><span class="city-name">Jinzhou</span><span class="postal-code">121000</span></li>
+              <li><span class="city-name">Jiujiang</span><span class="postal-code">332000</span></li>
+              <li><span class="city-name">Jiuquan</span><span class="postal-code">735000</span></li>
+              <li><span class="city-name">Jixi</span><span class="postal-code">158100</span></li>
+              <li><span class="city-name">Jiyuan</span><span class="postal-code">454650</span></li>
+              <li><span class="city-name">Ji’an</span><span class="postal-code">343000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with K">
+            <h4>K</h4>
+            <ul>
+              <li><span class="city-name">Kaifeng</span><span class="postal-code">475000</span></li>
+              <li><span class="city-name">Karamay</span><span class="postal-code">834000</span></li>
+              <li><span class="city-name">Kashgar</span><span class="postal-code">844000</span></li>
+              <li><span class="city-name">Kizilsu Kirgiz Autonomous Prefecture</span><span class="postal-code">845350</span></li>
+              <li><span class="city-name">Kunming</span><span class="postal-code">650000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with L">
+            <h4>L</h4>
+            <ul>
+              <li><span class="city-name">Laibin</span><span class="postal-code">546100</span></li>
+              <li><span class="city-name">Laiwu</span><span class="postal-code">271100</span></li>
+              <li><span class="city-name">Langfang</span><span class="postal-code">065000</span></li>
+              <li><span class="city-name">Lanzhou</span><span class="postal-code">730000</span></li>
+              <li><span class="city-name">Ledong Li Autonomous County</span><span class="postal-code">572500</span></li>
+              <li><span class="city-name">Leshan</span><span class="postal-code">614000</span></li>
+              <li><span class="city-name">Lhasa</span><span class="postal-code">850000</span></li>
+              <li><span class="city-name">Liangshan Yi Autonomous Prefecture</span><span class="postal-code">615000</span></li>
+              <li><span class="city-name">Lianyungang</span><span class="postal-code">222000</span></li>
+              <li><span class="city-name">Liaocheng</span><span class="postal-code">252000</span></li>
+              <li><span class="city-name">Liaoyang</span><span class="postal-code">111000</span></li>
+              <li><span class="city-name">Liaoyuan</span><span class="postal-code">136200</span></li>
+              <li><span class="city-name">Lijiang</span><span class="postal-code">674100</span></li>
+              <li><span class="city-name">Lincang</span><span class="postal-code">677000</span></li>
+              <li><span class="city-name">Linfen</span><span class="postal-code">041000</span></li>
+              <li><span class="city-name">Linxia Hui Autonomous Prefecture</span><span class="postal-code">731100</span></li>
+              <li><span class="city-name">Linyi</span><span class="postal-code">276000</span></li>
+              <li><span class="city-name">Lishui</span><span class="postal-code">323000</span></li>
+              <li><span class="city-name">Liupanshui</span><span class="postal-code">553000</span></li>
+              <li><span class="city-name">Liuzhou</span><span class="postal-code">545000</span></li>
+              <li><span class="city-name">Longnan</span><span class="postal-code">746000</span></li>
+              <li><span class="city-name">Longyan</span><span class="postal-code">364000</span></li>
+              <li><span class="city-name">Loudi</span><span class="postal-code">417000</span></li>
+              <li><span class="city-name">Luohe</span><span class="postal-code">462000</span></li>
+              <li><span class="city-name">Luoyang</span><span class="postal-code">471000</span></li>
+              <li><span class="city-name">Luzhou</span><span class="postal-code">646000</span></li>
+              <li><span class="city-name">Lu’an</span><span class="postal-code">237000</span></li>
+              <li><span class="city-name">Lvliang</span><span class="postal-code">033000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with M">
+            <h4>M</h4>
+            <ul>
+              <li><span class="city-name">Maoming</span><span class="postal-code">525000</span></li>
+              <li><span class="city-name">Ma’anshan</span><span class="postal-code">243000</span></li>
+              <li><span class="city-name">Meishan</span><span class="postal-code">620000</span></li>
+              <li><span class="city-name">Meizhou</span><span class="postal-code">514000</span></li>
+              <li><span class="city-name">Mianyang</span><span class="postal-code">621000</span></li>
+              <li><span class="city-name">Mudanjiang</span><span class="postal-code">157000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with N">
+            <h4>N</h4>
+            <ul>
+              <li><span class="city-name">Nagqu</span><span class="postal-code">852000</span></li>
+              <li><span class="city-name">Nanchang</span><span class="postal-code">330000</span></li>
+              <li><span class="city-name">Nanchong</span><span class="postal-code">637000</span></li>
+              <li><span class="city-name">Nanjing</span><span class="postal-code">210000</span></li>
+              <li><span class="city-name">Nanning</span><span class="postal-code">530000</span></li>
+              <li><span class="city-name">Nanping</span><span class="postal-code">353000</span></li>
+              <li><span class="city-name">Nantong</span><span class="postal-code">226000</span></li>
+              <li><span class="city-name">Nanyang</span><span class="postal-code">473000</span></li>
+              <li><span class="city-name">Neijiang</span><span class="postal-code">641000</span></li>
+              <li><span class="city-name">Ngari</span><span class="postal-code">859000</span></li>
+              <li><span class="city-name">Ningbo</span><span class="postal-code">315000</span></li>
+              <li><span class="city-name">Ningde</span><span class="postal-code">352100</span></li>
+              <li><span class="city-name">Nujiang Lisu Autonomous Prefecture</span><span class="postal-code">673100</span></li>
+              <li><span class="city-name">Nyingchi</span><span class="postal-code">860000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with O">
+            <h4>O</h4>
+            <ul>
+              <li><span class="city-name">Ordos</span><span class="postal-code">017000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with P">
+            <h4>P</h4>
+            <ul>
+              <li><span class="city-name">Panjin</span><span class="postal-code">124000</span></li>
+              <li><span class="city-name">Panzhihua</span><span class="postal-code">617000</span></li>
+              <li><span class="city-name">Pingdingshan</span><span class="postal-code">467000</span></li>
+              <li><span class="city-name">Pingliang</span><span class="postal-code">744000</span></li>
+              <li><span class="city-name">Pingxiang</span><span class="postal-code">337000</span></li>
+              <li><span class="city-name">Putian</span><span class="postal-code">351100</span></li>
+              <li><span class="city-name">Puyang</span><span class="postal-code">457000</span></li>
+              <li><span class="city-name">Pu’er</span><span class="postal-code">665000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with Q">
+            <h4>Q</h4>
+            <ul>
+              <li><span class="city-name">Qiandongnan Miao and Dong Autonomous Prefecture</span><span class="postal-code">556000</span></li>
+              <li><span class="city-name">Qianjiang</span><span class="postal-code">433100</span></li>
+              <li><span class="city-name">Qiannan Buyi and Miao Autonomous Prefecture</span><span class="postal-code">558000</span></li>
+              <li><span class="city-name">Qianxinan Buyi and Miao Autonomous Prefecture</span><span class="postal-code">562400</span></li>
+              <li><span class="city-name">Qingdao</span><span class="postal-code">266000</span></li>
+              <li><span class="city-name">Qingyang</span><span class="postal-code">745000</span></li>
+              <li><span class="city-name">Qingyuan</span><span class="postal-code">511500</span></li>
+              <li><span class="city-name">Qinhuangdao</span><span class="postal-code">066000</span></li>
+              <li><span class="city-name">Qinzhou</span><span class="postal-code">535000</span></li>
+              <li><span class="city-name">Qionghai</span><span class="postal-code">571400</span></li>
+              <li><span class="city-name">Qiqihar</span><span class="postal-code">161000</span></li>
+              <li><span class="city-name">Qitaihe</span><span class="postal-code">154600</span></li>
+              <li><span class="city-name">Quanzhou</span><span class="postal-code">362000</span></li>
+              <li><span class="city-name">Qujing</span><span class="postal-code">655000</span></li>
+              <li><span class="city-name">Quzhou</span><span class="postal-code">324000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with R">
+            <h4>R</h4>
+            <ul>
+              <li><span class="city-name">Rizhao</span><span class="postal-code">276800</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with S">
+            <h4>S</h4>
+            <ul>
+              <li><span class="city-name">Sanmenxia</span><span class="postal-code">472000</span></li>
+              <li><span class="city-name">Sanming</span><span class="postal-code">365000</span></li>
+              <li><span class="city-name">Sansha</span><span class="postal-code">573199</span></li>
+              <li><span class="city-name">Sanya</span><span class="postal-code">572000</span></li>
+              <li><span class="city-name">Shanghai</span><span class="postal-code">200000</span></li>
+              <li><span class="city-name">Shangluo</span><span class="postal-code">726000</span></li>
+              <li><span class="city-name">Shangqiu</span><span class="postal-code">476000</span></li>
+              <li><span class="city-name">Shangrao</span><span class="postal-code">334000</span></li>
+              <li><span class="city-name">Shannan (Lhokha)</span><span class="postal-code">856000</span></li>
+              <li><span class="city-name">Shantou</span><span class="postal-code">515000</span></li>
+              <li><span class="city-name">Shanwei</span><span class="postal-code">516600</span></li>
+              <li><span class="city-name">Shaoguan</span><span class="postal-code">512000</span></li>
+              <li><span class="city-name">Shaoxing</span><span class="postal-code">312000</span></li>
+              <li><span class="city-name">Shaoyang</span><span class="postal-code">422000</span></li>
+              <li><span class="city-name">Shennongjia Forestry District</span><span class="postal-code">442400</span></li>
+              <li><span class="city-name">Shenyang</span><span class="postal-code">110000</span></li>
+              <li><span class="city-name">Shenzhen</span><span class="postal-code">518000</span></li>
+              <li><span class="city-name">Shigatse</span><span class="postal-code">857000</span></li>
+              <li><span class="city-name">Shijiazhuang</span><span class="postal-code">050000</span></li>
+              <li><span class="city-name">Shiyan</span><span class="postal-code">442000</span></li>
+              <li><span class="city-name">Shizuishan</span><span class="postal-code">753000</span></li>
+              <li><span class="city-name">Shuangyashan</span><span class="postal-code">155100</span></li>
+              <li><span class="city-name">Shuozhou</span><span class="postal-code">036000</span></li>
+              <li><span class="city-name">Siping</span><span class="postal-code">136000</span></li>
+              <li><span class="city-name">Songyuan</span><span class="postal-code">138000</span></li>
+              <li><span class="city-name">Suihua</span><span class="postal-code">152000</span></li>
+              <li><span class="city-name">Suining</span><span class="postal-code">629000</span></li>
+              <li><span class="city-name">Suizhou</span><span class="postal-code">441300</span></li>
+              <li><span class="city-name">Suqian</span><span class="postal-code">223800</span></li>
+              <li><span class="city-name">Suzhou</span><span class="postal-code">215000</span></li>
+              <li><span class="city-name">Suzhou (Anhui)</span><span class="postal-code">234000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with T">
+            <h4>T</h4>
+            <ul>
+              <li><span class="city-name">Tacheng</span><span class="postal-code">834700</span></li>
+              <li><span class="city-name">Taian</span><span class="postal-code">271000</span></li>
+              <li><span class="city-name">Taiyuan</span><span class="postal-code">030000</span></li>
+              <li><span class="city-name">Taizhou (Jiangsu)</span><span class="postal-code">225300</span></li>
+              <li><span class="city-name">Taizhou (Zhejiang)</span><span class="postal-code">318000</span></li>
+              <li><span class="city-name">Tangshan</span><span class="postal-code">063000</span></li>
+              <li><span class="city-name">Tianjin</span><span class="postal-code">300000</span></li>
+              <li><span class="city-name">Tianmen</span><span class="postal-code">431700</span></li>
+              <li><span class="city-name">Tianshui</span><span class="postal-code">741000</span></li>
+              <li><span class="city-name">Tieling</span><span class="postal-code">112000</span></li>
+              <li><span class="city-name">Tongchuan</span><span class="postal-code">727000</span></li>
+              <li><span class="city-name">Tonghua</span><span class="postal-code">134000</span></li>
+              <li><span class="city-name">Tongliao</span><span class="postal-code">028000</span></li>
+              <li><span class="city-name">Tongling</span><span class="postal-code">244000</span></li>
+              <li><span class="city-name">Tongren</span><span class="postal-code">554300</span></li>
+              <li><span class="city-name">Turpan</span><span class="postal-code">838000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with U">
+            <h4>U</h4>
+            <ul>
+              <li><span class="city-name">Ulanqab</span><span class="postal-code">012000</span></li>
+              <li><span class="city-name">Urumqi</span><span class="postal-code">830000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with W">
+            <h4>W</h4>
+            <ul>
+              <li><span class="city-name">Wanning</span><span class="postal-code">571500</span></li>
+              <li><span class="city-name">Weifang</span><span class="postal-code">261000</span></li>
+              <li><span class="city-name">Weihai</span><span class="postal-code">264200</span></li>
+              <li><span class="city-name">Weinan</span><span class="postal-code">714000</span></li>
+              <li><span class="city-name">Wenchang</span><span class="postal-code">571300</span></li>
+              <li><span class="city-name">Wenshan Zhuang and Miao Autonomous Prefecture</span><span class="postal-code">663000</span></li>
+              <li><span class="city-name">Wenzhou</span><span class="postal-code">325000</span></li>
+              <li><span class="city-name">Wuhai</span><span class="postal-code">016000</span></li>
+              <li><span class="city-name">Wuhan</span><span class="postal-code">430000</span></li>
+              <li><span class="city-name">Wuhu</span><span class="postal-code">241000</span></li>
+              <li><span class="city-name">Wuwei</span><span class="postal-code">733000</span></li>
+              <li><span class="city-name">Wuxi</span><span class="postal-code">214000</span></li>
+              <li><span class="city-name">Wuzhong</span><span class="postal-code">751100</span></li>
+              <li><span class="city-name">Wuzhou</span><span class="postal-code">543000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with X">
+            <h4>X</h4>
+            <ul>
+              <li><span class="city-name">Xiamen</span><span class="postal-code">361000</span></li>
+              <li><span class="city-name">Xiangtan</span><span class="postal-code">411100</span></li>
+              <li><span class="city-name">Xiangxi Tujia and Miao Autonomous Prefecture</span><span class="postal-code">416000</span></li>
+              <li><span class="city-name">Xiangyang</span><span class="postal-code">441000</span></li>
+              <li><span class="city-name">Xianning</span><span class="postal-code">437000</span></li>
+              <li><span class="city-name">Xiantao</span><span class="postal-code">433000</span></li>
+              <li><span class="city-name">Xianyang</span><span class="postal-code">712000</span></li>
+              <li><span class="city-name">Xiaogan</span><span class="postal-code">432000</span></li>
+              <li><span class="city-name">Xilingol League</span><span class="postal-code">026000</span></li>
+              <li><span class="city-name">Xingtai</span><span class="postal-code">054000</span></li>
+              <li><span class="city-name">Xing’an League</span><span class="postal-code">137400</span></li>
+              <li><span class="city-name">Xining</span><span class="postal-code">810000</span></li>
+              <li><span class="city-name">Xinxiang</span><span class="postal-code">453000</span></li>
+              <li><span class="city-name">Xinyang</span><span class="postal-code">464000</span></li>
+              <li><span class="city-name">Xinyu</span><span class="postal-code">338000</span></li>
+              <li><span class="city-name">Xinzhou</span><span class="postal-code">034000</span></li>
+              <li><span class="city-name">Xishuangbanna Dai Autonomous Prefecture</span><span class="postal-code">666100</span></li>
+              <li><span class="city-name">Xi’an</span><span class="postal-code">710000</span></li>
+              <li><span class="city-name">Xuancheng</span><span class="postal-code">242000</span></li>
+              <li><span class="city-name">Xuchang</span><span class="postal-code">461000</span></li>
+              <li><span class="city-name">Xuzhou</span><span class="postal-code">221000</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with Y">
+            <h4>Y</h4>
+            <ul>
+              <li><span class="city-name">Yanbian Korean Autonomous Prefecture</span><span class="postal-code">133000</span></li>
+              <li><span class="city-name">Yancheng</span><span class="postal-code">224000</span></li>
+              <li><span class="city-name">Yangjiang</span><span class="postal-code">529500</span></li>
+              <li><span class="city-name">Yangquan</span><span class="postal-code">045000</span></li>
+              <li><span class="city-name">Yangzhou</span><span class="postal-code">225000</span></li>
+              <li><span class="city-name">Yantai</span><span class="postal-code">264000</span></li>
+              <li><span class="city-name">Yan’an</span><span class="postal-code">716000</span></li>
+              <li><span class="city-name">Ya’an</span><span class="postal-code">625000</span></li>
+              <li><span class="city-name">Yibin</span><span class="postal-code">644000</span></li>
+              <li><span class="city-name">Yichang</span><span class="postal-code">443000</span></li>
+              <li><span class="city-name">Yichun</span><span class="postal-code">153000</span></li>
+              <li><span class="city-name">Yichun</span><span class="postal-code">336000</span></li>
+              <li><span class="city-name">Yinchuan</span><span class="postal-code">750000</span></li>
+              <li><span class="city-name">Yingkou</span><span class="postal-code">115000</span></li>
+              <li><span class="city-name">Yingtan</span><span class="postal-code">335000</span></li>
+              <li><span class="city-name">Yiyang</span><span class="postal-code">413000</span></li>
+              <li><span class="city-name">Yongzhou</span><span class="postal-code">425000</span></li>
+              <li><span class="city-name">Yueyang</span><span class="postal-code">414000</span></li>
+              <li><span class="city-name">Yulin</span><span class="postal-code">537000</span></li>
+              <li><span class="city-name">Yulin</span><span class="postal-code">719000</span></li>
+              <li><span class="city-name">Yuncheng</span><span class="postal-code">044000</span></li>
+              <li><span class="city-name">Yunfu</span><span class="postal-code">527000</span></li>
+              <li><span class="city-name">Yushu Tibetan Autonomous Prefecture</span><span class="postal-code">815000</span></li>
+              <li><span class="city-name">Yuxi</span><span class="postal-code">653100</span></li>
+            </ul>
+          </div>
+          <div class="matrix-group" role="listitem" aria-label="Cities starting with Z">
+            <h4>Z</h4>
+            <ul>
+              <li><span class="city-name">Zaozhuang</span><span class="postal-code">277000</span></li>
+              <li><span class="city-name">Zhangjiajie</span><span class="postal-code">427000</span></li>
+              <li><span class="city-name">Zhangjiakou</span><span class="postal-code">075000</span></li>
+              <li><span class="city-name">Zhangye</span><span class="postal-code">734000</span></li>
+              <li><span class="city-name">Zhangzhou</span><span class="postal-code">363000</span></li>
+              <li><span class="city-name">Zhanjiang</span><span class="postal-code">524000</span></li>
+              <li><span class="city-name">Zhaoqing</span><span class="postal-code">526000</span></li>
+              <li><span class="city-name">Zhaotong</span><span class="postal-code">657000</span></li>
+              <li><span class="city-name">Zhengzhou</span><span class="postal-code">450000</span></li>
+              <li><span class="city-name">Zhenjiang</span><span class="postal-code">212000</span></li>
+              <li><span class="city-name">Zhongshan</span><span class="postal-code">528400</span></li>
+              <li><span class="city-name">Zhongwei</span><span class="postal-code">755000</span></li>
+              <li><span class="city-name">Zhoukou</span><span class="postal-code">466000</span></li>
+              <li><span class="city-name">Zhoushan</span><span class="postal-code">316000</span></li>
+              <li><span class="city-name">Zhuhai</span><span class="postal-code">519000</span></li>
+              <li><span class="city-name">Zhumadian</span><span class="postal-code">463000</span></li>
+              <li><span class="city-name">Zhuzhou</span><span class="postal-code">412000</span></li>
+              <li><span class="city-name">Zibo</span><span class="postal-code">255000</span></li>
+              <li><span class="city-name">Zigong</span><span class="postal-code">643000</span></li>
+              <li><span class="city-name">Ziyang</span><span class="postal-code">641300</span></li>
+              <li><span class="city-name">Zunyi</span><span class="postal-code">563000</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
-
     <section class="search-block" aria-labelledby="postal-search">
       <div class="section-header">
         <div>
