@@ -267,9 +267,15 @@
     .quick-cities,
     .province-grid,
     .faq-preview,
-    .tools-grid {
+    .tools-grid,
+    .tool-grid {
       display: grid;
       gap: 1.5rem;
+    }
+
+    .tools-grid,
+    .tool-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 
     .search-block {
@@ -943,7 +949,7 @@
           <p>覆盖北京、上海、深圳的中文邮编落地页，并附邮编查询与规则科普。</p>
         </div>
       </div>
-      <div class="tool-grid">
+      <div class="tools-grid">
         <a class="tool-card" href="/city/beijing/youbian.html">
           <h3>北京邮编大全</h3>
           <p>16 个城区主邮编、寄件格式与查找器入口。</p>
